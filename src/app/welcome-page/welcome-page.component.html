@@ -1,0 +1,47 @@
+<div class="wrapper">
+  <mat-card class="container, mat-elevation-z21">
+    <mat-grid-list cols="2"[cols]="breakpoint" (window:resize)="onResize($event)">
+      <mat-grid-tile>
+
+        <div class="presentation">
+          <img src="assets/logo/fizjo.png"  alt="PHYSF">
+          <div class="desc">
+            Aplikacja do prowadzenia wirtualnej kartoteki pacjenta oraz zarządzania wizytami w gabinecie
+            fizjoterapeutycznym.
+          </div>
+        </div>
+
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <div id="loginPart">
+          <form id="loginForm" [formGroup]="signin">
+            <p>
+              <mat-form-field appearance="legacy">
+                <mat-label>Login</mat-label>
+                <input matInput placeholder="" formControlName="username" required>
+                <mat-icon matSuffix>perm_identity</mat-icon>
+                <mat-hint *ngIf="!usernameInput.value">Wprowadź nazwę użytkownika</mat-hint>
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field>
+                <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="password" required>
+                <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                <mat-hint *ngIf="!passwordInput.value">Wprowadź hasło</mat-hint>
+              </mat-form-field>
+            </p>
+            <a id="resetPassword" href="">Zapomniałeś hasła?</a>
+
+          </form>
+          <section class="button-row">
+            <button class="formButton" mat-raised-button color="primary">Zaloguj</button>
+
+            <button class="formButton mat-elevation-z1" mat-stroked-button color="primary">Załóż konto</button>
+          </section>
+
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-card>
+</div>
+

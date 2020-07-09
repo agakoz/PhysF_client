@@ -1,0 +1,75 @@
+.wrapper {
+  //background: rgb(53, 130, 120);
+  //background: -moz-linear-gradient(180deg, rgba(53, 130, 120, 1) 32%, rgba(130, 53, 102, 1) 81%);
+  //background: -webkit-linear-gradient(180deg, rgba(53, 130, 120, 1) 32%, rgba(130, 53, 102, 1) 81%);
+  //background: linear-gradient(180deg, rgba(53, 130, 120, 1) 32%, rgba(130, 53, 102, 1) 81%);
+  //filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#358278", endColorstr="#823566", GradientType=1);
+  background: rgb(53, 130, 120);
+  background: -moz-linear-gradient(180deg, rgba(53, 130, 120, 1) 26%, rgba(96, 115, 148, 1) 53%, rgba(130, 53, 102, 1) 89%);
+  background: -webkit-linear-gradient(180deg, rgba(53, 130, 120, 1) 26%, rgba(96, 115, 148, 1) 53%, rgba(130, 53, 102, 1) 89%);
+  background: linear-gradient(180deg, rgba(53, 130, 120, 1) 26%, rgba(96, 115, 148, 1) 53%, rgba(130, 53, 102, 1) 89%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#358278", endColorstr="#823566", GradientType=1);
+  width: 100%;
+  min-height: 100%;
+  height: max-content;
+
+}
+
+mat-card {
+  width: 80%;
+  height: min-content;
+  min-height: 70%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  margin: auto;
+  background-color: whitesmoke;
+
+
+
+}
+
+.presentation {
+  text-align: right;
+}
+
+.desc {
+
+  width: 90%;
+  //text-justify: ;
+  left: 0;
+  right: 0;
+
+  margin: auto;
+}
+
+#loginForm {
+  width: 60%;
+
+  mat-form-field {
+    width: 100%;
+  }
+
+}
+
+#resetPassword {
+  float: right;
+}
+
+
+#loginPart {
+  width: 80%;
+
+  .button-row {
+    margin-top: 20px;
+    display: inline-block;
+
+    .formButton {
+      margin-right: 20px
+    }
+  }
+}
+
