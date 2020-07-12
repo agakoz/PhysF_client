@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
+import {AuthService} from '../_services/auth.service';
+import {TokenStorageService} from '../_services/token-storage.service';
 
 @Component({
   selector: 'app-welcome-page',
@@ -10,28 +12,31 @@ import {ActivatedRoute, Router} from '@angular/router';
 export class WelcomePageComponent implements OnInit {
   public breakpoint: number;
 
-  constructor(
+  constructor(private tokenStorage: TokenStorageService, private router: Router
   ) { }
 
   ngOnInit(): void {
     this.breakpoint = (window.innerWidth <= 600) ? 1 : 2;
+    if (this.tokenStorage.getUser()) {
+      this.router.navigate(['profile'])
+    }
   }
 
   onResize(event) {
-    this.breakpoint = (event.target.innerWidth <= 600) ? 1 : 2;
+    this.breakpoint = (event.target.innerWidth <= 700) ? 1 : 2;
   }
 
 
-  signin: FormGroup = new FormGroup({
-    username: new FormControl('', [Validators.required, Validators.min(4) ]),
-    password: new FormControl('', [Validators.required, Validators.min(4) ])
-  });
 
-  hide = true;
-  get usernameInput() { return this.signin.get('username'); }
-  get passwordInput() { return this.signin.get('password'); }
+  goToRegisterPage(): void {
+    this.router.navigate(['register']).then((e) => {
+      if (e) {
+        console.log("Navigation is successful!");
+      } else {
+        console.log("Navigation has failed!");
+      }
+    });
 
 
-
-
+  }
 }

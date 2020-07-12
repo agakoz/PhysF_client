@@ -11,7 +11,7 @@
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#358278", endColorstr="#823566", GradientType=1);
   width: 100%;
   min-height: 100%;
-  height: max-content;
+  height: min-content;
 
 }
 
@@ -26,50 +26,35 @@ mat-card {
   right: 0;
 
   margin: auto;
-  background-color: whitesmoke;
-
+  background-color: white;
 
 
 }
 
 .presentation {
   text-align: right;
+  width: 100%;
 }
 
 .desc {
 
-  width: 90%;
-  //text-justify: ;
+  width: 80%;
   left: 0;
   right: 0;
 
   margin: auto;
 }
 
-#loginForm {
-  width: 60%;
-
-  mat-form-field {
-    width: 100%;
-  }
-
-}
-
-#resetPassword {
-  float: right;
-}
-
 
 #loginPart {
-  width: 80%;
+  width: 60%;
 
-  .button-row {
-    margin-top: 20px;
-    display: inline-block;
 
-    .formButton {
-      margin-right: 20px
-    }
-  }
+}
+
+#goToRegistrationButton {
+  margin-top: 20px;
+  width: 110px;
+  margin-left: 10px;
 }
 

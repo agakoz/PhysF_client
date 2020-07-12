@@ -11,13 +11,23 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import {authInterceptorProviders} from './_helpers/auth.inspector';
+import { RegisterComponent } from './register/register.component';
+import { ProfileComponent } from './profile/profile.component';
+import { LoginComponent } from './login/login.component';
+import {AuthGuard} from './_helpers/AuthGuard';
+import {MatStepperModule} from '@angular/material/stepper';
+import {ErrorStateMatcher, ShowOnDirtyErrorStateMatcher} from '@angular/material/core';
 
 @NgModule({
   declarations: [
     AppComponent,
-    WelcomePageComponent
+    WelcomePageComponent,
+    RegisterComponent,
+    ProfileComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -30,9 +40,11 @@ import {HttpClientModule} from '@angular/common/http';
     MatInputModule,
     MatButtonModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    MatStepperModule,
   ],
-  providers: [],
+  providers: [authInterceptorProviders,AuthGuard, {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher} ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
