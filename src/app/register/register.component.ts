@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../_services/auth.service';
-import {FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // <== add the imports!
+import {FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms'; // <== add the imports!
 
 import {Router} from '@angular/router';
-import {ErrorStateMatcher} from '@angular/material/core';
+import {DateAdapter, ErrorStateMatcher} from '@angular/material/core';
 import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 
 /** Error when invalid control is dirty, touched, or submitted. */
@@ -41,7 +41,8 @@ export class RegisterComponent implements OnInit {
 
   matcher = new MyErrorStateMatcher();
 
-  constructor(private authService: AuthService, private _formBuilder: FormBuilder, private router: Router) {
+  constructor(private authService: AuthService, private _formBuilder: FormBuilder, private router: Router, private dateAdapter: DateAdapter<Date>) {
+    this.dateAdapter.setLocale('pl');
   }
 
   ngOnInit(): void {
@@ -57,7 +58,6 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log("rejestracja zaczeta")
     this.authService.register(this.form).subscribe(
       data => {
         console.log(data);
@@ -72,10 +72,8 @@ export class RegisterComponent implements OnInit {
   }
 
   goBackToMain(): void {
-    this.router.navigate([''])
+    this.router.navigate(['']);
   }
-
-
 
 
 }
