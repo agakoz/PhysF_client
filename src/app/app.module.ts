@@ -21,6 +21,7 @@ import {AuthGuard} from './_helpers/AuthGuard';
 import {MatStepperModule} from '@angular/material/stepper';
 import {ErrorStateMatcher,  MatNativeDateModule, ShowOnDirtyErrorStateMatcher} from '@angular/material/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import { PatientsComponent } from './patients/patients.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     WelcomePageComponent,
     RegisterComponent,
     ProfileComponent,
-    LoginComponent
+    LoginComponent,
+    PatientsComponent
   ],
   imports: [
     BrowserModule,

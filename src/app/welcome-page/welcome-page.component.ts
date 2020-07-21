@@ -18,7 +18,7 @@ export class WelcomePageComponent implements OnInit {
   ngOnInit(): void {
     this.breakpoint = (window.innerWidth <= 600) ? 1 : 2;
     if (this.tokenStorage.getUser()) {
-      this.router.navigate(['profile'])
+      this.router.navigate(['patients'])
     }
   }
 
