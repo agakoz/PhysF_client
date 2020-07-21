@@ -1,0 +1,40 @@
+.button-row {
+
+  display: inline-block;
+
+
+}
+
+#loggingButton {
+  width: 110px;
+  margin-top: 30px;
+}
+
+#resetPassword {
+  float: right;
+}
+
+#loginForm {
+  width: 100%;
+  margin-top: 20px;
+
+  mat-form-field {
+    width: 100%;
+  }
+
+}
+
+#infoMsg {
+  color: rgba(130, 53, 102, 1);
+  font-weight: bolder;
+  font-size: 110%;
+}
+
+#goToRegistrationButton {
+  background-color: white;
+
+}
+
+#resetPassword{
+  //float: left;
+}

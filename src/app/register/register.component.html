@@ -1,0 +1,223 @@
+<div class="wrapper">
+
+  <mat-card class="container, mat-elevation-z21">
+    <button id="goBackButton" (click)="goBackToMain()" class="formButton mat-elevation-z1" mat-stroked-button
+            color="primary">wróć
+    </button>
+    <p></p>
+
+    <mat-card-title  *ngIf="!isSuccessful" >Wypełnij formularz, aby założyć konto</mat-card-title>
+    <div *ngIf="isSuccessful" id="loginCont">
+      <mat-card-title id="registrationSuccessMsg"   >Rejestracja zakończona pomyślnie! </mat-card-title>
+      <div id="logFormContainer">
+      <p> Zaloguj się aby kontynuować:</p>
+<!--      <div >-->
+        <app-login></app-login>
+<!--      </div>-->
+    </div>
+    </div>
+    <!--    <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">-->
+    <!--      {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}-->
+    <!--    </button>-->
+    <form id="registrationForm"
+          *ngIf="!isSuccessful"
+          name="form"
+          (ngSubmit)="f.form.valid && onSubmit()"
+          #f="ngForm"
+          novalidate>
+      <mat-vertical-stepper [linear]="isLinear" #stepper>
+        <mat-step [stepControl]="firstFormGroup" errorMessage="Address is required.">
+
+          <ng-template matStepLabel>Dane do konta</ng-template>
+          <mat-form-field>
+            <mat-label>Nazwa użytkownika</mat-label>
+            <input matInput placeholder="login"
+                   type="text"
+                   name="username"
+                   [(ngModel)]="form.username"
+                   required
+                   minlength="3"
+                   maxlength="20"
+                   #username="ngModel">
+            <mat-error>nazwa użytkownika musi mieć przynajmniej 3 znaki</mat-error>
+          </mat-form-field>
+
+          <p></p>
+          <mat-form-field class="example-full-width">
+            <mat-label>Email</mat-label>
+            <input matInput
+                   [errorStateMatcher]="matcher"
+                   placeholder="np. pat@example.com"
+                   type="email"
+                   name="email"
+                   [(ngModel)]="form.email"
+                   required
+                   email
+                   #email="ngModel">
+
+            <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+              Wprowadź poprawny adres e-mail
+            </mat-error>
+            <mat-error *ngIf="emailFormControl.hasError('required')">
+              Wprowadź poprawny adres e-mail
+            </mat-error>
+          </mat-form-field>
+
+          <p></p>
+          <mat-form-field>
+            <mat-label>Hasło</mat-label>
+            <input matInput placeholder="Hasło" [type]="hide ? 'password' : 'text'"
+                   type="password"
+                   name="password"
+                   [(ngModel)]="form.password"
+                   required
+                   minlength="6"
+                   #password="ngModel">
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+
+            <mat-error>Hasło musi mieć minimum 6 znaków</mat-error>
+          </mat-form-field>
+
+          <p></p>
+
+          <div>
+            <button class="navButton" mat-button matStepperNext>Dalej</button>
+          </div>
+          <!--        </form>-->
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup">
+          <!--        <form >-->
+          <ng-template matStepLabel>Dane osobowe</ng-template>
+
+          <div class="row">
+
+            <div class="column">
+              <mat-form-field>
+                <mat-label>Imię</mat-label>
+                <input matInput placeholder=""
+
+                       type="text"
+                       name="name"
+                       [(ngModel)]="form.name"
+                       required
+                       minlength="2"
+                       maxlength="20"
+                       #name="ngModel"
+                />
+              </mat-form-field>
+              <p></p>
+              <mat-form-field>
+                <mat-label>Nazwisko</mat-label>
+                <input matInput placeholder=""
+                       type="text"
+                       name="surname"
+                       [(ngModel)]="form.surname"
+                       required
+                       minlength="2"
+                       maxlength="20"
+                       #surname="ngModel">
+              </mat-form-field>
+              <p></p>
+
+              <mat-form-field>
+                <mat-label>Adres</mat-label>
+                <input matInput placeholder="np. Długa 1/3"
+                       type="text"
+                       name="address"
+                       [(ngModel)]="form.address"
+                       required
+                       minlength="2"
+                       maxlength="20"
+                       #address="ngModel">
+              </mat-form-field>
+              <p></p>
+
+              <mat-form-field>
+                <mat-label>Miasto</mat-label>
+                <input matInput placeholder=""
+                       type="text"
+                       name="ccity"
+                       [(ngModel)]="form.ccity"
+                       required
+                       minlength="2"
+                       maxlength="20"
+                       #ccity="ngModel">
+              </mat-form-field>
+
+
+            </div>
+            <div class="column">
+
+              <mat-form-field>
+                <mat-label>Data Urodzenia</mat-label>
+                <input type="date" matInput placeholder=""
+                       required
+                       name="city"
+                       [(ngModel)]="form.birthdate"
+                       #birthdate="ngModel">
+
+              </mat-form-field>
+              <p></p>
+              <mat-form-field>
+
+                <mat-label>Numer licencji</mat-label>
+                <input matInput placeholder=""
+                       required
+                       name="licenceNumber"
+                       [(ngModel)]="form.licenceNumber"
+                       #licenceNumber="ngModel">
+
+              </mat-form-field>
+              <p></p>
+              <mat-form-field>
+                <mat-label>Gabinet</mat-label>
+                <input matInput placeholder=""
+                       name="company"
+                       [(ngModel)]="form.company"
+                       #company="ngModel">
+              </mat-form-field>
+              <p></p>
+
+              <mat-form-field>
+                <mat-label>Specjalizacja</mat-label>
+                <input matInput placeholder=""
+                       name="specialization"
+                       [(ngModel)]="form.specialization"
+                       #specialization="ngModel">
+              </mat-form-field>
+
+            </div>
+
+          </div>
+          <div>
+
+            <button class="navButton" mat-button matStepperPrevious>Wstecz</button>
+            <button class="navButton" mat-button matStepperNext>Dalej</button>
+          </div>
+
+        </mat-step>
+
+        <mat-step>
+          <ng-template matStepLabel>Zakończ</ng-template>
+          <div text class="alert" *ngIf="f.submitted && isSignUpFailed" (click)="isSignUpFailed=false" >
+            <p></p>
+            Błąd rejestracji.<br/>{{ errorMessage }}
+          </div>
+<!--          <div text class="alert" >-->
+            <p class="alert" *ngIf="!f.valid" >Wypełnij wszystkie wymagane pola</p>
+            <p *ngIf="f.valid "> Zatwierdź formularz</p>
+
+
+          <!--        <div>-->
+          <button  class="navButton " mat-button matStepperPrevious>Wstecz</button>
+
+          <button [disabled]="!f.valid" mat-button class="formButton" mat-raised-button color="primary">Zarejestruj
+          </button>
+
+
+        </mat-step>
+      </mat-vertical-stepper>
+    </form>
+  </mat-card>
+</div>
+

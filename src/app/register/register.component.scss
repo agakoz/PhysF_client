@@ -1,0 +1,104 @@
+.wrapper {
+  //background: rgb(53, 130, 120);
+  //background: -moz-linear-gradient(180deg, rgba(53, 130, 120, 1) 32%, rgba(130, 53, 102, 1) 81%);
+  //background: -webkit-linear-gradient(180deg, rgba(53, 130, 120, 1) 32%, rgba(130, 53, 102, 1) 81%);
+  //background: linear-gradient(180deg, rgba(53, 130, 120, 1) 32%, rgba(130, 53, 102, 1) 81%);
+  //filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#358278", endColorstr="#823566", GradientType=1);
+  background: rgb(53, 130, 120);
+  background: -moz-linear-gradient(180deg, rgba(53, 130, 120, 1) 26%, rgba(96, 115, 148, 1) 53%, rgba(130, 53, 102, 1) 89%);
+  background: -webkit-linear-gradient(180deg, rgba(53, 130, 120, 1) 26%, rgba(96, 115, 148, 1) 53%, rgba(130, 53, 102, 1) 89%);
+  background: linear-gradient(180deg, rgba(53, 130, 120, 1) 26%, rgba(96, 115, 148, 1) 53%, rgba(130, 53, 102, 1) 89%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#358278", endColorstr="#823566", GradientType=1);
+  width: 100%;
+  min-height: 100%;
+  height: max-content;
+
+
+}
+mat-grid-tile{
+  margin: 0;
+  padding: 0;
+  height: min-content;
+}
+mat-card {
+     width: 80%;
+     height: min-content;
+     min-height: 70%;
+     position: absolute;
+     top: 0;
+     bottom: 0;
+     left: 0;
+     right: 0;
+
+     margin: auto;
+  background-color: white;
+
+text-align: center;
+
+   }
+.mat-stepper-horizontal {
+  margin-top: 8px;
+}
+
+.mat-form-field {
+  margin-top: 16px;
+}
+button{
+  background-color: white;
+}
+mat-horizontal-stepper{
+  height: 100%;
+}
+
+#goBackButton{
+  margin-top: 5px;
+  margin-left: 5px;
+  float: right;
+}
+.column {
+  float: left;
+  width: 50%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.alert{
+   //color: rgba(130, 53, 102, 1);
+  color: #f44336;
+  //font-weight: bolder;
+  font-size: 110%;
+}
+#registrationSuccessMsg{
+  color: rgba(130, 53, 102, 1);
+}
+.button-row {
+  margin-top: 20px;
+  display: inline-block;
+
+
+}
+mat-form-field{
+ width: 40%;
+}
+
+#logFormContainer{
+  width: 40%;
+  //position: relative;
+  //margin-top: 50%;
+  //bottom: 0;
+  //left: 0;
+  //right: 0;
+  text-align: left;
+margin-left: auto;
+  margin-right: auto;
+  margin-top: 5%;
+  //margin: auto;
+}
+//#loginCont{
+//  width: 100%;
+//  //text-align: center;
+//}

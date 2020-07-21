@@ -1,0 +1,59 @@
+<span id="infoMsg" *ngIf="infoMessage.length > 0">{{ infoMessage }}</span>
+<form id="loginForm"
+      *ngIf="!isLoggedIn"
+      name="form"
+      (ngSubmit)="f.form.valid && onSubmit()"
+      #f="ngForm"
+      novalidate>
+  <p>
+    <mat-form-field appearance="legacy">
+      <mat-label>Login</mat-label>
+      <input matInput placeholder="username"
+             type="text"
+             name="username"
+             [(ngModel)]="form.username"
+             required
+             #username="ngModel"
+      />
+
+
+      <mat-icon matSuffix>perm_identity</mat-icon>
+      <mat-hint *ngIf="!form.username">Wprowadź nazwę użytkownika</mat-hint>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="legacy">
+      <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'"
+             type="password"
+             class="form-control"
+             name="password"
+             [(ngModel)]="form.password"
+             required
+             #password="ngModel"
+      />
+
+      <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      <mat-hint *ngIf="!form.password">Wprowadź hasło</mat-hint>
+    </mat-form-field>
+  </p>
+  <p><a id="resetPassword"   >Zapomniałeś hasła?</a></p>
+  <!--            Login failed: {{ errorMessage }}-->
+
+  <div class="form-group">
+    <div
+      class="alert alert-danger"
+      role="alert"
+      *ngIf="f.submitted && isLoginFailed"
+    >
+      Login failed: {{ errorMessage }}
+    </div>
+  </div>
+</form>
+<div class="alert alert-success" *ngIf="isLoggedIn">
+  Logged in as {{ role }}.
+</div>
+<p></p>
+<section class="button-row">
+  <button id="loggingButton"  form="loginForm" class="formButton" mat-raised-button color="primary">Zaloguj</button>
+<!--  <button id="goToRegistrationButton" (click)="goToRegisterPage()" class="formButton mat-elevation-z1" mat-stroked-button color="primary">Załóż konto</button>-->
+</section>
