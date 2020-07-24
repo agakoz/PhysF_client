@@ -1,4 +1,4 @@
-import {Component, Injectable, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../_services/auth.service';
 import {TokenStorageService} from '../_services/token-storage.service';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -13,19 +13,21 @@ export class LoginComponent implements OnInit {
   isLoggedIn = false;
   isLoginFailed = false;
   errorMessage = '';
-  role: string ;
+  role: string;
   username: string;
   hide = true;
   public redirectUrl: string;
   infoMessage = '';
+
   constructor(
     private authService: AuthService, private tokenStorage: TokenStorageService, private router: Router, private route: ActivatedRoute
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.route.queryParams
       .subscribe(params => {
-        if( params.loggedIn == 'false') {
+        if (params.loggedIn == 'false') {
           this.infoMessage = 'Zaloguj się, aby kontynuować!';
 
         }
@@ -36,12 +38,13 @@ export class LoginComponent implements OnInit {
     }
 
   }
+
   onSubmit(): void {
     this.authService.login(this.form).subscribe(
       data => {
-        this.tokenStorage.saveToken(data.accessToken);
+        this.tokenStorage.saveToken(data.token);
         this.tokenStorage.saveUser(data);
-
+// console.log( "token po logowaniu:" + this.tokenStorage.getToken());
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.role = this.tokenStorage.getUser().role;
@@ -60,13 +63,12 @@ export class LoginComponent implements OnInit {
     );
 
 
-
   }
+
   reloadPage(): void {
     window.location.reload();
 
   }
-
 
 
 }
