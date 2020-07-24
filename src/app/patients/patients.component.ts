@@ -11,22 +11,24 @@ export class PatientsComponent implements OnInit {
   errorMessage: String;
 
   constructor(private patientsService: PatientsService) {
+
   }
 
   ngOnInit(): void {
-
-  }
-
-  onClick(): void {
     this.patientsService.getAllPatients().subscribe(
-      data => {
+      result => {
 
-        this.patientsList = data;
-
+        this.patientsList = result;
+        localStorage.setItem('patients', this.patientsList);
+        console.log(this.patientsList);
       },
       err => {
         this.errorMessage = err.error.message;
       });
-    console.log(this.patientsList);
+  }
+
+  onClick(): void {
+
+
   }
 }
