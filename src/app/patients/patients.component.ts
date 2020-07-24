@@ -4,9 +4,10 @@ import {PatientsService} from '../_services/patients.service';
 @Component({
   selector: 'app-patients',
   templateUrl: './patients.component.html',
-  styleUrls: ['./patients.component.scss']
+  styleUrls: ['./patients.component.scss', '../globalStyles.scss']
 })
 export class PatientsComponent implements OnInit {
+  public breakpoint: number;
   patientsList: any;
   errorMessage: String;
 
@@ -15,6 +16,8 @@ export class PatientsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.breakpoint = (window.innerWidth <= 600) ? 1 : 2;
+
     this.patientsService.getAllPatients().subscribe(
       result => {
 
@@ -26,9 +29,8 @@ export class PatientsComponent implements OnInit {
         this.errorMessage = err.error.message;
       });
   }
-
-  onClick(): void {
-
-
+  onResize(event) {
+    this.breakpoint = (event.target.innerWidth <= 700) ? 1 : 2;
   }
+
 }

@@ -1,2 +1,25 @@
-<p>patients works!</p>
-<button (click)="onClick()"></button>
+<div class="wrapper-whitesmoke">
+  <div class="page-title-container mat-elevation-z1 ">
+    <h1 style="display: inline-block" class="page-title">Pacjenci</h1>
+    <div class="button-row">
+      <button id="addPatientButton"  class="formButton title-button" mat-stroked-button color="primary">Dodaj pacjenta</button>
+      <button id="managePatientsButton"  class="formButton title-button" mat-stroked-button color="primary">Zarządzaj</button>
+
+    </div>
+
+  </div>
+
+  <mat-grid-list cols="2" [cols]="breakpoint" (window:resize)="onResize($event)">
+    <mat-grid-tile class="nav-tile">
+
+
+    </mat-grid-tile>
+    <mat-grid-tile class="patients-tile">
+
+
+    </mat-grid-tile>
+
+  </mat-grid-list>
+
+
+</div>

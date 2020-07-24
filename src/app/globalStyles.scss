@@ -1,0 +1,45 @@
+.wrapper-whitesmoke {
+  background: #f5f5f5;
+  width: 100%;
+  min-height: 100%;
+  height: max-content;
+
+  .page-title-container{
+    height: 100px;
+    width: 100%;
+    background-color: rgb(0, 150, 136);
+    text-align: left;
+    color: white;
+    vertical-align: center;
+    line-height: 100px;
+
+
+
+    .page-title{
+      margin-left: 40px;
+      vertical-align: center;
+      line-height: 100px;
+
+    }
+    .title-button{
+      vertical-align: center;
+
+      //float: right;
+      top: 0;
+      bottom: 0;
+      //left: 0;
+      margin-right: 40px;
+     margin-top: auto;
+      margin-bottom: auto;
+      background-color: white;
+
+    }
+    .button-row{
+      float: right;
+      display: inline-block;
+    }
+  }
+}
+
+
+
