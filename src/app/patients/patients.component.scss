@@ -1,7 +1,102 @@
-.nav-tile{
-  //width: 40%;
+
+#nav-tile {
+  width: 30%;
 }
-.patients-tile{
-  //width: 100%;
-  //background-color: #285e5e;
+
+
+.container {
+
+  width: 100%;
+  height: 100%;
+
+  mat-card {
+    margin-top: 20px;
+    display: block;
+    padding-left: 10px;
+    padding-right: 30px;
+
+
+
+    mat-card-footer {
+      float: right;
+    }
+  }
+
+  .patient-list {
+    width: 50%;
+    left: 0;
+    right: 0;
+    margin-right: auto;
+    margin-left: auto;
+
+    .search-box {
+      margin-top: 30px;
+      display: inline-block;
+      width: 70%;
+      left: 0;
+      right: 0;
+      margin-left: auto;
+      margin-right: auto;
+
+      .search-icon {
+        font-family: 'Material Icons';
+        font-weight: normal;
+        font-style: normal;
+        font-size: 30px; /* Preferred icon size */
+        display: inline-block;
+        line-height: 1;
+        text-transform: none;
+        letter-spacing: normal;
+        word-wrap: normal;
+        white-space: nowrap;
+        direction: ltr;
+        color: #171f1e;
+        margin-left: 20px;
+        margin-right: 10px;
+        vertical-align: text-bottom !important;
+      }
+
+      mat-form-field {
+        width: 60%;
+        line-height: 1;
+
+      }
+    }
+
+    .card-icon {
+      display: inline-block;
+      width: 15%;
+      text-align: center;
+      top: 0;
+      bottom: 0;
+      margin-bottom: auto;
+      vertical-align: top;
+      margin-top: 20px;
+
+      .person-icon {
+        font-family: 'Material Icons';
+        font-weight: normal;
+        font-style: normal;
+        font-size: 40px; /* Preferred icon size */
+        color: #009688;
+        //color: `;
+      }
+
+    }
+
+    .card-content {
+      line-height: 1.3;
+
+      display: inline-block;
+      //margin-left: 10px;
+      height: 100%;
+      width: 85%;
+
+    }
+
+
+  }
+
+
 }
+

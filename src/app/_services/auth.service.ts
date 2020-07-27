@@ -39,6 +39,12 @@ export class AuthService {
 
     }, httpOptions);
   }
+  confirmPass(password): Observable<any>{
+    return this.http.post(AUTH_API + 'confirmPassword', {
+      password
+    }, httpOptions);
+    }
+
 
 
 }

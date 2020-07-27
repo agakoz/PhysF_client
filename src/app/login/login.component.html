@@ -14,6 +14,7 @@
              [(ngModel)]="form.username"
              required
              #username="ngModel"
+             autofocus
       />
 
 
@@ -23,7 +24,7 @@
   </p>
   <p>
     <mat-form-field appearance="legacy">
-      <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'"
+      <input matInput placeholder="Hasło" [type]="hide ? 'password' : 'text'"
              type="password"
              class="form-control"
              name="password"

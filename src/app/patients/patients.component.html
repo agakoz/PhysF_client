@@ -1,25 +1,60 @@
 <div class="wrapper-whitesmoke">
-  <div class="page-title-container mat-elevation-z1 ">
-    <h1 style="display: inline-block" class="page-title">Pacjenci</h1>
-    <div class="button-row">
-      <button id="addPatientButton"  class="formButton title-button" mat-stroked-button color="primary">Dodaj pacjenta</button>
-      <button id="managePatientsButton"  class="formButton title-button" mat-stroked-button color="primary">Zarządzaj</button>
+  <header class="page-title-container  ">
+    <app-navbar></app-navbar>
 
+    <h1 class="page-title">Pacjenci</h1>
+    <div class="patients-buttons button-row">
+
+      <button id="addPatientButton" class=" title-button   mat-elevation-z1" mat-stroked-button color="primary">
+        <i class="material-icons">add</i>Dodaj pacjenta</button>
+
+      <button id="managePatientsButton"
+              class="title-button   mat-elevation-z1" mat-stroked-button color="primary"
+              (click)="openDialog()">
+        Zarządzaj
+      </button>
+
+    </div>
+  </header>
+
+
+  <div class="container">
+    <div class="patient-list">
+      <div class="search-box">
+        <i class="material-icons search-icon">person_search</i>
+        <mat-form-field>
+
+          <mat-label>Szukaj</mat-label>
+          <input matInput placeholder="np. imię, nazwisko, pesel" [(ngModel)]="searchText">
+        </mat-form-field>
+      </div>
+
+      <mat-card class="patient-card" *ngFor="let patient of patientsList  | filter : searchText">
+        <div class="card-icon">
+          <i class="material-icons person-icon">person_outline</i>
+        </div>
+        <div class="card-content">
+
+          <mat-card-title>
+
+            {{ patient.name }} {{patient.surname}}
+          </mat-card-title>
+          <mat-card-content>
+            Data urodzenia: {{patient.birthDate}}
+            <br>
+            Telefon: {{patient.phone}}
+          </mat-card-content>
+          <mat-card-footer>
+            <a mat-button routerLink="">Kartoteka</a>
+            <a mat-button routerLink="">Wizyty</a>
+
+          </mat-card-footer>
+        </div>
+
+      </mat-card>
     </div>
 
   </div>
-
-  <mat-grid-list cols="2" [cols]="breakpoint" (window:resize)="onResize($event)">
-    <mat-grid-tile class="nav-tile">
-
-
-    </mat-grid-tile>
-    <mat-grid-tile class="patients-tile">
-
-
-    </mat-grid-tile>
-
-  </mat-grid-list>
-
-
 </div>
+
+

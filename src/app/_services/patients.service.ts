@@ -26,6 +26,11 @@ export class PatientsService {
       httpOptions);
   }
 
+  deleteAllPatients(): Observable<any> {
+    return this.http.delete(PATIENTS_URL + 'delete/all',
+      httpOptions);
+  }
+
   addPatient(patient): Observable<any> {
     return this.http.post(PATIENTS_URL+ '/add', {
         name: patient.name,

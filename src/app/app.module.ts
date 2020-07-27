@@ -22,6 +22,14 @@ import {MatStepperModule} from '@angular/material/stepper';
 import {ErrorStateMatcher,  MatNativeDateModule, ShowOnDirtyErrorStateMatcher} from '@angular/material/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { PatientsComponent } from './patients/patients.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatListModule} from '@angular/material/list';
+import { FilterPipe }from './_helpers/filter.pipe';
+import { ManagePatientDialogComponent } from './manage-patient-dialog/manage-patient-dialog.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+
+
 
 @NgModule({
   declarations: [
@@ -30,7 +38,10 @@ import { PatientsComponent } from './patients/patients.component';
     RegisterComponent,
     ProfileComponent,
     LoginComponent,
-    PatientsComponent
+    PatientsComponent,
+    NavbarComponent,
+    FilterPipe,
+    ManagePatientDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,6 +59,9 @@ import { PatientsComponent } from './patients/patients.component';
     MatStepperModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatToolbarModule,
+    MatListModule,
+    MatExpansionModule,
 
   ],
   providers: [

@@ -4,8 +4,9 @@
   min-height: 100%;
   height: max-content;
 
-  .page-title-container{
-    height: 100px;
+  .page-title-container {
+
+    height: 200px;
     width: 100%;
     background-color: rgb(0, 150, 136);
     text-align: left;
@@ -14,14 +15,15 @@
     line-height: 100px;
 
 
-
-    .page-title{
+    .page-title {
       margin-left: 40px;
       vertical-align: center;
       line-height: 100px;
+      display: inline-block;
 
     }
-    .title-button{
+
+    .title-button {
       vertical-align: center;
 
       //float: right;
@@ -29,17 +31,22 @@
       bottom: 0;
       //left: 0;
       margin-right: 40px;
-     margin-top: auto;
+      margin-top: auto;
       margin-bottom: auto;
       background-color: white;
 
     }
-    .button-row{
+
+    .button-row {
       float: right;
       display: inline-block;
+
+
     }
   }
 }
 
 
-
+.navbarButton{
+  color: white;
+}
