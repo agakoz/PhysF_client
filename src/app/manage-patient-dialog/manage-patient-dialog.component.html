@@ -3,7 +3,7 @@
 <!--                       (closed)="panelOpenState = false">-->
 <!--    <mat-expansion-panel-header>-->
 <!--      <mat-panel-title>-->
-Usuń wszystkich pacjentów
+<h2>Usuń wszystkich pacjentów</h2>
 <!--      </mat-panel-title>-->
 <!--      <mat-panel-description>-->
 <!--      Currently I am {{panelOpenState ? 'open' : 'closed'}}-->
@@ -13,7 +13,7 @@ Usuń wszystkich pacjentów
   wizyt
 </mat-error>
 <p></p>
-<form id="deletePatientsForm"     #f="ngForm">
+<form id="deletePatientsForm" #f="ngForm">
   <mat-form-field id="passwordInput">
 
     <mat-label>Aby potwierdzić operację podaj hasło</mat-label>
@@ -24,12 +24,14 @@ Usuń wszystkich pacjentów
            name="passwordInput"
            required
            [(ngModel)]="passwordInput"
-           >
+    >
     <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
   </mat-form-field>
   <p></p>
 </form>
-<button [disabled]="!f.valid"  mat-button class="mat-raised-button " color="warn" form="deletePatientsForm" (click)="deleteAllPatients()">Usuń pacjentów</button>
+<button [disabled]="!f.valid" mat-button class="mat-raised-button " color="warn" form="deletePatientsForm"
+        (click)="deleteAllPatients()">Usuń pacjentów
+</button>
 <p>{{displayMsg}}</p>
 
 <!--  </mat-expansion-panel>-->
