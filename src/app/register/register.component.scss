@@ -15,27 +15,30 @@
 
 
 }
-mat-grid-tile{
+
+mat-grid-tile {
   margin: 0;
   padding: 0;
   height: min-content;
 }
-mat-card {
-     width: 80%;
-     height: min-content;
-     min-height: 70%;
-     position: absolute;
-     top: 0;
-     bottom: 0;
-     left: 0;
-     right: 0;
 
-     margin: auto;
+mat-card {
+  width: 80%;
+  height: min-content;
+  min-height: 70%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  margin: auto;
   background-color: white;
 
-text-align: center;
+  text-align: center;
 
-   }
+}
+
 .mat-stepper-horizontal {
   margin-top: 8px;
 }
@@ -43,18 +46,21 @@ text-align: center;
 .mat-form-field {
   margin-top: 16px;
 }
-button{
+
+button {
   background-color: white;
 }
-mat-horizontal-stepper{
+
+mat-horizontal-stepper {
   height: 100%;
 }
 
-#goBackButton{
+#goBackButton {
   margin-top: 5px;
   margin-left: 5px;
   float: right;
 }
+
 .column {
   float: left;
   width: 50%;
@@ -66,26 +72,30 @@ mat-horizontal-stepper{
   display: table;
   clear: both;
 }
-.alert{
-   //color: rgba(130, 53, 102, 1);
+
+.alert {
+  //color: rgba(130, 53, 102, 1);
   color: #f44336;
   //font-weight: bolder;
   font-size: 110%;
 }
-#registrationSuccessMsg{
+
+#registrationSuccessMsg {
   color: rgba(130, 53, 102, 1);
 }
+
 .button-row {
   margin-top: 20px;
   display: inline-block;
 
 
 }
-mat-form-field{
- width: 40%;
+
+mat-form-field {
+  width: 40%;
 }
 
-#logFormContainer{
+#logFormContainer {
   width: 40%;
   //position: relative;
   //margin-top: 50%;
@@ -93,11 +103,12 @@ mat-form-field{
   //left: 0;
   //right: 0;
   text-align: left;
-margin-left: auto;
+  margin-left: auto;
   margin-right: auto;
   margin-top: 5%;
   //margin: auto;
 }
+
 //#loginCont{
 //  width: 100%;
 //  //text-align: center;

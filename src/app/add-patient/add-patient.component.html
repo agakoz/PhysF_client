@@ -1,0 +1,320 @@
+<app-navbar></app-navbar>
+<div class="wrapper-whitesmoke">
+  <header class="page-title-container  ">
+
+    <div class="a">
+      <h1 class="page-title">Dodawanie pacjenta</h1>
+    </div>
+
+
+  </header>
+
+
+  <div class="container">
+
+    <mat-card class=" mat-elevation-z2" >
+      <div *ngIf="isSuccessful" id="afterAddingContainer">
+        <mat-card-title id="successHeader">Pacjent dodany pomyślnie
+        </mat-card-title>
+
+        <div>
+          <button mat-stroked-button class="mat-elevation-z2" color="primary"><i class="material-icons">
+            folder_shared
+          </i>Przejdź do kartoteki pacjenta
+          </button>
+          <p></p>
+          <button mat-stroked-button class="mat-elevation-z2" color="primary" (click)="isSuccessful=false">
+            <i class="material-icons">
+              add
+            </i>Dodaj kolejnego pacjenta
+          </button>
+
+        </div>
+      </div>
+      <div *ngIf="!isSuccessful" id="addingContainer">
+        <!--        <mat-card-title>Formularz pacjenta</mat-card-title>-->
+        <form id="addPatientForm"
+              name="form"
+              #f="ngForm"
+              novalidate
+        >
+          <mat-horizontal-stepper [linear]="isLinear" #stepper>
+            <mat-step>
+
+              <ng-template matStepLabel>Dane osobowe i kontakt</ng-template>
+
+              <div class="row">
+
+                <div class="column">
+                  <mat-form-field>
+                    <mat-label>Imię</mat-label>
+                    <input matInput placeholder=""
+
+                           type="text"
+                           name="name"
+                           [(ngModel)]="form.name"
+                           required
+                           minlength="2"
+                           maxlength="20"
+                           #name="ngModel"
+                    />
+                  </mat-form-field>
+                  <p></p>
+                  <mat-form-field>
+                    <mat-label>Nazwisko</mat-label>
+                    <input matInput placeholder=""
+                           type="text"
+                           name="surname"
+                           [(ngModel)]="form.surname"
+                           required
+                           minlength="2"
+                           maxlength="20"
+                           #surname="ngModel">
+                  </mat-form-field>
+                  <p></p>
+                  <mat-form-field>
+                    <mat-label>Płeć</mat-label>
+                    <input matInput placeholder=""
+                           type="text"
+                           name="sex"
+                           [(ngModel)]="form.sex"
+                           required
+                           minlength="1"
+                           maxlength="1"
+                           #sex="ngModel">
+                  </mat-form-field>
+                  <p></p>
+                  <mat-form-field>
+                    <mat-label>Adres</mat-label>
+                    <input matInput placeholder="np. Długa 1/3"
+                           type="text"
+                           name="address"
+                           [(ngModel)]="form.address"
+                           required
+                           minlength="2"
+                           maxlength="20"
+                           #address="ngModel">
+                  </mat-form-field>
+                  <p></p>
+
+                  <mat-form-field>
+                    <mat-label>Miasto</mat-label>
+                    <input matInput placeholder=""
+                           type="text"
+                           name="ccity"
+                           [(ngModel)]="form.ccity"
+                           required
+                           minlength="2"
+                           maxlength="20"
+                           #ccity="ngModel">
+                  </mat-form-field>
+
+
+                </div>
+                <div class="column">
+
+                  <mat-form-field>
+                    <mat-label>Data Urodzenia</mat-label>
+                    <input matInput type="date"
+                           required
+                           name="birthDate"
+                           [(ngModel)]="form.birthDate"
+                           #birthDate="ngModel">
+                  </mat-form-field>
+                  <p></p>
+                  <mat-form-field>
+                    <mat-label>Pesel</mat-label>
+                    <input matInput placeholder=""
+                           name="pesel"
+                           [(ngModel)]="form.pesel"
+                           #pesel="ngModel"
+                           required>
+                  </mat-form-field>
+                  <p></p>
+                  <mat-form-field *ngIf="!isAdult()">
+                    <mat-label>Opiekun</mat-label>
+                    <input matInput placeholder=""
+                           type="text"
+                           name="guardian"
+                           [(ngModel)]="form.guardian"
+                           required
+                           minlength="1"
+                           maxlength="100"
+                           #guardian="ngModel">
+                  </mat-form-field>
+                </div>
+                <p></p>
+                <mat-form-field>
+                  <mat-label>Telefon</mat-label>
+                  <input matInput placeholder=""
+                         name="phone"
+                         [(ngModel)]="form.phoneNum"
+                         #phone="ngModel">
+                </mat-form-field>
+                <p></p>
+                <mat-form-field class="example-full-width">
+                  <mat-label>Email</mat-label>
+                  <input matInput
+                         [errorStateMatcher]="matcher"
+                         placeholder="np. pat@example.com"
+                         type="email"
+                         name="email"
+                         [(ngModel)]="form.email"
+                         email
+                         #email="ngModel">
+
+                  <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                    Wprowadź poprawny adres e-mail
+                  </mat-error>
+                  <mat-error *ngIf="emailFormControl.hasError('required')">
+                    Wprowadź poprawny adres e-mail
+                  </mat-error>
+                </mat-form-field>
+                <p></p>
+              </div>
+
+              <div class="stepper-nav-button">
+                <button class="" mat-button matStepperNext>Dalej</button>
+              </div>
+              <!--        </form>-->
+            </mat-step>
+            <mat-step>
+              <!--        <form >-->
+              <ng-template matStepLabel>Dane zdrowotne</ng-template>
+
+              <div class="row">
+
+                <div class="column">
+                  <mat-form-field>
+                    <mat-label>Przebyte choroby, urazy</mat-label>
+                    <input matInput placeholder=""
+                           type="text"
+                           name="pastDiseases"
+                           [(ngModel)]="form.pastDiseases"
+                           #pastDiseases="ngModel"
+                    />
+                  </mat-form-field>
+                  <p></p>
+                  <mat-form-field>
+                    <mat-label>Choroby przewlekłe</mat-label>
+                    <input matInput placeholder=""
+                           type="text"
+                           name="chronicDiseases"
+                           [(ngModel)]="form.chronicDiseases"
+                           #chronicDiseases="ngModel">
+                  </mat-form-field>
+                  <p></p>
+
+                  <mat-form-field>
+                    <mat-label>Pobyty w szpitalu</mat-label>
+                    <input matInput placeholder="np. Długa 1/3"
+                           type="text"
+                           name="hospitalization"
+                           [(ngModel)]="form.hospitalization"
+                           #hospitalization="ngModel">
+                  </mat-form-field>
+                  <p></p>
+
+                  <mat-form-field>
+                    <mat-label>Przebyte zabiegi i operacje</mat-label>
+                    <input matInput placeholder=""
+                           type="text"
+                           name="surgeries"
+                           [(ngModel)]="form.surgeries"
+                           #surgeries="ngModel">
+                  </mat-form-field>
+
+                  <p></p>
+
+                  <!--                <mat-form-field>-->
+                  <!--                  <mat-label></mat-label>-->
+                  <!--                  <input matInput placeholder=""-->
+                  <!--                         type="text"-->
+                  <!--                         name="ccity"-->
+                  <!--                         [(ngModel)]="form.pastTreatment"-->
+                  <!--                         #pastTreatment="ngModel">-->
+                  <!--                </mat-form-field>-->
+
+                  <!--                <p></p>-->
+
+                </div>
+                <div class="column">
+
+                  <mat-form-field>
+                    <mat-label>Uczulenia</mat-label>
+                    <input matInput placeholder=""
+                           type="text"
+                           name="allergies"
+                           [(ngModel)]="form.allergies"
+                           #allergies="ngModel">
+                  </mat-form-field>
+                  <p></p>
+
+                  <mat-form-field>
+                    <mat-label>Obciążenia dziedziczne</mat-label>
+                    <input matInput placeholder=""
+                           type="text"
+                           name="familyDiseases"
+                           [(ngModel)]="form.familyDiseases"
+                           #familyDiseases="ngModel">
+                  </mat-form-field>
+                  <p></p>
+
+                  <mat-form-field>
+                    <mat-label>Orzeczenia, opinie, zaświadczenia</mat-label>
+                    <input matInput placeholder=""
+                           type="text"
+                           name="medicalCertificate"
+                           [(ngModel)]="form.medicalCertificate"
+                           #medicalCertificate="ngModel">
+                  </mat-form-field>
+                  <p></p>
+
+                  <mat-form-field>
+                    <mat-label>Dodatkowe informacje</mat-label>
+                    <input matInput placeholder="np. ciąża"
+                           type="text"
+                           name="extraDetails"
+                           [(ngModel)]="form.extraDetails"
+                           #extraDetails="ngModel">
+                  </mat-form-field>
+
+                </div>
+
+              </div>
+              <div class="stepper-nav-button">
+
+                <button mat-button matStepperPrevious>Wstecz</button>
+                <button mat-button matStepperNext>Dalej</button>
+              </div>
+
+            </mat-step>
+
+            <mat-step>
+              <ng-template matStepLabel>Zakończ</ng-template>
+              <div text class="alert" *ngIf="f.submitted && isAddingFailed" (click)="isAddingFailed=false">
+                <p></p>
+                Błąd.<br/>{{ errorMessage }}
+              </div>
+              <!--          <div text class="alert" >-->
+              <p class="alert" *ngIf="!f.valid">Wypełnij wszystkie wymagane pola</p>
+              <p *ngIf="f.valid "> Zatwierdź formularz</p>
+
+
+              <div class="stepper-nav-button">
+                <button mat-button matStepperPrevious>Wstecz</button>
+
+                <button (click)="onSubmit()" [disabled]="!f.valid" mat-button class="formButton" mat-raised-button
+                        color="primary">Zarejestruj
+                </button>
+
+              </div>
+            </mat-step>
+          </mat-horizontal-stepper>
+        </form>
+      </div>
+    </mat-card>
+
+
+  </div>
+</div>

@@ -1,11 +1,13 @@
+<app-navbar></app-navbar>
 <div class="wrapper-whitesmoke">
+
   <header class="page-title-container  ">
-    <app-navbar></app-navbar>
+
 
     <h1 class="page-title">Pacjenci</h1>
     <div class="patients-buttons button-row">
 
-      <button id="addPatientButton" class=" title-button   mat-elevation-z1" mat-stroked-button color="primary">
+      <button id="addPatientButton" routerLink="/add-patient" class=" title-button  mat-elevation-z1" mat-stroked-button color="primary">
         <i class="material-icons">add</i>Dodaj pacjenta</button>
 
       <button id="managePatientsButton"
@@ -31,7 +33,7 @@
 
       <mat-card class="patient-card" *ngFor="let patient of patientsList  | filter : searchText">
         <div class="card-icon">
-          <i class="material-icons person-icon">person_outline</i>
+          <i class="material-icons person-icon">person</i>
         </div>
         <div class="card-content">
 

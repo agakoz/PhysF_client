@@ -28,6 +28,7 @@ import {MatListModule} from '@angular/material/list';
 import { FilterPipe }from './_helpers/filter.pipe';
 import { ManagePatientDialogComponent } from './manage-patient-dialog/manage-patient-dialog.component';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { AddPatientComponent } from './add-patient/add-patient.component';
 
 
 
@@ -42,6 +43,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
     NavbarComponent,
     FilterPipe,
     ManagePatientDialogComponent,
+    AddPatientComponent,
   ],
   imports: [
     BrowserModule,

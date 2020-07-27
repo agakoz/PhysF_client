@@ -32,14 +32,14 @@ export class PatientsService {
   }
 
   addPatient(patient): Observable<any> {
-    return this.http.post(PATIENTS_URL+ '/add', {
+    return this.http.post(PATIENTS_URL+ 'add', {
         name: patient.name,
         surname: patient.surname,
         birthDate: patient.birthDate,
         pesel: patient.pesel,
         sex: patient.sex,
         address: patient.address,
-        city: patient.city,
+        city: patient.ccity,
         email: patient.email,
         phone: patient.phone,
         lifestyle: patient.lifestyle,

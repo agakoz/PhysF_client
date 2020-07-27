@@ -1,14 +1,15 @@
-<mat-toolbar id="navbar" class="mat-elevation-z13">
+<mat-toolbar id="navbar" class="mat-elevation-z5">
 
   <img src="assets/logo/fizjo.png"  alt="PHYSF"
-       style="height: 130px" >
+       style="height: 100px" >
   <div class="spacer"></div>
   <div class="button-row " >
     <a class="navbarButton" mat-button routerLink="" color="">Wizyty</a>
-    <a mat-button routerLink="" class="navbarButton">Kalendarz</a>
-    <a mat-button routerLink="" class="navbarButton">Pacjenci</a>
-    <a mat-button routerLink="" class="navbarButton">Formularze</a>
-    <a mat-button routerLink="" class="navbarButton">Wyloguj</a>
+    <a mat-button routerLink="/visits" class="navbarButton">Kalendarz</a>
+    <a mat-button routerLink="/patients" class="navbarButton">Pacjenci</a>
+    <a mat-button routerLink="/forms" class="navbarButton">Formularze</a>
+    <a mat-button routerLink="/profile" class="navbarButton">Konto</a>
+    <a mat-button (click)="logout()" class="navbarButton">Wyloguj</a>
 
   </div>
 </mat-toolbar>
