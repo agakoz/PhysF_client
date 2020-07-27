@@ -1,0 +1,39 @@
+<!--<mat-accordion>-->
+<!--  <mat-expansion-panel (opened)="panelOpenState = true"-->
+<!--                       (closed)="panelOpenState = false">-->
+<!--    <mat-expansion-panel-header>-->
+<!--      <mat-panel-title>-->
+Usuń wszystkich pacjentów
+<!--      </mat-panel-title>-->
+<!--      <mat-panel-description>-->
+<!--      Currently I am {{panelOpenState ? 'open' : 'closed'}}-->
+<!--      </mat-panel-description>-->
+<!--    </mat-expansion-panel-header>-->
+<mat-error>Uwaga! Spowoduje to nieodwracalną utratę wszystkich danych na temat pacjentów i ich
+  wizyt
+</mat-error>
+<p></p>
+<form id="deletePatientsForm"     #f="ngForm">
+  <mat-form-field id="passwordInput">
+
+    <mat-label>Aby potwierdzić operację podaj hasło</mat-label>
+    <input matInput placeholder="Twoje hasło"
+           [type]="hide ? 'password' : 'text'"
+           type="password"
+           class="form-control"
+           name="passwordInput"
+           required
+           [(ngModel)]="passwordInput"
+           >
+    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+  </mat-form-field>
+  <p></p>
+</form>
+<button [disabled]="!f.valid"  mat-button class="mat-raised-button " color="warn" form="deletePatientsForm" (click)="deleteAllPatients()">Usuń pacjentów</button>
+<p>{{displayMsg}}</p>
+
+<!--  </mat-expansion-panel>-->
+<!--</mat-accordion>-->
+
+
+
