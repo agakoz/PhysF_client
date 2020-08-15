@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {PatientsService} from '../_services/patients.service';
 import {MatDialog} from '@angular/material/dialog';
 import {ManagePatientDialogComponent} from '../manage-patient-dialog/manage-patient-dialog.component';
+import {VisitsDialogComponent} from '../visits-dialog/visits-dialog.component';
+import {BehaviorSubject} from 'rxjs';
 
 @Component({
   selector: 'app-patients',
@@ -9,13 +11,12 @@ import {ManagePatientDialogComponent} from '../manage-patient-dialog/manage-pati
   styleUrls: ['./patients.component.scss', '../globalStyles.scss']
 })
 export class PatientsComponent implements OnInit {
+
   public breakpoint: number;
   public colspan: number;
-
   patientsList: any;
   errorMessage: String;
   searchText = '';
-
   constructor(private patientsService: PatientsService, public dialog: MatDialog) {
 
   }
@@ -33,12 +34,14 @@ export class PatientsComponent implements OnInit {
       err => {
         this.errorMessage = err.error.message;
       });
+
   }
+
   onResize(event) {
     this.breakpoint = (event.target.innerWidth <= 700) ? 1 : 2;
   }
 
-  openDialog(): void {
+  patientsManagementDialog(): void {
     const dialogRef = this.dialog.open(ManagePatientDialogComponent, {
       width: '800px',
     });
@@ -49,5 +52,19 @@ export class PatientsComponent implements OnInit {
     });
   }
 
+  incomingPatientVisits(id: number): void {
+    console.log('incomingPatientVisits ' + id);
+    const dialogRef = this.dialog.open(VisitsDialogComponent, {
+      data: {patientId: id},
+      width: '800px',
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
 
+    });
+  }
+
+  choosePatient(patient: any) {
+    this.patientsService.choosePatient(patient)
+  }
 }

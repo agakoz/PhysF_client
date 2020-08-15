@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 const PATIENTS_URL = 'https://localhost:8443/patient/';
@@ -12,6 +12,9 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class PatientsService {
+
+  private patientSource = new BehaviorSubject<any>("");
+  currentPatient = this.patientSource.asObservable();
 
   constructor(private http: HttpClient) {
   }
@@ -41,7 +44,7 @@ export class PatientsService {
         address: patient.address,
         city: patient.ccity,
         email: patient.email,
-        phone: patient.phone,
+        phone: patient.phoneNum,
         lifestyle: patient.lifestyle,
         profession: patient.profession,
         guardian: patient.guardian,
@@ -57,6 +60,8 @@ export class PatientsService {
       },
       httpOptions);
   }
-
+choosePatient(patient: any){
+    this.patientSource.next(patient)
+}
 
 }

@@ -6,6 +6,7 @@ import {AuthGuard} from './_helpers/AuthGuard';
 import {RegisterComponent} from './register/register.component';
 import {PatientsComponent} from './patients/patients.component';
 import {AddPatientComponent} from './add-patient/add-patient.component';
+import {PatientFileComponent} from './patient-file/patient-file.component';
 
 
 
@@ -15,7 +16,7 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
   {path: 'patients', component: PatientsComponent, canActivate: [AuthGuard]},
-  {path: 'add-patient', component: AddPatientComponent, canActivate: [AuthGuard]},
+  {path: 'patient-file', component: PatientFileComponent, canActivate: [AuthGuard]},
 
 ];
 

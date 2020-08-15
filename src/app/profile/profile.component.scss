@@ -1,0 +1,16 @@
+.container{
+  width: 85%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 20px;
+}
+
+mat-card-footer{
+  float: right;
+}
+mat-card{
+  flex-wrap: wrap;
+  height: 150px;
+  padding: 20px;
+width: fit-content;
+}

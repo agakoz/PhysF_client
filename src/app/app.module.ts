@@ -29,6 +29,8 @@ import { FilterPipe }from './_helpers/filter.pipe';
 import { ManagePatientDialogComponent } from './manage-patient-dialog/manage-patient-dialog.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { AddPatientComponent } from './add-patient/add-patient.component';
+import { VisitsDialogComponent } from './visits-dialog/visits-dialog.component';
+import { PatientFileComponent } from './patient-file/patient-file.component';
 
 
 
@@ -44,6 +46,8 @@ import { AddPatientComponent } from './add-patient/add-patient.component';
     FilterPipe,
     ManagePatientDialogComponent,
     AddPatientComponent,
+    VisitsDialogComponent,
+    PatientFileComponent,
   ],
   imports: [
     BrowserModule,

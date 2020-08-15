@@ -7,12 +7,14 @@
     <h1 class="page-title">Pacjenci</h1>
     <div class="patients-buttons button-row">
 
-      <button id="addPatientButton" routerLink="/add-patient" class=" title-button  mat-elevation-z1" mat-stroked-button color="primary">
-        <i class="material-icons">add</i>Dodaj pacjenta</button>
+      <button id="addPatientButton" routerLink="/add-patient" class=" title-button  mat-elevation-z1" mat-stroked-button
+              color="primary">
+        <i class="material-icons">add</i>Dodaj pacjenta
+      </button>
 
       <button id="managePatientsButton"
               class="title-button   mat-elevation-z1" mat-stroked-button color="primary"
-              (click)="openDialog()">
+              (click)="patientsManagementDialog()">
         Zarządzaj
       </button>
 
@@ -27,31 +29,40 @@
         <mat-form-field>
 
           <mat-label>Szukaj</mat-label>
-          <input matInput placeholder="np. imię, nazwisko, pesel" [(ngModel)]="searchText">
+          <input id="searchInput" matInput placeholder="np. imię, nazwisko, pesel" [(ngModel)]="searchText">
+          <i id="search-clear" class="material-icons" (click)="searchText=''">clear</i>
         </mat-form-field>
       </div>
 
-      <mat-card class="patient-card" *ngFor="let patient of patientsList  | filter : searchText">
+      <mat-card class="patient-card mat-elevation-z3" *ngFor="let patient of patientsList  | filter : searchText">
         <div class="card-icon">
           <i class="material-icons person-icon">person</i>
         </div>
-        <div class="card-content">
+        <!--        <div class="card-content">-->
 
-          <mat-card-title>
+        <mat-card-title class="patient-name">
+          {{ patient.name }} {{patient.surname}}
+        </mat-card-title>
+        <mat-card-content>
+          Data urodzenia:
+          {{patient.birthDate}}
 
-            {{ patient.name }} {{patient.surname}}
-          </mat-card-title>
-          <mat-card-content>
-            Data urodzenia: {{patient.birthDate}}
-            <br>
-            Telefon: {{patient.phone}}
-          </mat-card-content>
-          <mat-card-footer>
-            <a mat-button routerLink="">Kartoteka</a>
-            <a mat-button routerLink="">Wizyty</a>
+        </mat-card-content>
+        <mat-card-content>
+          Kontakt:
+          <span *ngIf="patient.phone==null && patient.email == null "> brak danych</span>
+          <span *ngIf="patient.phone!=null"> {{patient.phone}}</span>
+          <span *ngIf="patient.phone!=null && patient.email != null "> / </span>
+          <span *ngIf="patient.email!=null"> {{patient.email}}</span>
 
-          </mat-card-footer>
-        </div>
+        </mat-card-content>
+        <mat-card-footer>
+          <a mat-button (click)="incomingPatientVisits(patient.id)">Podgląd wizyt</a>
+          <a mat-button routerLink="/patient-file" (click)="choosePatient(patient)" ><span class="material-icons">open_in_new</span></a>
+
+
+        </mat-card-footer>
+        <!--        </div>-->
 
       </mat-card>
     </div>
