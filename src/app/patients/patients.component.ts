@@ -11,12 +11,13 @@ import {BehaviorSubject} from 'rxjs';
   styleUrls: ['./patients.component.scss', '../globalStyles.scss']
 })
 export class PatientsComponent implements OnInit {
-
+  chosenPatients: Array<any>=[];
   public breakpoint: number;
   public colspan: number;
   patientsList: any;
   errorMessage: String;
   searchText = '';
+  allChecked: boolean = false;
   constructor(private patientsService: PatientsService, public dialog: MatDialog) {
 
   }
@@ -65,6 +66,24 @@ export class PatientsComponent implements OnInit {
   }
 
   choosePatient(patient: any) {
-    this.patientsService.choosePatient(patient)
+    this.patientsService.choosePatient(patient);
+  }
+
+  toggle(checked: boolean, patient: any) {
+    if(checked){
+      this.chosenPatients.push(patient)
+    }else {
+     this.chosenPatients= this.chosenPatients.filter(p => p !== patient )
+    }
+    console.log(this.chosenPatients)
+  }
+
+  checkAll (){
+    this.allChecked = this.patientsList != null && this.patientsList.forEach(p => {if(!this.isChosen(p)) this.chosenPatients.push(p)})
+ console.log(this.chosenPatients)
+  }
+  isChosen(patient:any): boolean{
+     this.chosenPatients.forEach(p=> {if(p==patient) return true})
+    return false;
   }
 }

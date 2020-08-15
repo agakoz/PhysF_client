@@ -31,6 +31,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { AddPatientComponent } from './add-patient/add-patient.component';
 import { VisitsDialogComponent } from './visits-dialog/visits-dialog.component';
 import { PatientFileComponent } from './patient-file/patient-file.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 
@@ -68,6 +69,7 @@ import { PatientFileComponent } from './patient-file/patient-file.component';
     MatToolbarModule,
     MatListModule,
     MatExpansionModule,
+    MatCheckboxModule,
 
   ],
   providers: [

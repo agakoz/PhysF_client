@@ -12,8 +12,8 @@
         <i class="material-icons">add</i>Dodaj pacjenta
       </button>
 
-      <button id="managePatientsButton"
-              class="title-button   mat-elevation-z1" mat-stroked-button color="primary"
+      <button id="managePatientsButton" [disabled]="chosenPatients.length==0"
+              class="title-button   mat-elevation-z1" mat-stroked-button color="accent"
               (click)="patientsManagementDialog()">
         Zarządzaj
       </button>
@@ -24,6 +24,7 @@
 
   <div class="container">
     <div class="patient-list">
+
       <div class="search-box">
         <i class="material-icons search-icon">person_search</i>
         <mat-form-field>
@@ -32,15 +33,25 @@
           <input id="searchInput" matInput placeholder="np. imię, nazwisko, pesel" [(ngModel)]="searchText">
           <i id="search-clear" class="material-icons" (click)="searchText=''">clear</i>
         </mat-form-field>
+
+      </div>
+      <div>
+<!--        <mat-checkbox class="choose-all" (click)="checkAll()">-->
+<!--          Zaznacz wszystkich-->
+<!--        </mat-checkbox>-->
       </div>
 
       <mat-card class="patient-card mat-elevation-z3" *ngFor="let patient of patientsList  | filter : searchText">
+
         <div class="card-icon">
           <i class="material-icons person-icon">person</i>
         </div>
         <!--        <div class="card-content">-->
 
         <mat-card-title class="patient-name">
+          <mat-checkbox #c (click)="toggle(!c.checked, patient) " [checked]="isChosen(patient)">
+
+          </mat-checkbox>
           {{ patient.name }} {{patient.surname}}
         </mat-card-title>
         <mat-card-content>
@@ -58,7 +69,7 @@
         </mat-card-content>
         <mat-card-footer>
           <a mat-button (click)="incomingPatientVisits(patient.id)">Podgląd wizyt</a>
-          <a mat-button routerLink="/patient-file" (click)="choosePatient(patient)" ><span class="material-icons">open_in_new</span></a>
+          <a mat-button routerLink="/patient-file" (click)="choosePatient(patient)"><span class="material-icons">open_in_new</span></a>
 
 
         </mat-card-footer>
