@@ -1,0 +1,48 @@
+.patient-personal-info-table {
+  padding: 20px;
+
+  tr {
+    line-height: 3;
+  }
+
+  .personal-info-label {
+    width: 150px;
+  }
+}
+
+.show-more-info {
+  float: right;
+  cursor: pointer;
+}
+
+.container {
+  padding: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  float: left;
+  //background-color: #009688;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.card {
+  display: inline-block;
+  width: 300px;
+  margin-left: 10px;
+  margin-right: 10px;
+
+}
+
+#personal-info-card {
+
+
+}
+
+#treatment-history-card {
+}
+
+#incoming-visits-card {
+}
+

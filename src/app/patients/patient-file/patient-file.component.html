@@ -1,0 +1,83 @@
+<app-navbar></app-navbar>
+<div class="wrapper-whitesmoke">
+  <header class="page-title-container  ">
+    <h1 class="page-title">Kartoteka pacjenta</h1>
+    <!--        <div class="patients-buttons button-row">-->
+    <!--          <button id="managePatientsButton"-->
+    <!--                  class="title-button   mat-elevation-z1" mat-stroked-button color="primary">Zarządzaj</button>-->
+    <!--        </div>-->
+  </header>
+  <div class="container">
+    <!--    <mat-grid-list cols="2">-->
+
+    <mat-card class="mat-elevation-z3 card" id="personal-info-card">
+      <mat-card-title>
+        Dane
+        <a class="show-more-info">
+          <span (click)="openPatientPersonalData()" *ngIf="editPersonalData" class="material-icons ">open_in_new</span>
+        </a>
+      </mat-card-title>
+      <mat-divider></mat-divider>
+      <mat-card-content class="">
+        <table class="patient-personal-info-table">
+          <tr>
+            <td class="personal-info-label">Imię:</td>
+            <td>{{patient.name}}</td>
+          </tr>
+          <tr>
+            <td class="personal-info-label">Nazwisko:</td>
+            <td> {{patient.surname}} </td>
+          </tr>
+          <tr>
+            <td class="personal-info-label">Płeć:</td>
+            <td>  {{patient.sex}} </td>
+          </tr>
+          <tr>
+            <td class="personal-info-label">Data urodzenia:</td>
+            <td> {{ patient.birthDate }} </td>
+          </tr>
+          <tr>
+            <td class="personal-info-label">Numer PESEL:</td>
+            <td>{{patient.pesel}}</td>
+          </tr>
+          <tr>
+            <td class="personal-info-label">Numer kontaktowy:</td>
+            <td>
+              {{ patient.phone }}
+            </td>
+
+          </tr>
+          <tr>
+            <td class="personal-info-label">Adres e-mail:</td>
+            <td> {{ patient.email }}</td>
+          </tr>
+
+        </table>
+
+      </mat-card-content>
+    </mat-card>
+    <div class="spacer"></div>
+    <mat-card class="mat-elevation-z3 card" id="treatment-history-card">
+      <mat-card-title>
+        Historia leczenia
+      </mat-card-title>
+      <mat-divider></mat-divider>
+      <mat-card-content class="">
+
+      </mat-card-content>
+    </mat-card>
+    <div class="spacer"></div>
+    <mat-card class="mat-elevation-z3 card" id="incoming-visits-card">
+      <mat-card-title>
+        Nadchodzące wizyty
+      </mat-card-title>
+      <mat-divider></mat-divider>
+      <mat-card-content class="">
+
+      </mat-card-content>
+    </mat-card>
+    <!--      </mat-grid-tile>-->
+
+    <!--    </mat-grid-list>-->
+  </div>
+</div>

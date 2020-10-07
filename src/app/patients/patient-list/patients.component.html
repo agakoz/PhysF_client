@@ -5,80 +5,69 @@
 
 
     <h1 class="page-title">Pacjenci</h1>
+
     <div class="patients-buttons button-row">
 
-      <button id="addPatientButton" routerLink="/add-patient" class=" title-button  mat-elevation-z1" mat-stroked-button
+      <button id="addPatientButton" routerLink="../add-patient" class=" title-button  mat-elevation-z1"
+              mat-stroked-button
               color="primary">
         <i class="material-icons">add</i>Dodaj pacjenta
       </button>
 
-      <button id="managePatientsButton" [disabled]="chosenPatients.length==0"
+      <button id="managePatientsButton" [disabled]="chosenPatientIds.length==0"
               class="title-button   mat-elevation-z1" mat-stroked-button color="accent"
-              (click)="patientsManagementDialog()">
+              (click)="manageChosenPatients()">
         Zarządzaj
       </button>
-
     </div>
   </header>
-
-
   <div class="container">
     <div class="patient-list">
-
       <div class="search-box">
         <i class="material-icons search-icon">person_search</i>
         <mat-form-field>
-
           <mat-label>Szukaj</mat-label>
           <input id="searchInput" matInput placeholder="np. imię, nazwisko, pesel" [(ngModel)]="searchText">
           <i id="search-clear" class="material-icons" (click)="searchText=''">clear</i>
         </mat-form-field>
-
       </div>
-      <div>
-<!--        <mat-checkbox class="choose-all" (click)="checkAll()">-->
-<!--          Zaznacz wszystkich-->
-<!--        </mat-checkbox>-->
-      </div>
-
-      <mat-card class="patient-card mat-elevation-z3" *ngFor="let patient of patientsList  | filter : searchText">
-
-        <div class="card-icon">
-          <i class="material-icons person-icon">person</i>
-        </div>
-        <!--        <div class="card-content">-->
-
+      <!--      <div>-->
+      <!--        <mat-checkbox class="choose-all"-->
+      <!--                      [checked]="allChosen"-->
+      <!--                      [indeterminate]="someChosen()"-->
+      <!--                      (change)="setAll($event.checked)">-->
+      <!--          Zaznacz wszystkich ({{chosenPatientIds.length}} / {{patientsList.patients.length}})-->
+      <!--        </mat-checkbox>-->
+      <!--      </div>-->
+      <mat-card class="patient-card mat-elevation-z3"
+                *ngFor="let patient of patientsList  | filter : searchText ">
         <mat-card-title class="patient-name">
-          <mat-checkbox #c (click)="toggle(!c.checked, patient) " [checked]="isChosen(patient)">
-
-          </mat-checkbox>
+          <!--          <mat-checkbox [(ngModel)]="patient.chosen" >-->
+          <!--          </mat-checkbox>-->
+          <div class="card-icon">
+            <i class="material-icons person-icon">person</i>
+          </div>
           {{ patient.name }} {{patient.surname}}
         </mat-card-title>
         <mat-card-content>
           Data urodzenia:
           {{patient.birthDate}}
-
         </mat-card-content>
         <mat-card-content>
           Kontakt:
-          <span *ngIf="patient.phone==null && patient.email == null "> brak danych</span>
+          <span *ngIf="patient.phone==null && patient.email == null ">brak danych</span>
           <span *ngIf="patient.phone!=null"> {{patient.phone}}</span>
           <span *ngIf="patient.phone!=null && patient.email != null "> / </span>
           <span *ngIf="patient.email!=null"> {{patient.email}}</span>
-
         </mat-card-content>
         <mat-card-footer>
-          <a mat-button (click)="incomingPatientVisits(patient.id)">Podgląd wizyt</a>
-          <a mat-button routerLink="/patient-file" (click)="choosePatient(patient)"><span class="material-icons">open_in_new</span></a>
-
-
+          <a mat-button (click)="showPatientVisits(patient.id)">Podgląd wizyt</a>
+          <a mat-button [routerLink]="['/patient', patient.id]"><span
+            class="material-icons">open_in_new</span></a>
         </mat-card-footer>
-        <!--        </div>-->
-
       </mat-card>
     </div>
-
   </div>
 </div>
-
+<router-outlet></router-outlet>
 

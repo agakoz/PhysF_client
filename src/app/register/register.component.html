@@ -6,23 +6,18 @@
     </button>
     <p></p>
 
-    <mat-card-title  *ngIf="!isSuccessful" >Wypełnij formularz, aby założyć konto</mat-card-title>
+    <mat-card-title *ngIf="!isSuccessful">Wypełnij formularz, aby założyć konto</mat-card-title>
     <div *ngIf="isSuccessful" id="loginCont">
-      <mat-card-title id="registrationSuccessMsg"   >Rejestracja zakończona pomyślnie! </mat-card-title>
+      <mat-card-title id="registrationSuccessMsg">Rejestracja zakończona pomyślnie!</mat-card-title>
       <div id="logFormContainer">
-      <p> Zaloguj się aby kontynuować:</p>
-<!--      <div >-->
+        <p> Zaloguj się aby kontynuować:</p>
         <app-login></app-login>
-<!--      </div>-->
+      </div>
     </div>
-    </div>
-    <!--    <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">-->
-    <!--      {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}-->
-    <!--    </button>-->
     <form id="registrationForm"
           *ngIf="!isSuccessful"
           name="form"
-          (ngSubmit)="f.form.valid && onSubmit()"
+
           #f="ngForm"
           novalidate>
       <mat-vertical-stepper [linear]="isLinear" #stepper>
@@ -83,10 +78,10 @@
           <div>
             <button class="navButton" mat-button matStepperNext>Dalej</button>
           </div>
-          <!--        </form>-->
+
         </mat-step>
         <mat-step [stepControl]="secondFormGroup">
-          <!--        <form >-->
+
           <ng-template matStepLabel>Dane osobowe</ng-template>
 
           <div class="row">
@@ -102,8 +97,7 @@
                        required
                        minlength="2"
                        maxlength="20"
-                       #name="ngModel"
-                />
+                       #name="ngModel">
               </mat-form-field>
               <p></p>
               <mat-form-field>
@@ -118,43 +112,23 @@
                        #surname="ngModel">
               </mat-form-field>
               <p></p>
-
-              <mat-form-field>
-                <mat-label>Adres</mat-label>
-                <input matInput placeholder="np. Długa 1/3"
-                       type="text"
-                       name="address"
-                       [(ngModel)]="form.address"
-                       required
-                       minlength="2"
-                       maxlength="20"
-                       #address="ngModel">
-              </mat-form-field>
-              <p></p>
-
-              <mat-form-field>
-                <mat-label>Miasto</mat-label>
-                <input matInput placeholder=""
-                       type="text"
-                       name="ccity"
-                       [(ngModel)]="form.ccity"
-                       required
-                       minlength="2"
-                       maxlength="20"
-                       #ccity="ngModel">
-              </mat-form-field>
-
-
-            </div>
-            <div class="column">
-
               <mat-form-field>
                 <mat-label>Data Urodzenia</mat-label>
-               <input matInput type="date"
+                <input matInput type="date"
                        required
                        name="birthday"
                        [(ngModel)]="form.birthdate"
                        #birthdate="ngModel">
+              </mat-form-field>
+            </div>
+            <div class="column">
+              <mat-form-field>
+                <mat-label>Tytuł zawodowy</mat-label>
+                <input matInput placeholder=""
+                       required
+                       name="professionalTitle"
+                       [(ngModel)]="form.professionalTitle"
+                       #professionalTitle="ngModel">
               </mat-form-field>
               <p></p>
               <mat-form-field>
@@ -168,15 +142,6 @@
 
               </mat-form-field>
               <p></p>
-              <mat-form-field>
-                <mat-label>Gabinet</mat-label>
-                <input matInput placeholder=""
-                       name="company"
-                       [(ngModel)]="form.company"
-                       #company="ngModel">
-              </mat-form-field>
-              <p></p>
-
               <mat-form-field>
                 <mat-label>Specjalizacja</mat-label>
                 <input matInput placeholder=""
@@ -198,19 +163,20 @@
 
         <mat-step>
           <ng-template matStepLabel>Zakończ</ng-template>
-          <div text class="alert" *ngIf="f.submitted && isSignUpFailed" (click)="isSignUpFailed=false" >
+          <div text class="alert" *ngIf="f.submitted && isSignUpFailed" (click)="isSignUpFailed=false">
             <p></p>
             Błąd rejestracji.<br/>{{ errorMessage }}
           </div>
-<!--          <div text class="alert" >-->
-            <p class="alert" *ngIf="!f.valid" >Wypełnij wszystkie wymagane pola</p>
-            <p *ngIf="f.valid "> Zatwierdź formularz</p>
+
+          <p class="alert" *ngIf="!f.valid">Wypełnij wszystkie wymagane pola</p>
+          <p *ngIf="f.valid "> Zatwierdź formularz</p>
 
 
-          <!--        <div>-->
-          <button  class="navButton " mat-button matStepperPrevious>Wstecz</button>
 
-          <button [disabled]="!f.valid" mat-button class="formButton" mat-raised-button color="primary">Zarejestruj
+          <button class="navButton " mat-button matStepperPrevious>Wstecz</button>
+
+          <button (click)="onSubmit()" [disabled]="!f.valid" mat-button class="formButton" mat-raised-button color="accent">
+            Zarejestruj
           </button>
 
 

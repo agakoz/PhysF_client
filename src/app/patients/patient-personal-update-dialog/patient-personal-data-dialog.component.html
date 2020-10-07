@@ -1,0 +1,264 @@
+<div class="dialog-content">
+  <h2>O pacjencie</h2>
+  <form
+    [formGroup]="patientForm"
+    novalidate>
+
+    <mat-horizontal-stepper [linear]="isLinear" #stepper>
+      <mat-step>
+        <ng-template matStepLabel>Dane osobowe i kontakt</ng-template>
+        <div class="data">
+          <div class="column">
+            <table>
+              <tr>
+                <td>Imię:</td>
+                <td>
+                  <mat-form-field>
+                    <input matInput value="{{patient.name}}"
+                           type="text"
+                           name="name"
+                           minlength="2"
+                           maxlength="20"
+                           formControlName="name">
+                  </mat-form-field>
+                </td>
+              </tr>
+              <tr>
+                <td>Nazwisko:</td>
+                <td>
+                  <mat-form-field>
+
+                    <input matInput value="{{patient.surname}}"
+                           type="text"
+                           name="surname"
+                           minlength="2"
+                           maxlength="20"
+                           formControlName="surname">
+                  </mat-form-field>
+                </td>
+
+              </tr>
+
+              <tr>
+                <td>Data urodzenia:</td>
+                <td>
+                  <mat-form-field>
+                    <input matInput value="{{ patient.birthDate }}"
+                           type="date"
+                           formControlName="birthDate"
+                           minlength="2"
+                           maxlength="20">
+                  </mat-form-field>
+                </td>
+              </tr>
+              <tr>
+                <td>Numer PESEL:</td>
+                <mat-form-field>
+                  <input matInput value="aaaa"
+                         type="text"
+                         formControlName="pesel"
+                         minlength="2"
+                         maxlength="20">
+                </mat-form-field>
+              </tr>
+              <tr>
+                <td>Płeć:</td>
+                <td>
+                  <mat-radio-group class="radio-sex" formControlName="sex">
+                    <mat-radio-button color="primary" value="K">K</mat-radio-button>
+                    <mat-radio-button color="primary" value="M">M</mat-radio-button>
+                  </mat-radio-group>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="column">
+            <table>
+              <tr>
+                <td>Zawód:</td>
+                <mat-form-field>
+                  <input matInput
+                         type="text"
+                         formControlName="profession"
+                         minlength="2"
+                         maxlength="20">
+                </mat-form-field>
+              </tr>
+              <tr>
+                <td>Adres:</td>
+                <td>
+                  <mat-form-field>
+                    <input matInput
+                           type="text"
+                           formControlName="address"
+                           minlength="2"
+                           maxlength="20">
+                  </mat-form-field>
+                </td>
+              </tr>
+              <tr>
+                <td>Miasto:</td>
+                <td>
+                  <mat-form-field>
+                    <input matInput
+                           Enter
+                           type="text"
+                           formControlName="city"
+                           minlength="2"
+                           maxlength="20">
+                  </mat-form-field>
+                </td>
+              </tr>
+              <tr>
+                <td>Numer kontaktowy:</td>
+                <td>
+                  <mat-form-field>
+
+                    <input matInput
+                           type="text"
+                           formControlName="phone"
+                           minlength="9"
+                           maxlength="9">
+                  </mat-form-field>
+                </td>
+              </tr>
+              <tr>
+                <td>Adres e-mail:</td>
+                <td>
+                  <mat-form-field>
+                    <input matInput
+                           type="text"
+                           formControlName="email"
+                           minlength="4"
+                           maxlength="20">
+                  </mat-form-field>
+                  <!--              <mat-error *ngIf="patientForm.email.hasError('email') && !emailFormControl.hasError('required')">-->
+                  <!--                Wprowadź poprawny adres e-mail-->
+                  <!--              </mat-error>-->
+                </td>
+              </tr>
+              <tr>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Dane zdrowotne</ng-template>
+        <div class="data">
+          <div class="column">
+            <table>
+              <tr>
+                <td>
+                  Przebyte choroby, urazy:
+                </td>
+                <td>
+                  <mat-form-field>
+                    <input matInput placeholder=""
+                           type="text"
+                           formControlName="pastDiseases"/>
+                  </mat-form-field>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Choroby przewlekłe:
+                </td>
+                <td>
+                  <mat-form-field>
+                    <input matInput placeholder=""
+                           type="text"
+                           formControlName="chronicDiseases">
+                  </mat-form-field>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Pobyty w szpitalu:
+                </td>
+                <td>
+                  <mat-form-field>
+                    <input matInput placeholder=""
+                           type="text"
+                           formControlName="hospitalization">
+                  </mat-form-field>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Przebyte zabiegi i operacje:
+                </td>
+                <td>
+                  <mat-form-field>
+                    <input matInput placeholder=""
+                           type="text"
+                           formControlName="surgeries">
+                  </mat-form-field>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="column">
+            <table>
+              <tr>
+                <td>
+                  Alergie:
+                </td>
+                <td>
+                  <mat-form-field>
+                    <input matInput placeholder=""
+                           type="text"
+                           formControlName="allergies">
+                  </mat-form-field>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Obciążenia dziedziczne:
+                </td>
+                <td>
+                  <mat-form-field>
+                    <input matInput placeholder=""
+                           type="text"
+                           formControlName="familyDiseases">
+                  </mat-form-field>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Orzeczenia, opinie, zaświadczenia:
+                </td>
+                <td>
+                  <mat-form-field>
+
+                    <input matInput placeholder=""
+                           type="text"
+                           formControlName="medicalCertificate">
+                  </mat-form-field>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Dodatkowe informacje:
+                </td>
+                <td>
+                  <mat-form-field>
+                    <input matInput placeholder="np. ciąża"
+                           type="text"
+                           formControlName="extraDetails">
+                  </mat-form-field>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </mat-step>
+    </mat-horizontal-stepper>
+    <div class="dialog-button-row">
+      <button class="dialog-button" mat-button (click)="resetFormAndCloseDialog(patientForm)">Cofnij</button>
+      <button class="dialog-button" mat-button mat-raised-button color="accent" (click)="savePatient()"
+              [disabled]="!patientForm.valid">Zapisz
+      </button>
+    </div>
+  </form>
+</div>

@@ -6,7 +6,6 @@
 Usuń wszystkich pacjentów
       </mat-panel-title>
       <mat-panel-description>
-<!--      Currently I am {{panelOpenState ? 'open' : 'closed'}}-->
       </mat-panel-description>
     </mat-expansion-panel-header>
 <mat-error>Uwaga! Spowoduje to nieodwracalną utratę wszystkich danych na temat pacjentów i ich
@@ -23,14 +22,13 @@ Usuń wszystkich pacjentów
            class="form-control"
            name="passwordInput"
            required
-           [(ngModel)]="passwordInput"
-    >
+           [(ngModel)]="passwordInput">
     <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
   </mat-form-field>
   <p></p>
 </form>
 <button [disabled]="!f.valid" mat-button class="mat-raised-button " color="warn" form="deletePatientsForm"
-        (click)="deleteAllPatients()">Usuń pacjentów
+        (click)="deleteChosenPatients()">Usuń pacjentów
 </button>
 <p>{{displayMsg}}</p>
 

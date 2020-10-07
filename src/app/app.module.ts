@@ -19,20 +19,23 @@ import {ProfileComponent} from './profile/profile.component';
 import {LoginComponent} from './login/login.component';
 import {AuthGuard} from './_helpers/AuthGuard';
 import {MatStepperModule} from '@angular/material/stepper';
-import {ErrorStateMatcher,  MatNativeDateModule, ShowOnDirtyErrorStateMatcher} from '@angular/material/core';
+import {ErrorStateMatcher, MatNativeDateModule, ShowOnDirtyErrorStateMatcher} from '@angular/material/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-import { PatientsComponent } from './patients/patients.component';
-import { NavbarComponent } from './navbar/navbar.component';
+import {PatientsComponent} from './patients/patient-list/patients.component';
+import {NavbarComponent} from './navbar/navbar.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatListModule} from '@angular/material/list';
-import { FilterPipe }from './_helpers/filter.pipe';
-import { ManagePatientDialogComponent } from './manage-patient-dialog/manage-patient-dialog.component';
+import {FilterPipe} from './_helpers/filter.pipe';
+import {ManagePatientDialogComponent} from './patients/manage-patient-dialog/manage-patient-dialog.component';
 import {MatExpansionModule} from '@angular/material/expansion';
-import { AddPatientComponent } from './add-patient/add-patient.component';
-import { VisitsDialogComponent } from './visits-dialog/visits-dialog.component';
-import { PatientFileComponent } from './patient-file/patient-file.component';
+import {AddPatientComponent} from './patients/add-patient/add-patient.component';
+import {VisitsDialogComponent} from './visits-dialog/visits-dialog.component';
+import {PatientFileComponent} from './patients/patient-file/patient-file.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-
+import {MatTableModule} from '@angular/material/table';
+import { PatientPersonalDataDialogComponent } from './patients/patient-personal-update-dialog/patient-personal-data-dialog.component';
+import {MatRadioModule} from '@angular/material/radio';
+import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
 
 
 @NgModule({
@@ -49,29 +52,33 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     AddPatientComponent,
     VisitsDialogComponent,
     PatientFileComponent,
+    PatientPersonalDataDialogComponent,
+    ErrorDialogComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatCardModule,
-    MatGridListModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
-    MatButtonModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    FormsModule,
-    MatStepperModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatToolbarModule,
-    MatListModule,
-    MatExpansionModule,
-    MatCheckboxModule,
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatCardModule,
+        MatGridListModule,
+        MatFormFieldModule,
+        MatIconModule,
+        MatInputModule,
+        MatButtonModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        FormsModule,
+        MatStepperModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatToolbarModule,
+        MatListModule,
+        MatExpansionModule,
+        MatCheckboxModule,
+        MatTableModule,
+        MatRadioModule,
 
-  ],
+    ],
   providers: [
     authInterceptorProviders,
     AuthGuard,
@@ -79,7 +86,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
       provide: ErrorStateMatcher,
       useClass: ShowOnDirtyErrorStateMatcher
     },
-   ],
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

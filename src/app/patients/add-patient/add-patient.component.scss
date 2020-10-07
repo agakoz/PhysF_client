@@ -1,14 +1,26 @@
+.mat-step-icon-selected {
+  background-color: blue !important;
+  color: blue !important;
+}
 .container {
-  width: 80%;
+  width: 80% !important;
   margin-left: auto;
   margin: auto;
   margin-top: 20px;
   mat-card {
     position: static;
-    min-height: 100% ;
     box-sizing: border-box ;
     height: 100% !important;
 
+  }
+}
+.sex-section{
+  label{
+    text-align: left;
+    margin-right: 40px;
+  }
+  mat-radio-button {
+    margin-right: 10px;
   }
 }
 
@@ -69,4 +81,15 @@
   }
 }
 
+
+.mat-card-content {
+  max-height: 100%;
+  position: absolute;
+  overflow: auto;
+}
+.mat-card {
+  //height: 90% !important;
+  position: relative;
+  overflow: hidden;
+}
 

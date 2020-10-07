@@ -1,0 +1,32 @@
+.column {
+  float: left;
+  width: 48%;
+}
+
+.dialog-button-row {
+  text-align: center;
+  float: bottom;
+}
+
+.dialog-button {
+  margin: 20px;
+}
+
+mat-radio-button {
+  margin-right: 10px;
+}
+.mat-horizontal-stepper-header-container {
+  width: 60% !important;
+  text-align: center !important;
+}
+td{
+  width: 200px !important;
+}
+.dialog-content{
+  bottom: 0;
+  height: 500px
+}
+.data {
+  height: 300px;
+}
+

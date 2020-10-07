@@ -1,12 +1,23 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
-import {MyErrorStateMatcher} from '../register/register.component';
-import {PatientsService} from '../_services/patients.service';
+import {MyErrorStateMatcher} from '../../register/register.component';
+import {PatientsService} from '../patients.service';
 
 @Component({
     selector: 'app-add-patient',
     templateUrl: './add-patient.component.html',
-    styleUrls: ['./add-patient.component.scss', '../globalStyles.scss']
+    styleUrls: ['./add-patient.component.scss', '../../globalStyles.scss'],
+  styles: [`
+  /*:host /deep/ mat-horizontal-stepper .mat-horizontal-stepper-header-container .mat-step-icon {*/
+  /*  background-color: #c2185b !important;*/
+  /*  color: #fff !important;*/
+  /*}*/
+  /* mat-step-icon-selected, .mat-step-icon-state-done .mat-step-icon-state-edit, .mat-step-icon {*/
+  /*  background-color: blue !important;*/
+  /*  color: blue !important;*/
+  /*}*/
+
+  `]
 })
 export class AddPatientComponent implements OnInit {
     isLinear = false;
@@ -14,8 +25,7 @@ export class AddPatientComponent implements OnInit {
     form: any = {};
     isSuccessful = false;
 
-    constructor(private patientsService: PatientsService) {
-    }
+    constructor(private patientsService: PatientsService) {}
 
     errorMessage = '';
     isAddingFailed = false;
@@ -25,7 +35,6 @@ export class AddPatientComponent implements OnInit {
     }
 
     onSubmit(): void {
-
         this.patientsService.addPatient(this.form).subscribe(data => {
                 console.log(data);
                 this.isSuccessful = true;
