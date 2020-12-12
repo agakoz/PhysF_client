@@ -2,11 +2,12 @@ import {Component, OnInit} from '@angular/core';
 import {PatientsService} from '../patients.service';
 import {MatDialog} from '@angular/material/dialog';
 import {ManagePatientDialogComponent} from '../manage-patient-dialog/manage-patient-dialog.component';
-import {VisitsDialogComponent} from '../../visits-dialog/visits-dialog.component';
+import {VisitsDialogComponent} from '../../visits/visits-dialog/visits-dialog.component';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Patient} from '../patient';
 import {switchMap} from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-patients',
@@ -21,6 +22,7 @@ export class PatientsComponent implements OnInit {
   searchText = '';
   allChosen: boolean = false;
   selectedId: number;
+  currentYear: number=new Date().getFullYear();
 
   constructor(private patientsService: PatientsService, public dialog: MatDialog) {
   }
@@ -122,4 +124,7 @@ export class PatientsComponent implements OnInit {
   //     this.chosenPatientIds = this.patientsList.forEach(p => this.chosenPatientIds.push(p.id));
   //   }
   // }
+  getPatientAge(patient: any): number {
+    return this.currentYear-(new Date(patient.birthDate).getFullYear())
+  }
 }

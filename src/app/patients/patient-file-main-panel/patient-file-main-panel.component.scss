@@ -1,0 +1,71 @@
+#patient-personal-info-table {
+  padding: 20px;
+    //top: 0;
+    //bottom: 0;
+    //left: 0;
+    //right: 0;
+    //margin: auto;
+
+  tr {
+    line-height: 3;
+  }
+
+  .personal-info-label {
+    width: 150px;
+  }
+}
+
+.show-more-info {
+  float: right;
+  cursor: pointer;
+}
+
+.container {
+  padding-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  place-content: center;
+}
+
+//.spacer {
+//  flex: 1 1 auto;
+//}
+
+.card {
+  display: inline-block;
+  width: 500px;
+  margin-left: 50px;
+  margin-right: 50px;
+//top:0;
+//  bottom: 0;
+//  left: 0;
+//  right: 0;
+//  margin: auto;
+}
+
+#personal-info-card {
+place-content: center;
+
+}
+
+#treatment-history-card {
+}
+
+#incoming-visits-card {
+  color: white;
+  background-color: #009688;
+}
+
+#plan-visit-button {
+  margin-top: 20px;
+  background-color: white;
+  width: 100%;
+}
+//#patient-personal-info-table {
+//  top: 0;
+//  bottom: 0;
+//  left: 0;
+//  right: 0;
+//  margin: auto;
+//}

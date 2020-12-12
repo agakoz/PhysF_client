@@ -1,48 +1,14 @@
-.patient-personal-info-table {
-  padding: 20px;
-
-  tr {
-    line-height: 3;
-  }
-
-  .personal-info-label {
-    width: 150px;
-  }
-}
-
-.show-more-info {
-  float: right;
-  cursor: pointer;
-}
-
 .container {
-  padding: 30px;
+  //padding: 30px;
   display: flex;
   flex-wrap: wrap;
   float: left;
+  width: 100%;
   //background-color: #009688;
 }
-
-.spacer {
-  flex: 1 1 auto;
+app-patient-file-main-panel {
+  width: 100%;
 }
-
-.card {
-  display: inline-block;
-  width: 300px;
-  margin-left: 10px;
-  margin-right: 10px;
-
+app-patient-file-treatment-history-panel {
+  width: 100%;
 }
-
-#personal-info-card {
-
-
-}
-
-#treatment-history-card {
-}
-
-#incoming-visits-card {
-}
-

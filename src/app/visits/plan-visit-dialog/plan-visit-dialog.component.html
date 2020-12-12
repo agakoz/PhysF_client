@@ -1,0 +1,97 @@
+<mat-card-title>
+  Zaplanuj wizytę
+</mat-card-title>
+<mat-divider></mat-divider>
+<mat-card-content>
+  <form
+    [formGroup]="planVisitForm"
+    novalidate>
+
+
+    <div class="data">
+      <div class="column">
+        <table>
+          <tr>
+            <td>Pacjent:</td>
+            <td>
+              <mat-form-field>
+                <input
+                  matInput
+                  type="text"
+                  name="patient"
+                  formControlName="patient">
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td>Data:</td>
+            <td>
+              <mat-form-field>
+<!--                <input-->
+<!--                  [min]="minDate"-->
+<!--                  matInput-->
+<!--                  type="date"-->
+<!--                  name="date"-->
+<!--                  formControlName="date">-->
+<!--                <mat-label>Wybierz datę</mat-label>-->
+                <input matInput [matDatepicker]="picker" formControlName="date" [min]="minDate" >
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td>Czas od:</td>
+            <td>
+              <mat-form-field>
+
+                <input matInput
+                       type="time"
+                       name="startTime"
+                       formControlName="startTime">
+
+              </mat-form-field>
+            </td>
+
+
+            <td>dłość:</td>
+            <td>
+              <mat-form-field>
+                <mat-label>min.</mat-label>
+                <mat-select matInput
+                       name="length"
+                       formControlName="length"
+                         >
+
+                  <mat-option value="15">15</mat-option>
+                  <mat-option value="30">30</mat-option>
+                  <mat-option value="45">45</mat-option>
+                  <mat-option value="60">60</mat-option>
+
+                </mat-select>
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td>Notatka:</td>
+            <td>
+              <mat-form-field>
+                <input
+                  matInput
+                  type="text"
+                  name="note"
+                  formControlName="note">
+              </mat-form-field>
+            </td>
+          </tr>
+        </table>
+        <button class="dialog-button" mat-button (click)="closeDialog()">Cofnij</button>
+
+        <button class="dialog-button" mat-button mat-raised-button color="accent"
+        >Zapisz
+        </button>
+      </div>
+    </div>
+  </form>
+</mat-card-content>

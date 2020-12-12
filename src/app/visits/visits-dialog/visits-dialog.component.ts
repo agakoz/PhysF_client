@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {VisitsService} from '../_services/visits.service';
+import {VisitsService} from '../../_services/visits.service';
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 @Component({

@@ -4,9 +4,8 @@
     [formGroup]="patientForm"
     novalidate>
 
-    <mat-horizontal-stepper [linear]="isLinear" #stepper>
-      <mat-step>
-        <ng-template matStepLabel>Dane osobowe i kontakt</ng-template>
+    <mat-tab-group>
+      <mat-tab label="Dane osobowe i kontakt">
         <div class="data">
           <div class="column">
             <table>
@@ -142,9 +141,8 @@
             </table>
           </div>
         </div>
-      </mat-step>
-      <mat-step>
-        <ng-template matStepLabel>Dane zdrowotne</ng-template>
+      </mat-tab>
+      <mat-tab label="Dane zdrowotne">
         <div class="data">
           <div class="column">
             <table>
@@ -252,10 +250,10 @@
             </table>
           </div>
         </div>
-      </mat-step>
-    </mat-horizontal-stepper>
+      </mat-tab>
+    </mat-tab-group>
     <div class="dialog-button-row">
-      <button class="dialog-button" mat-button (click)="resetFormAndCloseDialog(patientForm)">Cofnij</button>
+      <button class="dialog-button" mat-button (click)="resetFormAndCloseDialog(patientForm)">Zamknij</button>
       <button class="dialog-button" mat-button mat-raised-button color="accent" (click)="savePatient()"
               [disabled]="!patientForm.valid">Zapisz
       </button>

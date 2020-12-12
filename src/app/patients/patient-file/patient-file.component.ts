@@ -12,14 +12,15 @@ import {Patient} from '../patient';
 })
 export class PatientFileComponent implements OnInit {
   patient: Patient;
-  editPersonalData = true;
+
   errorMessage: string;
+  panel: any;
 
   constructor(private patientsService: PatientsService, public dialog: MatDialog, private route: ActivatedRoute, private router: Router) {
   }
 
   ngOnInit(): void {
-
+    this.panel = "mainPanel";
     let patientId = +this.getPatientId();
     this.getPatient(patientId);
   }
@@ -38,23 +39,6 @@ export class PatientFileComponent implements OnInit {
     return this.route.snapshot.paramMap.get('id');
   }
 
-  openPatientPersonalData(): void {
-    this.dialog.open(PatientPersonalDataDialogComponent, {
-      width: '1200px',
-      data: {patient: this.patient},
-      // backdropClass: "backdropBackground"
-    }).afterClosed().subscribe(result => {
-      if (result.event == 'Update') {
-        this.patient = result.data;
-      }
-      // else if (result.event == 'Error') {
-      //   console.log(result.data)
-      //   this.dialog.open(ErrorDialogComponent, {
-      //     width: '500px',
-      //     data: {header: 'Edycja nie powiodła się', message: result.data}
-      //   });
-      // }
-    });
-  }
+
 
 }

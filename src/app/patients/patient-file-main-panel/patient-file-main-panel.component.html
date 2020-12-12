@@ -1,0 +1,98 @@
+<div class="container">
+  <mat-card class="mat-elevation-z3 card" id="personal-info-card">
+    <mat-card-title>
+      Dane
+      <a class="show-more-info">
+        <span (click)="openPatientPersonalData()" *ngIf="editPersonalData" class="material-icons ">open_in_new</span>
+      </a>
+    </mat-card-title>
+    <mat-divider></mat-divider>
+    <mat-card-content class="">
+      <table id="patient-personal-info-table">
+        <tr>
+          <td class="personal-info-label">Imię:</td>
+          <td>{{patient.name}}</td>
+        </tr>
+        <tr>
+          <td class="personal-info-label">Nazwisko:</td>
+          <td> {{patient.surname}} </td>
+        </tr>
+        <tr>
+          <td class="personal-info-label">Płeć:</td>
+          <td>  {{patient.sex}} </td>
+        </tr>
+        <tr>
+          <td class="personal-info-label">Data urodzenia:</td>
+          <td> {{ patient.birthDate }} </td>
+        </tr>
+        <tr>
+          <td class="personal-info-label">Numer PESEL:</td>
+          <td>{{patient.pesel}}</td>
+        </tr>
+        <tr>
+          <td class="personal-info-label">Numer kontaktowy:</td>
+          <td>
+            {{ patient.phone }}
+          </td>
+        </tr>
+        <tr>
+          <td class="personal-info-label">Adres e-mail:</td>
+          <td> {{ patient.email }}</td>
+        </tr>
+      </table>
+    </mat-card-content>
+  </mat-card>
+  <div class="spacer"></div>
+  <mat-card class="mat-elevation-z3 card" id="incoming-visits-card">
+    <mat-card-title>
+      Nadchodzące wizyty
+    </mat-card-title>
+    <mat-divider></mat-divider>
+    <mat-card-content class="">
+      <button id="plan-visit-button" class="title-button mat-elevation-z1" mat-stroked-button color="primary"
+              (click)="openPlanVisit()">
+        <span class="material-icons">add</span>
+        Zaplanuj wizytę
+      </button>
+      <p></p>
+      <mat-accordion>
+        <mat-expansion-panel *ngFor="let visit of incomingVisits">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{visit.date}}
+            </mat-panel-title>
+            <mat-panel-description>
+              {{visit.startTime}}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>{{visit.treatmentName}}</p>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              12-10-2020 (test)
+            </mat-panel-title>
+            <mat-panel-description>
+              12:30
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>lewy nadgarstek</p>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              17-10-2020 (test)
+            </mat-panel-title>
+            <mat-panel-description>
+              15:15
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>lewy nadgarstek</p>
+          <div>
+            start edit cancel
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </mat-card-content>
+  </mat-card>
+</div>
