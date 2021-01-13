@@ -42,14 +42,13 @@
       </table>
     </mat-card-content>
   </mat-card>
-  <div class="spacer"></div>
   <mat-card class="mat-elevation-z3 card" id="incoming-visits-card">
     <mat-card-title>
       Nadchodzące wizyty
     </mat-card-title>
     <mat-divider></mat-divider>
     <mat-card-content class="">
-      <button id="plan-visit-button" class="title-button mat-elevation-z1" mat-stroked-button color="primary"
+      <button id="plan-visit-button" class="title-button mat-elevation-z1" mat-stroked-button color="accent"
               (click)="openPlanVisit()">
         <span class="material-icons">add</span>
         Zaplanuj wizytę
@@ -57,41 +56,36 @@
       <p></p>
       <mat-accordion>
         <mat-expansion-panel *ngFor="let visit of incomingVisits">
+
           <mat-expansion-panel-header>
             <mat-panel-title>
-              {{visit.date}}
+              {{visit.getFormattedDate()}}
             </mat-panel-title>
             <mat-panel-description>
               {{visit.startTime}}
             </mat-panel-description>
           </mat-expansion-panel-header>
-          <p>{{visit.treatmentName}}</p>
+          <mat-card-content>
+            <p *ngIf="visit.treatmentCycleTitle != null">Cykl leczenia: {{visit.treatmentCycleTitle}}</p>
+            <p *ngIf="visit.treatmentCycleTitle == null">Pierwsza wizyta</p>
+            <p *ngIf="visit.notes != null">Notatka: {{visit.notes}}</p>
+          </mat-card-content>
+          <mat-divider></mat-divider>
+          <br>
+          <mat-card-footer>
+            <div class="visit-button-row">
+              <button mat-flat-button>ROZPOCZNIJ <span class="material-icons">launch</span></button>
+              <div class="spacer"></div>
+                <button mat-flat-button (click)="openEditVisit(visit)">EDYTUJ <span class="material-icons">create</span></button>
+              <div class="spacer"></div>
+                <button  mat-flat-button (click)="cancelVisit(visit.id)">ODWOŁAJ <span class="material-icons">close</span></button>
+
+
+            </div>
+          </mat-card-footer>
+
         </mat-expansion-panel>
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              12-10-2020 (test)
-            </mat-panel-title>
-            <mat-panel-description>
-              12:30
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-          <p>lewy nadgarstek</p>
-        </mat-expansion-panel>
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              17-10-2020 (test)
-            </mat-panel-title>
-            <mat-panel-description>
-              15:15
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-          <p>lewy nadgarstek</p>
-          <div>
-            start edit cancel
-          </div>
-        </mat-expansion-panel>
+
       </mat-accordion>
     </mat-card-content>
   </mat-card>

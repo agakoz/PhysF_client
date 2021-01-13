@@ -1,7 +1,9 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Patient} from './patient';
+import {Patient} from '../models/patient';
+import {Visit} from '../models/visit.model';
+import {map} from 'rxjs/operators';
 
 const PATIENTS_URL = 'https://localhost:8443/patient/';
 
@@ -23,7 +25,7 @@ export class PatientsService {
     return this.http.get(PATIENTS_URL + 'all', httpOptions);
   }
 
-  getPatient(id: number | string): Observable<any>{
+  getPatient(id: number | string): Observable<any> {
     return this.http.get(PATIENTS_URL + id, httpOptions);
   }
 
@@ -96,4 +98,6 @@ export class PatientsService {
       },
       httpOptions);
   }
+
+
 }

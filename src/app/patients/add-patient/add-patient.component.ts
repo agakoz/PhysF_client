@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
 import {MyErrorStateMatcher} from '../../register/register.component';
-import {PatientsService} from '../patients.service';
+import {PatientsService} from '../../_services/patients.service';
 
 @Component({
     selector: 'app-add-patient',

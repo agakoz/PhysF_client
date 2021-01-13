@@ -1,0 +1,21 @@
+input {
+  text-align: right;
+}
+mat-label {
+  float: right;
+}
+.dialog-visit-plan-button-row {
+  width: auto;
+  text-align: center;
+
+  button {
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+}
+#info-no-treatment-cycle {
+  color: #c2185b
+}

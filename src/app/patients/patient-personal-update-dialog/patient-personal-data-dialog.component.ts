@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
-import {Patient} from '../patient';
-import {PatientsService} from '../patients.service';
+import {Patient} from '../../models/patient';
+import {PatientsService} from '../../_services/patients.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ErrorDialogComponent} from '../../error-dialog/error-dialog.component';
 

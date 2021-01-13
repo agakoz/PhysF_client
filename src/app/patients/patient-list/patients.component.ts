@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {PatientsService} from '../patients.service';
+import {PatientsService} from '../../_services/patients.service';
 import {MatDialog} from '@angular/material/dialog';
 import {ManagePatientDialogComponent} from '../manage-patient-dialog/manage-patient-dialog.component';
 import {VisitsDialogComponent} from '../../visits/visits-dialog/visits-dialog.component';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Patient} from '../patient';
+import {Patient} from '../../models/patient';
 import {switchMap} from 'rxjs/operators';
 
 

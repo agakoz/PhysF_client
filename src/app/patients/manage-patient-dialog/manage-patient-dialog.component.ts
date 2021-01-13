@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {PatientsService} from '../patients.service';
+import {PatientsService} from '../../_services/patients.service';
 import {TokenStorageService} from '../../_services/token-storage.service';
 import {AuthService} from '../../_services/auth.service';
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';

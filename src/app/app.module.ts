@@ -19,7 +19,13 @@ import {ProfileComponent} from './profile/profile.component';
 import {LoginComponent} from './login/login.component';
 import {AuthGuard} from './_helpers/AuthGuard';
 import {MatStepperModule} from '@angular/material/stepper';
-import {ErrorStateMatcher, MatNativeDateModule, MatOptionModule, ShowOnDirtyErrorStateMatcher} from '@angular/material/core';
+import {
+  ErrorStateMatcher,
+  MAT_DATE_LOCALE,
+  MatNativeDateModule,
+  MatOptionModule,
+  ShowOnDirtyErrorStateMatcher
+} from '@angular/material/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {PatientsComponent} from './patients/patient-list/patients.component';
 import {NavbarComponent} from './navbar/navbar.component';
@@ -41,6 +47,8 @@ import { PatientFileMainPanelComponent } from './patients/patient-file-main-pane
 import { PatientFileTreatmentHistoryPanelComponent } from './patients/patient-file-treatment-history-panel/patient-file-treatment-history-panel.component';
 import { PlanVisitDialogComponent } from './visits/plan-visit-dialog/plan-visit-dialog.component';
 import {MatSelectModule} from '@angular/material/select';
+import {DatePipe} from '@angular/common';
+import { ApprovalQuestionDialogComponent } from './approval-question-dialog/approval-question-dialog.component';
 
 
 @NgModule({
@@ -62,6 +70,7 @@ import {MatSelectModule} from '@angular/material/select';
     PatientFileMainPanelComponent,
     PatientFileTreatmentHistoryPanelComponent,
     PlanVisitDialogComponent,
+    ApprovalQuestionDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -97,6 +106,8 @@ import {MatSelectModule} from '@angular/material/select';
       provide: ErrorStateMatcher,
       useClass: ShowOnDirtyErrorStateMatcher
     },
+    DatePipe,
+    {provide: MAT_DATE_LOCALE, useValue: 'en-GB'},
   ],
   bootstrap: [AppComponent]
 })

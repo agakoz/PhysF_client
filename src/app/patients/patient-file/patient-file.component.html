@@ -16,7 +16,7 @@
       <!--      </button>-->
     </div>
   </header>
-<div class="container">
+<div class="container" *ngIf="patient">
     <app-patient-file-main-panel [patient]="patient" *ngIf="panel=='mainPanel'"></app-patient-file-main-panel>
   <app-patient-file-treatment-history-panel [patient]="patient" *ngIf="panel=='historyPanel'"></app-patient-file-treatment-history-panel>
 </div>
