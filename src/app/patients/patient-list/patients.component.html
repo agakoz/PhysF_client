@@ -47,16 +47,16 @@
           <div class="card-icon">
             <i class="material-icons person-icon">person</i>
           </div>
-          {{ patient.name }} {{patient.surname}}
+          {{ patient.getFullName() }}
         </mat-card-title>
         <mat-card-content>
           Wiek:
-          {{getPatientAge(patient)}} l.
+          {{patient.getAge()}} l.
         </mat-card-content>
         <mat-card-content>
           Kontakt:
           <span *ngIf="patient.phone==null && patient.email == null ">brak danych</span>
-          <span *ngIf="patient.phone!=null"> {{patient.phone}}</span>
+          <span *ngIf="patient.phone!=null"> {{patient.getPhoneInFormat()}}</span>
           <span *ngIf="patient.phone!=null && patient.email != null "> / </span>
           <span *ngIf="patient.email!=null"> {{patient.email}}</span>
         </mat-card-content>

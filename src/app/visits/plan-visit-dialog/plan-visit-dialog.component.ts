@@ -48,7 +48,7 @@ export class PlanVisitDialogComponent implements OnInit {
 
 
     this.planVisitForm = new FormGroup({
-      patient: new FormControl({value: this.patient == null? null : this.patient.name, disabled: this.patientChosen}),
+      patient: new FormControl({value: this.patient == null? null : this.patient.getFullName(), disabled: this.patientChosen}),
       date: new FormControl({value: this.visit == null? null : this.visit.date, disabled: false}),
       startTime: new FormControl({value: this.visit == null? null : this.visit.startTime, disabled: false}),
       endTime: new FormControl({value: this.visit == null? null : this.visit.endTime, disabled: false}),
@@ -77,7 +77,7 @@ export class PlanVisitDialogComponent implements OnInit {
         this.treatmentCycleList = data;
 
         if (this.data.visit != null) {
-          if(this.visit.treatmentCycleId) {
+          if(this.visit.treatmentCycleTitle) {
             this.treatmentContinuation = true
             if(this.treatmentCycleList != null) {
               const toSelect = this.treatmentCycleList.find(c => c.id == this.visit.treatmentCycleId);

@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Patient} from '../models/patient';
+import {Patient} from '../models/patient.model';
 import {Visit} from '../models/visit.model';
 import {map} from 'rxjs/operators';
+import {Form, FormGroup} from '@angular/forms';
 
 const PATIENTS_URL = 'https://localhost:8443/patient/';
 
@@ -21,15 +22,19 @@ export class PatientsService {
   constructor(private http: HttpClient) {
   }
 
-  getAllPatients(): Observable<any> {
-    return this.http.get(PATIENTS_URL + 'all', httpOptions);
+  getAllPatients(): Observable<Patient[]> {
+    return this.http.get<Patient[]>(PATIENTS_URL + 'all', httpOptions).pipe(
+      map(data => data.map(data => new Patient().deserialize(data)))
+    );
   }
 
-  getPatient(id: number | string): Observable<any> {
-    return this.http.get(PATIENTS_URL + id, httpOptions);
+  getPatient(id: number | string): Observable<Patient> {
+    return this.http.get<Patient>(PATIENTS_URL + id, httpOptions).pipe(
+      map(data => new Patient().deserialize(data))
+    );
   }
 
-  deletePatientById(patientId): Observable<any> {
+  deletePatientById(patientId: number): Observable<any> {
     return this.http.delete(PATIENTS_URL + patientId, httpOptions);
   }
 
@@ -37,64 +42,63 @@ export class PatientsService {
   //   return this.http.delete(PATIENTS_URL + 'delete/all',
   //     httpOptions);
   // }
-  deletePatientsGroup(patientIds): Observable<any> {
+  deletePatientsGroup(patientIds: number[]): Observable<any> {
     return this.http.post(PATIENTS_URL + 'delete', patientIds);
   }
 
-  addPatient(patient): Observable<any> {
+  addPatient(patient: FormGroup): Observable<any> {
     return this.http.post(PATIENTS_URL + 'add', {
-        name: patient.name,
-        surname: patient.surname,
-        birthDate: patient.birthDate,
-        pesel: patient.pesel,
-        sex: patient.sex,
-        address: patient.address,
-        city: patient.ccity,
-        email: patient.email,
-        phone: patient.phoneNum,
-        lifestyle: patient.lifestyle,
-        profession: patient.profession,
-        guardian: patient.guardian,
-        pastDiseases: patient.pastDiseases,
-        chronicDiseases: patient.chronicDiseases,
-        hospitalization: patient.hospitalization,
-        surgeries: patient.surgeries,
-        pastTreatment: patient.pastTreatment,
-        allergies: patient.allergies,
-        familyDiseases: patient.familyDiseases,
-        medicalCertificate: patient.medicalCertificate,
-        extraDetails: patient.extraDetails
+        name: patient.get('name').value,
+        surname: patient.get('surname').value,
+        birthDate: patient.get('birthDate').value,
+        pesel: patient.get('pesel').value,
+        sex: patient.get('sex').value,
+        address: patient.get('address').value,
+        city: patient.get('city').value,
+        email: patient.get('email').value,
+        phone: patient.get('phone').value,
+        lifestyle: patient.get('lifestyle').value,
+        profession: patient.get('profession').value,
+        guardian: patient.get('guardian').value,
+        pastDiseases: patient.get('pastDiseases').value,
+        chronicDiseases: patient.get('chronicDiseases').value,
+        hospitalization: patient.get('hospitalization').value,
+        surgeries: patient.get('surgeries').value,
+        allergies: patient.get('allergies').value,
+        familyDiseases: patient.get('familyDiseases').value,
+        medicalCertificate: patient.get('medicalCertificate').value,
+        extraDetails: patient.get('extraDetails').value
       },
       httpOptions);
   }
 
-  choosePatient(patient: any) {
+  choosePatient(patient: Patient) {
     this.patientSource.next(patient);
   }
 
-  updatePatient(patient): Observable<any> {
-    return this.http.post(PATIENTS_URL + 'update/' + patient.id, {
-        name: patient.name,
-        surname: patient.surname,
-        birthDate: patient.birthDate,
-        pesel: patient.pesel,
-        sex: patient.sex,
-        address: patient.address,
-        city: patient.city,
-        email: patient.email,
-        phone: patient.phone,
-        lifestyle: patient.lifestyle,
-        profession: patient.profession,
-        guardian: patient.guardian,
-        pastDiseases: patient.pastDiseases,
-        chronicDiseases: patient.chronicDiseases,
-        hospitalization: patient.hospitalization,
-        surgeries: patient.surgeries,
-        pastTreatment: patient.pastTreatment,
-        allergies: patient.allergies,
-        familyDiseases: patient.familyDiseases,
-        medicalCertificate: patient.medicalCertificate,
-        extraDetails: patient.extraDetails
+  updatePatient(patientId:number, patient: FormGroup): Observable<any> {
+    return this.http.post(PATIENTS_URL + 'update/' + patientId, {
+        name: patient.get('name').value,
+        surname: patient.get('surname').value,
+        birthDate: patient.get('birthDate').value,
+        pesel: patient.get('pesel').value,
+        sex: patient.get('sex').value,
+        address: patient.get('address').value,
+        city: patient.get('city').value,
+        email: patient.get('email').value,
+        phone: patient.get('phone').value,
+        lifestyle: patient.get('lifestyle').value,
+        profession: patient.get('profession').value,
+        guardian: patient.get('guardian').value,
+        pastDiseases: patient.get('pastDiseases').value,
+        chronicDiseases: patient.get('chronicDiseases').value,
+        hospitalization: patient.get('hospitalization').value,
+        surgeries: patient.get('surgeries').value,
+        allergies: patient.get('allergies').value,
+        familyDiseases: patient.get('familyDiseases').value,
+        medicalCertificate: patient.get('medicalCertificate').value,
+        extraDetails: patient.get('extraDetails').value
+
       },
       httpOptions);
   }

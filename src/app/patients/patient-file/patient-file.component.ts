@@ -3,7 +3,7 @@ import {PatientsService} from '../../_services/patients.service';
 import {MatDialog} from '@angular/material/dialog';
 import {PatientPersonalDataDialogComponent} from '../patient-personal-update-dialog/patient-personal-data-dialog.component';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Patient} from '../../models/patient';
+import {Patient} from '../../models/patient.model';
 
 @Component({
   selector: 'app-patient-file',
@@ -11,7 +11,7 @@ import {Patient} from '../../models/patient';
   styleUrls: ['./patient-file.component.scss', '../../globalStyles.scss']
 })
 export class PatientFileComponent implements OnInit {
-  patient: Patient;
+  patient: Patient = null;
 
   errorMessage: string;
   panel: any;

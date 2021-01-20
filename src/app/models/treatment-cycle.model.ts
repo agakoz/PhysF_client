@@ -14,6 +14,7 @@ export class TreatmentCycle implements Deserializable {
   public recommendations: string;
   public notes: string;
   public archival: string;
+  public similarPastProblems: string;
 
 
   deserialize(input: any): this {

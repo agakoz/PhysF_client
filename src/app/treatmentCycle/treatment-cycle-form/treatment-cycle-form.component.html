@@ -1,0 +1,66 @@
+<form
+  [formGroup]="treatmentCycleForm"
+  novalidate>
+
+  <mat-form-field>
+    <mat-label>TYTUŁ</mat-label>
+    <input matInput formControlName="title" required>
+  </mat-form-field>
+  <br><br>
+  <mat-card-title>Badanie</mat-card-title>
+  <div>
+
+    <div class="column">
+
+    <mat-card-content>
+        <mat-form-field>
+          <mat-label>Część ciała której dotyczy problem</mat-label>
+          <input matInput formControlName="bodyPart" >
+        </mat-form-field>
+        <br/>
+        <mat-form-field>
+          <mat-label>Opis problemu pacjenta, objawy</mat-label>
+          <textarea matInput formControlName="description" ></textarea>
+        </mat-form-field>
+        <br/>
+        <mat-form-field>
+          <mat-label>Data wystąpenia dolegliwości</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="injuryDate">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <br/>
+      <mat-form-field>
+        <mat-label>Podobne incydenty w przeszłości</mat-label>
+        <textarea matInput formControlName="similarPastProblems" ></textarea>
+      </mat-form-field>
+
+      </mat-card-content>
+
+    </div>
+    <div class="column">
+      <mat-card-content>
+        <mat-form-field>
+          <mat-label>Opis wykonanego badania, wynik, obserwacje</mat-label>
+          <textarea matInput formControlName="examinationDesc" ></textarea>
+        </mat-form-field>
+        <br/>
+        <mat-form-field>
+          <mat-label>Rozpoznanie choroby</mat-label>
+          <textarea matInput formControlName="diagnosis" ></textarea>
+        </mat-form-field>
+        <br/>
+        <mat-form-field>
+          <mat-label>Plan fizjoterapii, zalecenia</mat-label>
+          <textarea matInput formControlName="recommendations" ></textarea>
+        </mat-form-field>
+        <br/>
+        <mat-form-field>
+          <mat-label>Dodatkowe uwagi, wnioski, notatki</mat-label>
+          <textarea matInput formControlName="notes" ></textarea>
+        </mat-form-field>
+      </mat-card-content>
+    </div>
+  </div>
+
+</form>

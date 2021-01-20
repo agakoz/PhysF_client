@@ -22,4 +22,10 @@ export class TreatmentCycleService {
       map(data => data.map(data => new TreatmentCycle().deserialize(data)))
     );
   }
+
+  getTreatmentCycleData(cycleId: number) : Observable<TreatmentCycle> {
+    return this.http.get<TreatmentCycle>(TREATMENT_CYCLE_API_URL + 'getCycleInfo/' + cycleId, httpOptions).pipe(
+      map(data => new TreatmentCycle().deserialize(data))
+    );
+  }
 }

@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
-import {Patient} from '../../models/patient';
+import {Patient} from '../../models/patient.model';
 import {PatientsService} from '../../_services/patients.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ErrorDialogComponent} from '../../error-dialog/error-dialog.component';
@@ -42,7 +42,29 @@ export class PatientPersonalDataDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.patient = this.data.patient;
-    this.setPatientForm();
+    this.patientForm = new FormGroup({
+      id: new FormControl({value : this.patient.id, disabled: false}),
+      name: new FormControl({value: this.patient.name, disabled: false}),
+      surname: new FormControl({value: this.patient.surname, disabled: false}),
+      sex: new FormControl({value:this.patient.sex, disabled: false}),
+      birthDate: new FormControl({value:this.patient.birthDate, disabled: false}),
+      pesel: new FormControl({value:this.patient.pesel, disabled: false}, [Validators.minLength(11), Validators.maxLength(11), Validators.pattern("^[0-9]*$")]),
+      profession: new FormControl({value:this.patient.profession, disabled: false}),
+      address: new FormControl({value:this.patient.address, disabled: false}),
+      city: new FormControl({value:this.patient.city, disabled: false}),
+      phone: new FormControl({value:this.patient.phone, disabled: false}, [Validators.minLength(9), Validators.maxLength(9), Validators.pattern("^[0-9]*$")]),
+      email: new FormControl({value:this.patient.email, disabled: false}, [Validators.email]),
+      pastDiseases: new FormControl({value:this.patient.pastDiseases, disabled: false}),
+      chronicDiseases: new FormControl({value:this.patient.chronicDiseases, disabled: false}),
+      hospitalization: new FormControl({value:this.patient.hospitalization, disabled: false}),
+      surgeries: new FormControl({value:this.patient.surgeries, disabled: false}),
+      allergies: new FormControl({value:this.patient.allergies, disabled: false}),
+      familyDiseases: new FormControl({value:this.patient.familyDiseases, disabled: false}),
+      medicalCertificate: new FormControl({value:this.patient.medicalCertificate, disabled: false}),
+      extraDetails: new FormControl({value:this.patient.extraDetails, disabled: false}),
+      lifestyle: new FormControl({value:this.patient.lifestyle, disabled: false}),
+      guardian: new FormControl({value:this.patient.guardian, disabled: false}),
+    });
   }
 
   resetFormAndCloseDialog(form): void {
@@ -53,7 +75,7 @@ export class PatientPersonalDataDialogComponent implements OnInit {
 
   savePatient(): void {
     // console.log(this.patientForm.value)
-    this.patientsService.updatePatient(this.patientForm.value).subscribe(updatedPatient => {
+    this.patientsService.updatePatient(this.patient.id, this.patientForm).subscribe(updatedPatient => {
         console.log('success');
         updatedPatient.id = this.patient.id;
         this.dialogRef.close({event: 'Update', data: updatedPatient});
@@ -73,27 +95,7 @@ export class PatientPersonalDataDialogComponent implements OnInit {
   }
 
   private setPatientForm() {
-    this.patientForm = new FormGroup({
-      id: new FormControl(this.patient.id),
-      name: new FormControl(this.patient.name),
-      surname: new FormControl(this.patient.surname),
-      sex: new FormControl(this.patient.sex),
-      birthDate: new FormControl(this.patient.birthDate),
-      pesel: new FormControl(this.patient.pesel, [Validators.minLength(11), Validators.maxLength(11), Validators.pattern("^[0-9]*$")]),
-      profession: new FormControl(this.patient.profession),
-      address: new FormControl(this.patient.address),
-      city: new FormControl(this.patient.city),
-      phone: new FormControl(this.patient.phone, [Validators.minLength(9), Validators.maxLength(9), Validators.pattern("^[0-9]*$")]),
-      email: new FormControl(this.patient.email, [Validators.email]),
-      pastDiseases: new FormControl(this.patient.pastDiseases),
-      chronicDiseases: new FormControl(this.patient.chronicDiseases),
-      hospitalization: new FormControl(this.patient.hospitalization),
-      surgeries: new FormControl(this.patient.surgeries),
-      allergies: new FormControl(this.patient.allergies),
-      familyDiseases: new FormControl(this.patient.familyDiseases),
-      medicalCertificate: new FormControl(this.patient.medicalCertificate),
-      extraDetails: new FormControl(this.patient.extraDetails),
-    });
+
   }
 
   private closeDialog() {

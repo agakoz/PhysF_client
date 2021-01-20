@@ -33,13 +33,6 @@
             <td>Data:</td>
             <td>
               <mat-form-field>
-                <!--                <input-->
-                <!--                  [min]="minDate"-->
-                <!--                  matInput-->
-                <!--                  type="date"-->
-                <!--                  name="date"-->
-                <!--                  formControlName="date">-->
-                <!--                <mat-label>Wybierz datę</mat-label>-->
                 <input matInput [matDatepicker]="picker" formControlName="date" [min]="minDate">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>

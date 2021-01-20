@@ -34,7 +34,17 @@ export class Patient implements Deserializable {
     return this.name + ' ' + this.surname;
   }
 
-  getAge() {
+  getAge() : number {
     return (new Date().getFullYear())-(new Date(this.birthDate).getFullYear())
+  }
+
+  getPhoneInFormat(): string {
+// return this.phone
+    //501 141 254
+    return this.phone.substr(0, 3) + "-" + this.phone.substr(3, 3) + "-" + this.phone.substr(6, 3)
+  }
+
+  isAdult() : boolean {
+    return this.getAge() >= 18
   }
 }

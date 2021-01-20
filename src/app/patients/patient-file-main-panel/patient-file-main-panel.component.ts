@@ -6,6 +6,7 @@ import {PlanVisitDialogComponent} from '../../visits/plan-visit-dialog/plan-visi
 import {PatientsService} from '../../_services/patients.service';
 import {Visit} from '../../models/visit.model';
 import {ApprovalQuestionDialogComponent} from '../../approval-question-dialog/approval-question-dialog.component';
+import {VisitFormDialogComponent} from '../../visits/visit-form-dialog/visit-form-dialog.component';
 
 @Component({
   selector: 'app-patient-file-main-panel',
@@ -28,7 +29,6 @@ export class PatientFileMainPanelComponent implements OnInit {
   }
 
   private loadIncomingVisits() {
-    console.log("reloaf")
     this.visitsService.getIncomingVisits(this.patient.id).subscribe(
       result => {
         console.log(result);
@@ -101,6 +101,19 @@ export class PatientFileMainPanelComponent implements OnInit {
         );
 
       }
+    });
+  }
+
+  goToVisitForm(visit: Visit) {
+    this.dialog.open(VisitFormDialogComponent, {
+      width: '80%',
+      height: '95%',
+      data: {
+        visit: visit,
+        patient: this.patient
+      }
+    }).afterClosed().subscribe(result => {
+      this.loadIncomingVisits();
     });
   }
 }

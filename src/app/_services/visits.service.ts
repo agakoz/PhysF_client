@@ -44,7 +44,8 @@ export class VisitsService {
         endTime: planVisitForm.get('endTime').value,
         notes: planVisitForm.get('notes').value
       },
-      httpOptions);
+      {responseType: 'text'}
+      );
   }
 
   getIncomingVisits(patientId: number): Observable<Visit[]> {
@@ -54,7 +55,7 @@ export class VisitsService {
   }
 
   cancelVisitPlan(visitId: number): Observable<any> {
-    return this.http.post(VISIT_API_URL + 'cancel/' + visitId, newhttpOptions); //TODO
+    return this.http.post(VISIT_API_URL + 'cancel/' + visitId, {},{responseType: 'text'});
   }
 
   updateVisitPlan(id: number, planVisitForm: FormGroup) {
@@ -66,7 +67,8 @@ export class VisitsService {
         startTime: planVisitForm.get('startTime').value,
         endTime: planVisitForm.get('endTime').value,
         notes: planVisitForm.get('notes').value
-      }
+      },
+      {responseType: 'text'}
     )
   }
 }

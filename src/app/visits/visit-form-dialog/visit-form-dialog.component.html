@@ -1,0 +1,118 @@
+<div class="dialog-content">
+  <h2>Karta wizyty z dnia {{visitForm.get("date").value}} </h2>
+
+
+  <mat-tab-group>
+
+    <mat-tab label="Raport z terapii">
+      <br/>
+      <form
+        [formGroup]="visitForm"
+        novalidate>
+        <div class="data">
+          <div class="column">
+
+
+            <mat-form-field>
+              <mat-label>Pacjent</mat-label>
+              <input
+                matInput
+                type="text"
+                name="patient"
+                formControlName="patient">
+            </mat-form-field>
+            <br/>
+            <mat-form-field>
+              <mat-label>Data wizyty</mat-label>
+              <input matInput [matDatepicker]="picker" formControlName="date" [max]="today">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+
+            </mat-form-field>
+            <br/>
+            <mat-form-field class="timeInput">
+              <mat-label>Od</mat-label>
+              <input matInput
+                     type="time"
+                     name="startTime"
+                     formControlName="startTime">
+
+            </mat-form-field>
+            <span id="timeSpacer">  -  </span>
+            <mat-form-field class="timeInput">
+              <mat-label>do</mat-label>
+
+              <input matInput
+                     type="time"
+                     name="endTime"
+                     formControlName="endTime">
+
+            </mat-form-field>
+            <br/>
+            <mat-label>
+              Kontynuacja leczenia
+            </mat-label>
+            <mat-checkbox class="example-margin" (change)="manageContinuation()"
+                          [checked]="isTreatmentContinuation"></mat-checkbox>
+
+
+            <span *ngIf="!isTreatmentContinuation">
+
+
+                   <span class="info-no-treatment-cycle" style="color: #c2185b">
+                    PAMIĘTAJ O PRAWIDŁOWYM WYPEŁNIENIU FORMULARZA BADANIA NOWEGO CYKLU LECZENIA
+                  </span>
+            </span>
+            <span *ngIf="isTreatmentContinuation">
+              <mat-form-field id="cycleChooser" *ngIf="treatmentCycleList.length > 0" >
+                <mat-label>Kontynuowany cykl leczenia</mat-label>
+                <mat-select matInput
+                            name="treatmentCycle"
+                            formControlName="treatmentCycle">
+                  <mat-option *ngFor="let cycle of treatmentCycleList"
+                              [value]="cycle">{{cycle.title}}</mat-option>
+
+                </mat-select>
+              </mat-form-field>
+              <span class="info-no-treatment-cycle" *ngIf="treatmentCycleList.length == 0"> BRAK CYKLI LECZENIA DO WYBORU</span>
+            </span>
+            <br/>
+            <mat-form-field class="longInput">
+              <mat-label>Opis udzielonych świadczeń zdrowotnych:</mat-label>
+              <textarea
+                matInput
+                type="text"
+                name="treatment"
+                formControlName="treatment"
+                required></textarea>
+            </mat-form-field>
+            <mat-form-field class="longInput">
+              <mat-label>Notatka</mat-label>
+              <textarea
+                matInput
+                type="text"
+                name="notes"
+                formControlName="notes"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </form>
+    </mat-tab>
+    <mat-tab label="Cykl leczenia">
+      <br>
+      <app-treatment-cycle-form *ngIf="visitForm.get('treatmentCycle').value.id != null"
+                                [cycleId]="visitForm.get('treatmentCycle').value.id"></app-treatment-cycle-form>
+
+    </mat-tab>
+  </mat-tab-group>
+  <mat-divider></mat-divider>
+  <br>
+  <div class="dialog-visit-plan-button-row">
+    <button class="dialog-button" mat-button (click)="cancel()">Cofnij</button>
+
+    <button class="dialog-button" mat-button mat-raised-button color="accent"
+            (click)="approve()" [disabled]="!visitForm.valid && !treatmentCycleForm.valid">
+      Zapisz i zakończ wizytę
+    </button>
+  </div>
+</div>

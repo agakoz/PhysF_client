@@ -5,7 +5,7 @@ import {ManagePatientDialogComponent} from '../manage-patient-dialog/manage-pati
 import {VisitsDialogComponent} from '../../visits/visits-dialog/visits-dialog.component';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Patient} from '../../models/patient';
+import {Patient} from '../../models/patient.model';
 import {switchMap} from 'rxjs/operators';
 
 

@@ -49,6 +49,8 @@ import { PlanVisitDialogComponent } from './visits/plan-visit-dialog/plan-visit-
 import {MatSelectModule} from '@angular/material/select';
 import {DatePipe} from '@angular/common';
 import { ApprovalQuestionDialogComponent } from './approval-question-dialog/approval-question-dialog.component';
+import { VisitFormDialogComponent } from './visits/visit-form-dialog/visit-form-dialog.component';
+import { TreatmentCycleFormComponent } from './treatmentCycle/treatment-cycle-form/treatment-cycle-form.component';
 
 
 @NgModule({
@@ -71,6 +73,8 @@ import { ApprovalQuestionDialogComponent } from './approval-question-dialog/appr
     PatientFileTreatmentHistoryPanelComponent,
     PlanVisitDialogComponent,
     ApprovalQuestionDialogComponent,
+    VisitFormDialogComponent,
+    TreatmentCycleFormComponent,
   ],
   imports: [
     BrowserModule,
