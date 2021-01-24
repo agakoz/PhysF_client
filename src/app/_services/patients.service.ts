@@ -104,4 +104,9 @@ export class PatientsService {
   }
 
 
+  getPatientsBasicInfo(): Observable<Patient[]>{
+    return this.http.get<Visit[]>(PATIENTS_URL + 'getPatientsBasicInfo', httpOptions).pipe(
+      map(data => data.map(data => new Patient().deserialize(data)))
+    );
+  }
 }

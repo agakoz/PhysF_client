@@ -7,6 +7,7 @@ import {DatePipe} from '@angular/common';
 import {TreatmentCycle} from '../../models/treatment-cycle.model';
 import {TreatmentCycleService} from '../../_services/treatment-cycle.service';
 import {Visit} from '../../models/visit.model';
+import {PatientsService} from '../../_services/patients.service';
 
 @Component({
   selector: 'app-plan-visit-dialog',
@@ -14,14 +15,15 @@ import {Visit} from '../../models/visit.model';
   styleUrls: ['./plan-visit-dialog.component.scss']
 })
 export class PlanVisitDialogComponent implements OnInit {
-  patient: Patient = null;
-  visit: Visit = null;
+  patientPassed: Patient = null;
+  visitPassed: Visit = null;
   patientChosen: boolean = false;
   planVisitForm: FormGroup;
   public minDate = new Date();
   treatmentContinuation: boolean = false;
   treatmentCycleList: TreatmentCycle[];
-  date : Date = null;
+  patientList: Patient[];
+  date: Date = null;
 
 
   constructor(
@@ -29,7 +31,8 @@ export class PlanVisitDialogComponent implements OnInit {
     private dialogRef: MatDialogRef<PlanVisitDialogComponent>,
     private visitsService: VisitsService,
     private datePipe: DatePipe,
-    private treatmentCycleService: TreatmentCycleService) {
+    private treatmentCycleService: TreatmentCycleService,
+    private patientsService: PatientsService) {
     dialogRef.disableClose = true;
     this.treatmentContinuation = false;
     this.treatmentCycleList = [];
@@ -37,27 +40,29 @@ export class PlanVisitDialogComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.data.patient != null) {
-      this.patient = this.data.patient;
+      this.patientPassed = this.data.patient;
       this.patientChosen = true;
-      this.loadTreatmentCycleList()
+      this.loadTreatmentCycleList();
     }
 
     if (this.data.visit != null) {
-      this.visit = this.data.visit;
+      this.visitPassed = this.data.visit;
     }
 
 
     this.planVisitForm = new FormGroup({
-      patient: new FormControl({value: this.patient == null? null : this.patient.getFullName(), disabled: this.patientChosen}),
-      date: new FormControl({value: this.visit == null? null : this.visit.date, disabled: false}),
-      startTime: new FormControl({value: this.visit == null? null : this.visit.startTime, disabled: false}),
-      endTime: new FormControl({value: this.visit == null? null : this.visit.endTime, disabled: false}),
-      notes: new FormControl({value: this.visit == null? null : this.visit.notes, disabled: false}),
+      patient: new FormControl({value: this.patientPassed == null ? null : this.patientPassed.getFullName(), disabled: this.patientChosen}),
+      date: new FormControl({value: this.visitPassed == null ? null : this.visitPassed.date, disabled: false}),
+      startTime: new FormControl({value: this.visitPassed == null ? null : this.visitPassed.startTime, disabled: false}),
+      endTime: new FormControl({value: this.visitPassed == null ? null : this.visitPassed.endTime, disabled: false}),
+      notes: new FormControl({value: this.visitPassed == null ? null : this.visitPassed.notes, disabled: false}),
       treatmentCycle: new FormControl({})
 
     });
 
-
+    if (this.patientPassed == null) {
+      this.loadPatientList();
+    }
   }
 
   closeDialog() {
@@ -71,16 +76,16 @@ export class PlanVisitDialogComponent implements OnInit {
     }
   }
 
-  private loadTreatmentCycleList() {
-    this.treatmentCycleService.getPatientTreatmentCycles(this.patient.id).subscribe(
+  private loadTreatmentCycleList(): void {
+    this.treatmentCycleService.getPatientTreatmentCycles(this.patientPassed.id).subscribe(
       data => {
         this.treatmentCycleList = data;
 
         if (this.data.visit != null) {
-          if(this.visit.treatmentCycleTitle) {
-            this.treatmentContinuation = true
-            if(this.treatmentCycleList != null) {
-              const toSelect = this.treatmentCycleList.find(c => c.id == this.visit.treatmentCycleId);
+          if (this.visitPassed.treatmentCycleTitle) {
+            this.treatmentContinuation = true;
+            if (this.treatmentCycleList != null) {
+              const toSelect = this.treatmentCycleList.find(c => c.id == this.visitPassed.treatmentCycleId);
               this.planVisitForm.get('treatmentCycle').setValue(toSelect);
             }
           }
@@ -89,14 +94,23 @@ export class PlanVisitDialogComponent implements OnInit {
 
   }
 
+  private loadPatientList(): void {
+    this.patientsService.getPatientsBasicInfo().subscribe(
+      data => {
+        this.patientList = data;
+        console.log(this.patientList)
+      }
+  );
+  }
+
   onSubmit() {
     this.planVisitForm.get('date').setValue(this.datePipe.transform(this.planVisitForm.get('date').value, 'yyyy-MM-dd'));
-    if(this.visit != null) {
-      this.updateVisitPlan()
+    if (this.visitPassed != null) {
+      this.updateVisitPlan();
     } else if (this.treatmentContinuation) {
-      this.planNextVisit()
+      this.planNextVisit();
     } else {
-      this.planFirstVisit()
+      this.planFirstVisit();
     }
   }
 
@@ -112,7 +126,7 @@ export class PlanVisitDialogComponent implements OnInit {
   }
 
   private planFirstVisit() {
-    this.visitsService.planFirstVisit(this.planVisitForm, this.patient.id).subscribe(
+    this.visitsService.planFirstVisit(this.planVisitForm, this.patientPassed.id).subscribe(
       result => {
         this.dialogRef.close({event: 'Success'});
       },
@@ -123,7 +137,7 @@ export class PlanVisitDialogComponent implements OnInit {
   }
 
   private updateVisitPlan() {
-    this.visitsService.updateVisitPlan(this.visit.id, this.planVisitForm).subscribe(
+    this.visitsService.updateVisitPlan(this.visitPassed.id, this.planVisitForm).subscribe(
       result => {
         this.dialogRef.close({event: 'Success'});
       },

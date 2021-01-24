@@ -1,0 +1,64 @@
+@import "../../../../node_modules/angular-calendar/css/angular-calendar.css";
+.x{
+  width: 100%;
+}
+.calendar-navigation {
+  display: inline-block;
+  //flex-wrap: wrap;
+  width: 90%;
+}
+
+.spacer {
+  flex: 1 1 auto;
+
+}
+
+.button-group, .date-display {
+  display: inline-flex;
+  flex-wrap: wrap;
+  vertical-align: center;
+
+  h3 {
+    font-size: 130%;
+  }
+
+}
+
+.nav-panel-content {
+  width: 70%;
+  display: flex;
+  flex-wrap: wrap;
+  right: 0;
+  left: 0;
+  margin: auto;
+}
+//.calendar-container {
+//  left: 0;
+//  right: 0;
+//  margin: auto;
+//  width: 80%;
+//  height: 200px;
+//}
+.calendar-nav-button {
+  vertical-align: center;
+  //width: 150px;
+  height: 40px;
+  //float: right;
+  top: 0;
+  bottom: 0;
+  //left: 0;
+  //margin-right: 40px;
+  margin-top: auto;
+  margin-bottom: auto;
+  background-color: white;
+}
+
+//.calendar-container {
+//  height: 30% !important;
+//  max-height: 400px;
+//}
+.small-calendar-card{
+  padding: 30px;
+  width: 100%;
+}
+.main-calendar-card{}

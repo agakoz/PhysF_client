@@ -51,7 +51,9 @@ import {DatePipe} from '@angular/common';
 import { ApprovalQuestionDialogComponent } from './approval-question-dialog/approval-question-dialog.component';
 import { VisitFormDialogComponent } from './visits/visit-form-dialog/visit-form-dialog.component';
 import { TreatmentCycleFormComponent } from './treatmentCycle/treatment-cycle-form/treatment-cycle-form.component';
-
+import {CalendarModule, CalendarNativeDateFormatter, DateAdapter, DateFormatterParams} from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { CalendarComponent } from './calendar/calendar/calendar.component';
 
 @NgModule({
   declarations: [
@@ -75,6 +77,7 @@ import { TreatmentCycleFormComponent } from './treatmentCycle/treatment-cycle-fo
     ApprovalQuestionDialogComponent,
     VisitFormDialogComponent,
     TreatmentCycleFormComponent,
+    CalendarComponent,
   ],
   imports: [
     BrowserModule,
@@ -101,6 +104,11 @@ import { TreatmentCycleFormComponent } from './treatmentCycle/treatment-cycle-fo
     MatTabsModule,
     MatOptionModule,
     MatSelectModule,
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+
+    }),
 
   ],
   providers: [
@@ -111,9 +119,11 @@ import { TreatmentCycleFormComponent } from './treatmentCycle/treatment-cycle-fo
       useClass: ShowOnDirtyErrorStateMatcher
     },
     DatePipe,
-    {provide: MAT_DATE_LOCALE, useValue: 'en-GB'},
+    {provide: MAT_DATE_LOCALE, useValue: 'pl-PL'},
+
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+
 })
 export class AppModule {
 }

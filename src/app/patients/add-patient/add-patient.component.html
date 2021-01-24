@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
-<div class="wrapper-whitesmoke">
+<div class="wrapper">
   <header class="page-title-container  ">
 
     <div class="a">
@@ -174,123 +174,123 @@
               </div>
               <!--        </form>-->
             </mat-step>
-<!--            <mat-step *ngIf="!patientIsAdult()">-->
-<!--              <ng-template matStepLabel>Dane opiekuna prawnego</ng-template>-->
-<!--              <div class="row">-->
+            <mat-step *ngIf="!patientIsAdult()">
+              <ng-template matStepLabel>Dane opiekuna prawnego</ng-template>
+              <div class="row">
 
-<!--                <div class="column">-->
-<!--                  <mat-form-field>-->
-<!--                    <mat-label>Imię</mat-label>-->
-<!--                    <input matInput placeholder=""-->
+                <div class="column">
+                  <mat-form-field>
+                    <mat-label>Imię</mat-label>
+                    <input matInput placeholder=""
 
-<!--                           type="text"-->
-<!--                           name="guardianName"-->
-<!--                           formControlName="guardianName"-->
-<!--                           required-->
-<!--                           minlength="2"-->
-<!--                           maxlength="20"-->
-<!--                    />-->
-<!--                  </mat-form-field>-->
-<!--                  <p></p>-->
-<!--                  <mat-form-field>-->
-<!--                    <mat-label>Nazwisko</mat-label>-->
-<!--                    <input matInput placeholder=""-->
-<!--                           type="text"-->
-<!--                           name="surname"-->
-<!--                           formControlName="guardianSurname"-->
-<!--                           required-->
-<!--                           minlength="2"-->
-<!--                           maxlength="20">-->
-<!--                  </mat-form-field>-->
-<!--                  <p></p>-->
-<!--                  <div class="sex-section">-->
-<!--                    <label>Płeć</label>-->
-<!--                    <mat-radio-group-->
-<!--                      class="radio-sex"-->
-<!--                      name="guardianSex"-->
-<!--                      formControlName="guardianSex">-->
-<!--                      <mat-radio-button color="accent" value="K">K</mat-radio-button>-->
-<!--                      <mat-radio-button color="accent" value="M">M</mat-radio-button>-->
-<!--                    </mat-radio-group>-->
-<!--                  </div>-->
+                           type="text"
+                           name="guardianName"
+                           formControlName="guardianName"
+                           required
+                           minlength="2"
+                           maxlength="20"
+                    />
+                  </mat-form-field>
+                  <p></p>
+                  <mat-form-field>
+                    <mat-label>Nazwisko</mat-label>
+                    <input matInput placeholder=""
+                           type="text"
+                           name="surname"
+                           formControlName="guardianSurname"
+                           required
+                           minlength="2"
+                           maxlength="20">
+                  </mat-form-field>
+                  <p></p>
+                  <div class="sex-section">
+                    <label>Płeć</label>
+                    <mat-radio-group
+                      class="radio-sex"
+                      name="guardianSex"
+                      formControlName="guardianSex">
+                      <mat-radio-button color="accent" value="K">K</mat-radio-button>
+                      <mat-radio-button color="accent" value="M">M</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
 
-<!--                  <p></p>-->
-<!--                  <mat-form-field>-->
-<!--                    <mat-label>Adres</mat-label>-->
-<!--                    <input matInput placeholder="np. Długa 1/3"-->
-<!--                           type="text"-->
-<!--                           name="guardianAddress"-->
-<!--                           formControlName="guardianAddress"-->
-<!--                           required-->
-<!--                           minlength="2"-->
-<!--                           maxlength="20">-->
-<!--                  </mat-form-field>-->
-<!--                  <p></p>-->
+                  <p></p>
+                  <mat-form-field>
+                    <mat-label>Adres</mat-label>
+                    <input matInput placeholder="np. Długa 1/3"
+                           type="text"
+                           name="guardianAddress"
+                           formControlName="guardianAddress"
+                           required
+                           minlength="2"
+                           maxlength="20">
+                  </mat-form-field>
+                  <p></p>
 
-<!--                  <mat-form-field>-->
-<!--                    <mat-label>Miasto</mat-label>-->
-<!--                    <input matInput placeholder=""-->
-<!--                           type="text"-->
-<!--                           name="guardianCity"-->
-<!--                           formControlName="guardianCity"-->
-<!--                           required-->
-<!--                           minlength="2"-->
-<!--                           maxlength="20">-->
-<!--                  </mat-form-field>-->
+                  <mat-form-field>
+                    <mat-label>Miasto</mat-label>
+                    <input matInput placeholder=""
+                           type="text"
+                           name="guardianCity"
+                           formControlName="guardianCity"
+                           required
+                           minlength="2"
+                           maxlength="20">
+                  </mat-form-field>
 
 
-<!--                </div>-->
-<!--                <div class="column">-->
+                </div>
+                <div class="column">
 
-<!--                  <mat-form-field>-->
-<!--                    <mat-label>Data Urodzenia</mat-label>-->
-<!--                    <input matInput [matDatepicker]="picker" formControlName="guardianBirthDate"  [max]="minAdultDate" required>-->
-<!--                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>-->
-<!--                    <mat-datepicker #picker></mat-datepicker>-->
+                  <mat-form-field>
+                    <mat-label>Data Urodzenia</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="guardianBirthDate"  [max]="minAdultDate" required>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
 
-<!--                  </mat-form-field>-->
+                  </mat-form-field>
 
-<!--                  <p></p>-->
-<!--                  <mat-form-field>-->
-<!--                    <mat-label>Pesel</mat-label>-->
-<!--                    <input matInput placeholder=""-->
-<!--                           name="guardianPesel"-->
-<!--                           formControlName="guardianPesel"-->
-<!--                           maxlength="11"-->
-<!--                           minlength="11"-->
-<!--                           required>-->
-<!--                  </mat-form-field>-->
-<!--                  <p></p>-->
-<!--                </div>-->
-<!--                <p></p>-->
-<!--                <mat-form-field>-->
-<!--                  <mat-label>Telefon</mat-label>-->
-<!--                  <input matInput placeholder=""-->
-<!--                         name="guardianPhone"-->
-<!--                         formControlName="guardianPhone">-->
-<!--                </mat-form-field>-->
-<!--                <p></p>-->
-<!--                <mat-form-field class="example-full-width">-->
-<!--                  <mat-label>Email</mat-label>-->
-<!--                  <input matInput-->
-<!--                         [errorStateMatcher]="matcher"-->
-<!--                         placeholder="np. jan.kowalski@example.com"-->
-<!--                         type="email"-->
-<!--                         name="guardianEmail"-->
-<!--                         email-->
-<!--                         formControlName="guardianEmail">-->
+                  <p></p>
+                  <mat-form-field>
+                    <mat-label>Pesel</mat-label>
+                    <input matInput placeholder=""
+                           name="guardianPesel"
+                           formControlName="guardianPesel"
+                           maxlength="11"
+                           minlength="11"
+                           required>
+                  </mat-form-field>
+                  <p></p>
+                </div>
+                <p></p>
+                <mat-form-field>
+                  <mat-label>Telefon</mat-label>
+                  <input matInput placeholder=""
+                         name="guardianPhone"
+                         formControlName="guardianPhone">
+                </mat-form-field>
+                <p></p>
+                <mat-form-field class="example-full-width">
+                  <mat-label>Email</mat-label>
+                  <input matInput
+                         [errorStateMatcher]="matcher"
+                         placeholder="np. jan.kowalski@example.com"
+                         type="email"
+                         name="guardianEmail"
+                         email
+                         formControlName="guardianEmail">
 
-<!--                  <mat-error *ngIf="emailFormControl.hasError('email')">-->
-<!--                    Wprowadź poprawny adres e-mail-->
-<!--                  </mat-error>-->
-<!--                </mat-form-field>-->
-<!--                <p></p>-->
-<!--              </div>-->
+                  <mat-error *ngIf="emailFormControl.hasError('email')">
+                    Wprowadź poprawny adres e-mail
+                  </mat-error>
+                </mat-form-field>
+                <p></p>
+              </div>
 
-<!--              <div class="stepper-nav-button">-->
-<!--                <button class="" mat-button matStepperNext>Dalej</button>-->
-<!--              </div>-->
-<!--            </mat-step>-->
+              <div class="stepper-nav-button">
+                <button class="" mat-button matStepperNext>Dalej</button>
+              </div>
+            </mat-step>
             <mat-step>
               <!--        <form >-->
               <ng-template matStepLabel>Dane zdrowotne</ng-template>

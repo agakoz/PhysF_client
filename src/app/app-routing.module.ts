@@ -7,6 +7,7 @@ import {RegisterComponent} from './register/register.component';
 import {PatientsComponent} from './patients/patient-list/patients.component';
 import {AddPatientComponent} from './patients/add-patient/add-patient.component';
 import {PatientFileComponent} from './patients/patient-file/patient-file.component';
+import {CalendarComponent} from './calendar/calendar/calendar.component';
 
 
 const routes: Routes = [
@@ -40,6 +41,11 @@ const routes: Routes = [
   {
     path: 'patient/:id',
     component: PatientFileComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'calendar',
+    component: CalendarComponent,
     canActivate: [AuthGuard]
   },
 
