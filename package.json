@@ -25,7 +25,6 @@
     "angular-calendar": "^0.28.22",
     "angular-calendar-scheduler": "^10.0.7",
     "date-fns": "^2.16.1",
-    "jspdf": "^2.3.0",
     "moment": "^2.29.1",
     "ngx-material-timepicker": "^5.5.3",
     "rxjs": "~6.5.5",
