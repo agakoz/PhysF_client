@@ -3,22 +3,27 @@ mat-form-field {
 
 
 }
-.time-input { width: 24%}
 
-.dialog-content{
+.time-input {
+  width: 24% !important;
+}
+
+.dialog-content {
   left: 0;
   right: 0;
   top: 0;
   bottom: 0;
   margin: auto;
 }
+
 input[disabled] {
   color: black;
 }
 
-textarea[disabled]{
+textarea[disabled] {
   color: black;
 }
+
 .dialog-button-row {
   width: auto;
   text-align: center;

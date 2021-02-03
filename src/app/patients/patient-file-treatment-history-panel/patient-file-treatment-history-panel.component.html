@@ -1,4 +1,4 @@
-<div class="treatment-cycle-list">
+<div class="treatment-cycle-list" >
   <mat-accordion xmlns="http://www.w3.org/1999/html">
     <mat-expansion-panel *ngFor="let treatmentCycle of treatmentCycleTitlesList" (opened)="loadVisits(treatmentCycle.id)">
       <mat-expansion-panel-header>
@@ -12,12 +12,14 @@
       <mat-card-footer>
         <div class="row">
           <div class="spacer"></div>
-          <button mat-flat-button (click)="showTreatmentCycleHistory(treatmentCycle.id)">PODGLĄD <span class="material-icons">launch</span></button>
-          <button mat-flat-button (click)="2">EKSPORTUJ <span class="material-icons">get_app</span></button>
+          <button mat-flat-button (click)="showTreatmentCycleHistory(treatmentCycle.id)">
+            PODGLĄD <span class="material-icons">article</span>
+          </button>
+<!--          <button mat-flat-button (click)="export(treatmentCycle.id)">EKSPORTUJ <span class="material-icons">get_app</span></button>-->
         </div>
         <br/>
       </mat-card-footer>
-      <div *ngFor="let visit of treatmentCycleVisits" class="visit-row">
+      <div *ngFor="let visit of treatmentCycleVisits" class="visit-row" >
         <mat-divider></mat-divider>
         <p></p>
         <div class="row" >
@@ -28,7 +30,7 @@
             {{visit.startTime}}
           </mat-panel-description>
                   <div class="spacer"> </div>
-                  <button mat-button (click)="showVisitInfo(visit.id)">podgląd</button>
+                  <button mat-button (click)="showVisitInfo(visit.id)"><span class="material-icons">launch</span></button>
         </div>
         <p></p>
       </div>

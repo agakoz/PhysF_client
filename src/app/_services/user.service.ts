@@ -59,6 +59,7 @@ export class UserService {
       specializations: userDataForm.get('specializations').value,
       professionalTitle: userDataForm.get('professionalTitle').value,
       email: userDataForm.get('email').value,
-    });
+    },
+      {responseType: 'text'});
   }
 }

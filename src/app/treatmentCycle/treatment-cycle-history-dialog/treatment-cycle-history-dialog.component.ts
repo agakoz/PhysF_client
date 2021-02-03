@@ -9,7 +9,12 @@ import {FinishedVisit} from '../../models/finished-visit';
 import {Patient} from '../../models/patient.model';
 import {UserService} from '../../_services/user.service';
 import {User} from '../../models/user.model';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
+// import * as autoTable from 'jspdf-autotable';
+// import 'jspdf-autotable'
 
+declare const require: any;
 @Component({
   selector: 'app-treatment-cycle-history-dialog',
   templateUrl: './treatment-cycle-history-dialog.component.html',
@@ -115,5 +120,69 @@ export class TreatmentCycleHistoryDialogComponent implements OnInit {
         this.user = data;
       }
     );
+  }
+
+  // convertToPdf() {
+    // var pdf = new jsPDF('p','pt','a4');
+    // pdf.fromHTML(document.body,function() {});
+    // pdf.save('Estadodecuenta.pdf');
+    // var data = document.getElementById('pdf');
+    // html2canvas(data).then(canvas => {
+    //   // Few necessary setting options
+    //   var imgWidth = 208;
+    //   var pageHeight = 295;
+    //   var imgHeight = canvas.height * imgWidth / canvas.width;
+    //   var heightLeft = imgHeight;
+    //
+    //   const contentDataURL = canvas.toDataURL('image/png')
+    //   let pdf = new jsPDF('p', 'mm', 'a4'); // A4 size page of PDF
+    //   var position = 0;
+    //   // pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)
+    //   pdf.save('aaa.pdf'); // Generated PDF
+    // });
+  //
+  //   const jsPDF = require('jspdf');
+  //   require('jspdf-autotable');
+  //   var doc = new jsPDF();
+  //   doc.autoTable({html: '#pdf'});
+  //   // doc.output("dataurlnewwindow");
+  // doc.save('aaa.pdf')
+  // }
+
+  convertToPdf() {
+
+    var data = document.getElementById('pdf');  //Id of the table
+
+    var currentPosition = document.getElementById("pdf").scrollTop;
+    // document.getElementById("pdf").style.padding = "10px";
+    // var w = document.getElementById("content").offsetWidth;
+    // var h = document.getElementById("content").offsetHeight;
+    // document.getElementById("content").style.height="auto";
+
+    html2canvas(data, {scrollY: -window.scrollY, scale: 1 }).then(canvas => {
+      var HTML_Width = document.getElementById("pdf").offsetWidth;
+      // console.log(HTML_Width)
+      var HTML_Height = document.getElementById("pdf").offsetHeight;
+      console.log(HTML_Height)
+      var top_left_margin = 15;
+      var PDF_Width = HTML_Width+(top_left_margin*2);
+      // console.log(PDF_Width)
+      var PDF_Height = (PDF_Width*1.5)+(top_left_margin*2);
+      console.log(PDF_Height)
+      // var canvas_image_width = HTML_Width;
+      // var canvas_image_height = HTML_Height;
+      // // Few necessary setting options
+      let imgWidth = 208;
+      let pageHeight = 295;
+      let imgHeight = canvas.height * imgWidth / canvas.width;
+      let heightLeft = imgHeight;
+
+      const contentDataURL = canvas.toDataURL('image/png')
+      let pdf = new jsPDF('p', 'mm', 'a4'); // A4 size page of PDF
+      let position = 0;
+      pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)
+
+      pdf.save('MYPdf.pdf'); // Generated PDF
+    });
   }
 }

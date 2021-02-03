@@ -7,6 +7,12 @@ import {Visit} from '../../models/visit.model';
 import {MatDialog} from '@angular/material/dialog';
 import {TreatmentCycleHistoryDialogComponent} from '../../treatmentCycle/treatment-cycle-history-dialog/treatment-cycle-history-dialog.component';
 import {FinishedVisitInfoComponent} from '../../treatmentCycle/finished-visit-info/finished-visit-info.component';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
+// import jsPDF = require('jspdf') // // typescript without esModuleInterop flag
+// import jsPDF from 'yworks-pdf' // using yworks fork
+// import jsPDF from 'jspdf/dist/jspdf.node.debug' // for nodejs
+import autoTable from 'jspdf-autotable';
 
 @Component({
   selector: 'app-patient-file-treatment-history-panel',
@@ -53,6 +59,8 @@ export class PatientFileTreatmentHistoryPanelComponent implements OnInit {
     this.dialog.open(TreatmentCycleHistoryDialogComponent, {
       disableClose: false,
       width: '1000px',
+      minHeight: '95vh',
+      autoFocus: false,
       data: {
         treatmentCycleId: treatmentCycleId,
         patientId: this.patient.id
@@ -75,4 +83,6 @@ export class PatientFileTreatmentHistoryPanelComponent implements OnInit {
       }
     );
   }
+
+
 }

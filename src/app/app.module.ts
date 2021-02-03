@@ -63,6 +63,7 @@ import {FinishedVisitInfoComponent} from './treatmentCycle/finished-visit-info/f
 import {MatMenuModule} from '@angular/material/menu';
 import { ChangePasswordDialogComponent } from './change-password-dialog/change-password-dialog.component';
 import { UserDataFormDialogComponent } from './user-data-form-dialog/user-data-form-dialog.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -97,42 +98,43 @@ import { UserDataFormDialogComponent } from './user-data-form-dialog/user-data-f
     UserDataFormDialogComponent,
 
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        MatCardModule,
-        MatGridListModule,
-        MatFormFieldModule,
-        MatIconModule,
-        MatInputModule,
-        MatButtonModule,
-        ReactiveFormsModule,
-        HttpClientModule,
-        FormsModule,
-        MatStepperModule,
-        MatDatepickerModule,
-        MatNativeDateModule,
-        MatToolbarModule,
-        MatListModule,
-        MatExpansionModule,
-        MatCheckboxModule,
-        MatTableModule,
-        MatRadioModule,
-        MatTabsModule,
-        MatOptionModule,
-        MatSelectModule,
-        CalendarModule,
-        CommonModule,
-        // DemoUtilsModule,
-        CalendarModule.forRoot({
-            provide: DateAdapter,
-            useFactory: adapterFactory,
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatCardModule,
+    MatGridListModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatButtonModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    FormsModule,
+    MatStepperModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatToolbarModule,
+    MatListModule,
+    MatExpansionModule,
+    MatCheckboxModule,
+    MatTableModule,
+    MatRadioModule,
+    MatTabsModule,
+    MatOptionModule,
+    MatSelectModule,
+    CalendarModule,
+    CommonModule,
+    // DemoUtilsModule,
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
 
-        }),
-        MatMenuModule,
+    }),
+    MatMenuModule,
+    MatDialogModule,
 
-    ],
+  ],
   providers: [
     authInterceptorProviders,
     AuthGuard,

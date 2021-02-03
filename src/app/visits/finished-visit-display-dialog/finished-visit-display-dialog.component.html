@@ -26,24 +26,29 @@
 
             </mat-form-field>
             <br/>
-            <mat-form-field class="timeInput">
-              <mat-label>Od</mat-label>
-              <input matInput
-                     type="time"
-                     name="startTime"
-                     formControlName="startTime">
+<div>
+  <mat-form-field class="time-input">
+    <mat-label>Od</mat-label>
+    <input matInput
+           type="time"
+           name="startTime"
+           formControlName="startTime">
 
-            </mat-form-field>
-            <span id="timeSpacer">  -  </span>
-            <mat-form-field class="timeInput">
-              <mat-label>do</mat-label>
+  </mat-form-field>
+  <span id="timeSpacer">  -  </span>
+  <mat-form-field class="time-input">
+    <mat-label>do</mat-label>
 
-              <input matInput
-                     type="time"
-                     name="endTime"
-                     formControlName="endTime">
+    <input matInput
+           type="time"
+           name="endTime"
+           formControlName="endTime">
 
-            </mat-form-field>
+  </mat-form-field>
+</div>
+
+
+
             <br/>
 
               <mat-form-field id="cycleChooser">
@@ -68,6 +73,10 @@
             <mat-form-field class="longInput">
               <mat-label>Opis udzielonych świadczeń zdrowotnych:</mat-label>
               <textarea
+                matTextareaAutosize
+                cdkTextareaAutosize
+                cdkAutosizeMinRows="2"
+                cdkAutosizeMaxRows="20"
                 matInput
                 type="text"
                 name="treatment"
@@ -78,6 +87,10 @@
             <mat-form-field class="longInput">
               <mat-label>Notatka</mat-label>
               <textarea
+                matTextareaAutosize
+                cdkTextareaAutosize
+                cdkAutosizeMinRows="2"
+                cdkAutosizeMaxRows="20"
                 matInput
                 type="text"
                 name="notes"
