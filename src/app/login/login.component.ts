@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
         this.isLoggedIn = true;
         this.role = this.tokenStorage.getUser().role;
 
-        this.router.navigate(['profile']);
+        this.router.navigate(['calendar']);
         // if (this.redirectUrl) {
         //
         //   this.redirectUrl = null;

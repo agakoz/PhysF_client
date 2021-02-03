@@ -24,11 +24,6 @@ const routes: Routes = [
     component: RegisterComponent
   },
   {
-    path: 'profile',
-    component: ProfileComponent,
-    canActivate: [AuthGuard]
-  },
-  {
     path: 'patients',
     component: PatientsComponent,
     canActivate: [AuthGuard],
