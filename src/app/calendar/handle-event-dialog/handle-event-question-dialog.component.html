@@ -1,0 +1,23 @@
+<mat-card-content>
+  Co chcesz zrobić?
+  <p></p>
+  <p></p>
+  <mat-divider></mat-divider>
+  <p></p>
+  <p></p>
+  <div class="button-row">
+    <div class="spacer"></div>
+    <button class="dialog-button" mat-button mat-stroked-button color="primary" (click)="closeWithCancelMessage()">
+      Odwołaj wizytę
+    </button>
+    <div class="spacer"></div>
+    <button class="dialog-button" mat-button mat-stroked-button color="primary" (click)="closeWithEditMessage()">
+      Edytuj plan wizyty
+    </button>
+    <div class="spacer"></div>
+    <button class="dialog-button" mat-button mat-raised-button color="accent" (click)="closeWithStartMessage()">
+      Rozpocznij wizytę
+    </button>
+    <div class="spacer"></div>
+  </div>
+</mat-card-content>

@@ -4,12 +4,16 @@
        style="height: 50px" >
   <div class="spacer"></div>
   <div class="button-row " >
-    <a class="navbarButton" mat-button routerLink="" color="">Wizyty</a>
-    <a mat-button routerLink="/calendar" class="navbarButton">Kalendarz</a>
-    <a mat-button routerLink="/patients" class="navbarButton">Pacjenci</a>
-    <a mat-button routerLink="/forms" class="navbarButton">Formularze</a>
-    <a mat-button routerLink="/profile" class="navbarButton">Konto</a>
-    <a mat-button (click)="logout()" class="navbarButton">Wyloguj</a>
+    <button mat-button routerLink="/calendar" class="navbarButton">Terminarz</button>
+    <button mat-button routerLink="/patients" class="navbarButton">Pacjenci</button>
+<!--    <button mat-button routerLink="/profile" class="navbarButton">Konto</button>-->
+    <button mat-button class="navbarButton" [matMenuTriggerFor]="profile">Profil</button>
+    <mat-menu #profile="matMenu">
+      <button mat-menu-item (click)="showUserData()">Dane</button>
+      <button mat-menu-item (click)="changePassword()">Zmiana hasła</button>
+      <button mat-menu-item (click)="logout()">Wyloguj</button>
+    </mat-menu>
+<!--    <a mat-button (click)="logout()" class="navbarButton">Wyloguj</a>-->
 
   </div>
 </mat-toolbar>

@@ -39,21 +39,30 @@ import {VisitsDialogComponent} from './visits/visits-dialog/visits-dialog.compon
 import {PatientFileComponent} from './patients/patient-file/patient-file.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatTableModule} from '@angular/material/table';
-import { PatientPersonalDataDialogComponent } from './patients/patient-personal-update-dialog/patient-personal-data-dialog.component';
+import {PatientPersonalDataDialogComponent} from './patients/patient-personal-update-dialog/patient-personal-data-dialog.component';
 import {MatRadioModule} from '@angular/material/radio';
-import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
+import {ErrorDialogComponent} from './error-dialog/error-dialog.component';
 import {MatTabsModule} from '@angular/material/tabs';
-import { PatientFileMainPanelComponent } from './patients/patient-file-main-panel/patient-file-main-panel.component';
-import { PatientFileTreatmentHistoryPanelComponent } from './patients/patient-file-treatment-history-panel/patient-file-treatment-history-panel.component';
-import { PlanVisitDialogComponent } from './visits/plan-visit-dialog/plan-visit-dialog.component';
+import {PatientFileMainPanelComponent} from './patients/patient-file-main-panel/patient-file-main-panel.component';
+import {PatientFileTreatmentHistoryPanelComponent} from './patients/patient-file-treatment-history-panel/patient-file-treatment-history-panel.component';
+import {PlanVisitDialogComponent} from './visits/plan-visit-dialog/plan-visit-dialog.component';
 import {MatSelectModule} from '@angular/material/select';
-import {DatePipe} from '@angular/common';
-import { ApprovalQuestionDialogComponent } from './approval-question-dialog/approval-question-dialog.component';
-import { VisitFormDialogComponent } from './visits/visit-form-dialog/visit-form-dialog.component';
-import { TreatmentCycleFormComponent } from './treatmentCycle/treatment-cycle-form/treatment-cycle-form.component';
-import {CalendarModule, CalendarNativeDateFormatter, DateAdapter, DateFormatterParams} from 'angular-calendar';
-import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
-import { CalendarComponent } from './calendar/calendar/calendar.component';
+import {CommonModule, DatePipe} from '@angular/common';
+import {ApprovalQuestionDialogComponent} from './approval-question-dialog/approval-question-dialog.component';
+import {VisitFormDialogComponent} from './visits/start-visit-dialog/visit-form-dialog.component';
+import {TreatmentCycleFormComponent} from './treatmentCycle/treatment-cycle-form/treatment-cycle-form.component';
+import {CalendarModule, DateAdapter} from 'angular-calendar';
+import {adapterFactory} from 'angular-calendar/date-adapters/date-fns';
+import {CalendarComponent} from './calendar/calendar/calendar.component';
+import {HandleEventQuestionDialogComponent} from './calendar/handle-event-dialog/handle-event-question-dialog.component';
+import {EditVisitDialogComponent} from './visits/edit-visit-dialog/edit-visit-dialog.component';
+import {FinishedVisitDisplayDialogComponent} from './visits/finished-visit-display-dialog/finished-visit-display-dialog.component';
+import {ApproveQuestionPlanVisitDialogComponent} from './models/approve-question-plan-visit-dialog/approve-question-plan-visit-dialog.component';
+import {TreatmentCycleHistoryDialogComponent} from './treatmentCycle/treatment-cycle-history-dialog/treatment-cycle-history-dialog.component';
+import {FinishedVisitInfoComponent} from './treatmentCycle/finished-visit-info/finished-visit-info.component';
+import {MatMenuModule} from '@angular/material/menu';
+import { ChangePasswordDialogComponent } from './change-password-dialog/change-password-dialog.component';
+import { UserDataFormDialogComponent } from './user-data-form-dialog/user-data-form-dialog.component';
 
 @NgModule({
   declarations: [
@@ -74,43 +83,56 @@ import { CalendarComponent } from './calendar/calendar/calendar.component';
     PatientFileMainPanelComponent,
     PatientFileTreatmentHistoryPanelComponent,
     PlanVisitDialogComponent,
+    EditVisitDialogComponent,
     ApprovalQuestionDialogComponent,
     VisitFormDialogComponent,
     TreatmentCycleFormComponent,
     CalendarComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatCardModule,
-    MatGridListModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
-    MatButtonModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    FormsModule,
-    MatStepperModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatToolbarModule,
-    MatListModule,
-    MatExpansionModule,
-    MatCheckboxModule,
-    MatTableModule,
-    MatRadioModule,
-    MatTabsModule,
-    MatOptionModule,
-    MatSelectModule,
-    CalendarModule.forRoot({
-      provide: DateAdapter,
-      useFactory: adapterFactory,
-
-    }),
+    HandleEventQuestionDialogComponent,
+    FinishedVisitDisplayDialogComponent,
+    ApproveQuestionPlanVisitDialogComponent,
+    TreatmentCycleHistoryDialogComponent,
+    FinishedVisitInfoComponent,
+    ChangePasswordDialogComponent,
+    UserDataFormDialogComponent,
 
   ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatCardModule,
+        MatGridListModule,
+        MatFormFieldModule,
+        MatIconModule,
+        MatInputModule,
+        MatButtonModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        FormsModule,
+        MatStepperModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatToolbarModule,
+        MatListModule,
+        MatExpansionModule,
+        MatCheckboxModule,
+        MatTableModule,
+        MatRadioModule,
+        MatTabsModule,
+        MatOptionModule,
+        MatSelectModule,
+        CalendarModule,
+        CommonModule,
+        // DemoUtilsModule,
+        CalendarModule.forRoot({
+            provide: DateAdapter,
+            useFactory: adapterFactory,
+
+        }),
+        MatMenuModule,
+
+    ],
   providers: [
     authInterceptorProviders,
     AuthGuard,
@@ -123,6 +145,9 @@ import { CalendarComponent } from './calendar/calendar/calendar.component';
 
   ],
   bootstrap: [AppComponent],
+  exports: [
+    CalendarComponent
+  ]
 
 })
 export class AppModule {

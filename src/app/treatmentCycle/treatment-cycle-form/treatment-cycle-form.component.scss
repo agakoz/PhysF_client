@@ -8,3 +8,13 @@
   }
 }
 
+input[disabled] {
+  color: black;
+}
+
+textarea[disabled]{
+  color: black;
+}
+#title-input {
+  width: 45%;
+}

@@ -38,6 +38,10 @@ export class Patient implements Deserializable {
     return (new Date().getFullYear())-(new Date(this.birthDate).getFullYear())
   }
 
+  getNameWithAge(): string {
+    return this.getFullName() + " (" + this.getAge() + "l.)"
+  }
+
   getPhoneInFormat(): string {
 // return this.phone
     //501 141 254

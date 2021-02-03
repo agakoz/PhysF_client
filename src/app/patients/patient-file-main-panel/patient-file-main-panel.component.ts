@@ -6,7 +6,8 @@ import {PlanVisitDialogComponent} from '../../visits/plan-visit-dialog/plan-visi
 import {PatientsService} from '../../_services/patients.service';
 import {Visit} from '../../models/visit.model';
 import {ApprovalQuestionDialogComponent} from '../../approval-question-dialog/approval-question-dialog.component';
-import {VisitFormDialogComponent} from '../../visits/visit-form-dialog/visit-form-dialog.component';
+import {VisitFormDialogComponent} from '../../visits/start-visit-dialog/visit-form-dialog.component';
+import {EditVisitDialogComponent} from '../../visits/edit-visit-dialog/edit-visit-dialog.component';
 
 @Component({
   selector: 'app-patient-file-main-panel',
@@ -62,8 +63,7 @@ export class PatientFileMainPanelComponent implements OnInit {
     this.dialog.open(PlanVisitDialogComponent, {
       width: '600px',
       data: {
-        patient: this.patient,
-        title: 'Zaplanuj wizytę',
+        patientId: this.patient.id,
       },
     }).afterClosed().subscribe(result => {
       if (result.event == 'Success') {
@@ -73,13 +73,11 @@ export class PatientFileMainPanelComponent implements OnInit {
   }
 
   openEditVisit(visit: Visit): void {
-    this.dialog.open(PlanVisitDialogComponent, {
+    this.dialog.open(EditVisitDialogComponent, {
       width: '600px',
       data: {
-        title: 'Edytuj plan wizyty',
-       patient: this.patient,
         visit: visit
-        },
+      },
     }).afterClosed().subscribe(result => {
       if (result.event == 'Success') {
         this.loadIncomingVisits();
@@ -95,9 +93,9 @@ export class PatientFileMainPanelComponent implements OnInit {
     }).afterClosed().subscribe(result => {
       if (result.event == 'Approved') {
         this.visitsService.cancelVisitPlan(visitId).subscribe(data => {
-            console.log("data " + data);
+            console.log('data ' + data);
             this.loadIncomingVisits();
-          }, error => console.log("error " + error)
+          }, error => console.log('error ' + error)
         );
 
       }
@@ -110,7 +108,7 @@ export class PatientFileMainPanelComponent implements OnInit {
       height: '95%',
       data: {
         visit: visit,
-        patient: this.patient
+        patientId: this.patient.id
       }
     }).afterClosed().subscribe(result => {
       this.loadIncomingVisits();

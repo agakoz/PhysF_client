@@ -1,0 +1,30 @@
+.longInput {
+  width: 60%
+}
+.time-input {
+  width: 10%;
+}
+#timeSpacer {
+  font-size: 150%;
+}
+#cycleChooser {
+  margin-left: 20px;
+  width: 40%;
+}
+.dialog-button-row {
+  width: auto;
+  text-align: center;
+  bottom: 0;
+  margin-bottom: 30px;
+
+  button {
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+}
+mat-tab-group {
+  height: 510px;
+}

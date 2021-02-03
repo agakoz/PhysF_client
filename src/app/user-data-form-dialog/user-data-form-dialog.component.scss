@@ -1,0 +1,25 @@
+.column {
+
+  float: left;
+  width: 50%;
+
+  mat-form-field {
+    width: 90%;
+  }
+}
+.button-row {
+  width: auto;
+  text-align: center;
+
+  button {
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    bottom: 0;
+  }
+
+}
+.form-container{
+  height: 250px;
+}

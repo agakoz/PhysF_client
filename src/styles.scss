@@ -115,3 +115,13 @@ body {
 //  min-height: 20px !important;
 //  flex: 1;
 //}
+.event-class .cal-event-title {
+  color: white;
+}
+.cdk-global-overlay-wrapper {
+  display: flex;
+  position: absolute;
+  z-index: 1000;
+  overflow: auto;
+  pointer-events: auto;
+}

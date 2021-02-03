@@ -44,6 +44,7 @@ export class AddPatientComponent implements OnInit {
       birthDate: new FormControl(),
       pesel: new FormControl(),
       sex: new FormControl(),
+      pronounce: new FormControl(), //TODO
       address: new FormControl(),
       city: new FormControl(),
       email: new FormControl(),

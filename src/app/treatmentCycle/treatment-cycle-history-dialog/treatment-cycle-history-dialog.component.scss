@@ -1,0 +1,46 @@
+mat-form-field {
+  width: 100%}
+textarea {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+}
+.doc-header{
+  float: right;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.spacer {
+  flex: 1 1 auto;
+}
+#doc-title {
+text-align: center;
+}
+input[disabled] {
+  color: black;
+}
+
+textarea[disabled]{
+  color: black;
+}
+.form-container {
+  width: 80%;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+.time-input{
+  width: 20%;
+}
+.date-input {
+  width: 20%;
+}
+.visit-list{
+  width: 80%;
+  left: 0;
+  right: 0;
+margin: auto;
+
+}

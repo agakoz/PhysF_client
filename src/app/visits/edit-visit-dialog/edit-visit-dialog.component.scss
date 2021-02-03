@@ -1,0 +1,41 @@
+input {
+  text-align: right;
+}
+
+mat-label {
+  float: right;
+}
+
+.dialog-visit-plan-button-row {
+  width: auto;
+  text-align: center;
+
+  button {
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+}
+
+.info-no-treatment-cycle {
+  color: #c2185b
+}
+
+#treatment-continuation-checkbox-label{
+  float: left;
+  margin-right: 30px;
+}
+.form-input{
+  width: 100%;
+}
+.visit-form {
+  width: 68%;
+ left: 0;
+  right: 0;
+  margin: auto;
+}
+mat-label{
+  float: left;
+}

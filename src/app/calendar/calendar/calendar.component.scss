@@ -1,16 +1,40 @@
 @import "../../../../node_modules/angular-calendar/css/angular-calendar.css";
-.x{
+
+.container {
+  min-width: 100%;
   width: 100%;
+  margin-left: 30px;
+  margin-right: 30px;
+
+  .calendar-container {
+    display: inline;
+    width: 100%;
+
+    #main-calendar {
+      width: 70%;
+      margin-right: 5%;
+
+      .main-calendar-card {
+        width: 100%;
+      }
+    }
+
+    #small-calendar {
+      width: 20%;
+
+      .small-calendar-card {
+        //padding: 30px;
+        width: 100%;
+        margin-right: 0px;
+      }
+    }
+
+  }
 }
-.calendar-navigation {
-  display: inline-block;
-  //flex-wrap: wrap;
-  width: 90%;
-}
+
 
 .spacer {
   flex: 1 1 auto;
-
 }
 
 .button-group, .date-display {
@@ -25,40 +49,31 @@
 }
 
 .nav-panel-content {
-  width: 70%;
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   right: 0;
   left: 0;
   margin: auto;
 }
-//.calendar-container {
-//  left: 0;
-//  right: 0;
-//  margin: auto;
-//  width: 80%;
-//  height: 200px;
-//}
-.calendar-nav-button {
-  vertical-align: center;
-  //width: 150px;
-  height: 40px;
-  //float: right;
-  top: 0;
-  bottom: 0;
-  //left: 0;
-  //margin-right: 40px;
-  margin-top: auto;
-  margin-bottom: auto;
-  background-color: white;
+
+.column {
+  float: left;
+  display: inline-block;
+
 }
 
-//.calendar-container {
-//  height: 30% !important;
-//  max-height: 400px;
-//}
-.small-calendar-card{
-  padding: 30px;
-  width: 100%;
+.page-title-container {
+  display: flex;
+
+  .calendar-navigation {
+    float: right;
+    display: flex;
+    flex-wrap: wrap;
+    //width: 90%;
+  }
 }
-.main-calendar-card{}
+//.scroll-container {
+//  height: calc(100vh - 320px);
+//  overflow-y: auto;
+//}

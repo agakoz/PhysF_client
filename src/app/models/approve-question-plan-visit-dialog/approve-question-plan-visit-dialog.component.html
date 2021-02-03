@@ -1,0 +1,19 @@
+<mat-card-content>
+  W podanej porze istnieje już zaplanowana wizyta. Czy chcesz zaplanować wizytę mimo tego?
+  <p></p>
+  <p></p>
+  <mat-divider></mat-divider>
+  <p></p>
+  <p></p>
+  <div class="dialog-button-row">
+    <button class="dialog-button" mat-button
+            (click)="cancel()">
+      Anuluj
+    </button>
+
+    <button class="dialog-button" mat-button mat-raised-button color="accent"
+            (click)="approve()">
+      Zaplanuj
+    </button>
+  </div>
+</mat-card-content>

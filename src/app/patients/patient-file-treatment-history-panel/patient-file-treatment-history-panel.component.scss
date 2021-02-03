@@ -1,0 +1,32 @@
+.row {
+  //float: right;
+  width: 100%;
+  display: flex;
+  .spacer {
+    flex: 1 1 auto;
+  }
+button{
+  float: right;
+  height: 50px;
+}
+}
+.treatment-cycle-list{
+  width: 70%;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+.visit-row{
+  line-height: 20px;
+  vertical-align: center;
+  padding-left: 10px;
+  padding-bottom: 10px;
+}
+.visit-row:hover{
+  background: #f8f8f8;
+}
+mat-expansion-panel-header{
+  line-height: 20px;
+  vertical-align: center;
+  padding-top: 15px;
+}

@@ -46,7 +46,7 @@ const routes: Routes = [
   {
     path: 'calendar',
     component: CalendarComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
   },
 
 ];

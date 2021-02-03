@@ -1,24 +1,24 @@
 <app-navbar></app-navbar>
 <div class="wrapper">
   <header class="page-title-container  ">
-    <h1 class="page-title">Kartoteka pacjenta</h1>
+    <h1 class="page-title">{{title}}</h1>
     <div class="patients-buttons button-row">
       <button id="patient-button-data" class="title-button mat-elevation-z1" mat-stroked-button color="primary"
-              (click)="panel='mainPanel'">
+              (click)="setMainView()">
         Panel główny
       </button>
       <button id="patient-button-treatment-history" class="title-button mat-elevation-z1" mat-stroked-button
-              color="primary" (click)="panel='historyPanel'">
+              color="primary" (click)="setHistoryView()">
         Historia leczenia
       </button>
-      <!--      <button id="patient-button-data" class="title-button mat-elevation-z1" mat-stroked-button color="primary">-->
-      <!--        Dane-->
-      <!--      </button>-->
     </div>
   </header>
-<div class="container" *ngIf="patient">
-    <app-patient-file-main-panel [patient]="patient" *ngIf="panel=='mainPanel'"></app-patient-file-main-panel>
-  <app-patient-file-treatment-history-panel [patient]="patient" *ngIf="panel=='historyPanel'"></app-patient-file-treatment-history-panel>
+<div class="container" *ngIf="patient" [ngSwitch]="view" >
+    <app-patient-file-main-panel [patient]="patient" *ngSwitchCase="mainView"></app-patient-file-main-panel>
+  <app-patient-file-treatment-history-panel [patient]="patient" *ngSwitchCase="historyView"></app-patient-file-treatment-history-panel>
 </div>
 
 </div>
+<!-- <div [ngSwitch]="view">
+              <mwl-calendar-month-view
+                *ngSwitchCase="monthView"-->

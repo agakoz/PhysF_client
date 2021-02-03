@@ -76,7 +76,7 @@ export class PatientsService {
     this.patientSource.next(patient);
   }
 
-  updatePatient(patientId:number, patient: FormGroup): Observable<any> {
+  updatePatient(patientId: number, patient: FormGroup): Observable<any> {
     return this.http.post(PATIENTS_URL + 'update/' + patientId, {
         name: patient.get('name').value,
         surname: patient.get('surname').value,
@@ -104,9 +104,21 @@ export class PatientsService {
   }
 
 
-  getPatientsBasicInfo(): Observable<Patient[]>{
-    return this.http.get<Visit[]>(PATIENTS_URL + 'getPatientsBasicInfo', httpOptions).pipe(
+  getPatientsBasicInfo(): Observable<Patient[]> {
+    return this.http.get<Visit[]>(PATIENTS_URL + 'PatientsBasicInfo', httpOptions).pipe(
       map(data => data.map(data => new Patient().deserialize(data)))
+    );
+  }
+
+  getPatientBasicInfo(patientId): Observable<Patient> {
+    return this.http.get<Visit[]>(PATIENTS_URL + 'PatientBasicInfo/' + patientId, httpOptions).pipe(
+      map(data => new Patient().deserialize(data))
+    );
+  }
+
+  getPatientPersonalData(patientId) {
+    return this.http.get<Patient>(PATIENTS_URL + 'personalData/' + patientId, httpOptions).pipe(
+      map(data => new Patient().deserialize(data))
     );
   }
 }

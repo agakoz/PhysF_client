@@ -14,11 +14,7 @@
         <i class="material-icons">add</i>Dodaj pacjenta
       </button>
 
-      <button id="managePatientsButton" [disabled]="chosenPatientIds.length==0"
-              class="title-button   mat-elevation-z1" mat-stroked-button color="accent"
-              (click)="manageChosenPatients()">
-        Zarządzaj
-      </button>
+
     </div>
   </header>
   <div class="container">
@@ -61,8 +57,8 @@
           <span *ngIf="patient.email!=null"> {{patient.email}}</span>
         </mat-card-content>
         <mat-card-footer>
-          <a mat-button (click)="showPatientVisits(patient.id)">Podgląd wizyt</a>
-          <a mat-button [routerLink]="['/patient', patient.id]"><span
+<!--          <a mat-button (click)="showPatientVisits(patient.id)">Podgląd wizyt</a>-->
+          <a mat-button [routerLink]="['/patient', patient.id]">Otwórz kartotekę <span
             class="material-icons">open_in_new</span></a>
         </mat-card-footer>
       </mat-card>

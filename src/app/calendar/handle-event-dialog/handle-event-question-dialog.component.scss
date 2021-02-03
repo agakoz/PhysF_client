@@ -1,0 +1,9 @@
+.button-row {
+  float: right;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.spacer {
+  flex: 1 1 auto;
+}

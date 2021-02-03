@@ -42,12 +42,7 @@ export class PatientsComponent implements OnInit {
     this.breakpoint = (event.target.innerWidth <= 700) ? 1 : 2;
   }
 
-  manageChosenPatients(): void {
-    const dialogRef = this.dialog.open(ManagePatientDialogComponent, {
-      width: '800px',
-      data: this.chosenPatientIds
-    });
-  }
+
 
   showPatientVisits(id: number): void {
     console.log('incomingPatientVisits ' + id);
