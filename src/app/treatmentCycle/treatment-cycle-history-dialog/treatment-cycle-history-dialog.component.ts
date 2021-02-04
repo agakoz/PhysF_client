@@ -152,37 +152,27 @@ export class TreatmentCycleHistoryDialogComponent implements OnInit {
   convertToPdf() {
 
     var data = document.getElementById('pdf');  //Id of the table
-
     var currentPosition = document.getElementById("pdf").scrollTop;
-    // document.getElementById("pdf").style.padding = "10px";
-    // var w = document.getElementById("content").offsetWidth;
-    // var h = document.getElementById("content").offsetHeight;
-    // document.getElementById("content").style.height="auto";
-
     html2canvas(data, {scrollY: -window.scrollY, scale: 1 }).then(canvas => {
       var HTML_Width = document.getElementById("pdf").offsetWidth;
       // console.log(HTML_Width)
-      var HTML_Height = document.getElementById("pdf").offsetHeight;
-      console.log(HTML_Height)
-      var top_left_margin = 15;
+      var HTML_Height = document.getElementById("pdf").scrollHeight;
+      var top_left_margin = 30;
       var PDF_Width = HTML_Width+(top_left_margin*2);
-      // console.log(PDF_Width)
       var PDF_Height = (PDF_Width*1.5)+(top_left_margin*2);
-      console.log(PDF_Height)
-      // var canvas_image_width = HTML_Width;
-      // var canvas_image_height = HTML_Height;
-      // // Few necessary setting options
-      let imgWidth = 208;
-      let pageHeight = 295;
-      let imgHeight = canvas.height * imgWidth / canvas.width;
-      let heightLeft = imgHeight;
+      var canvas_image_width = HTML_Width;
+      var canvas_image_height = HTML_Height;
 
-      const contentDataURL = canvas.toDataURL('image/png')
-      let pdf = new jsPDF('p', 'mm', 'a4'); // A4 size page of PDF
-      let position = 0;
-      pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)
-
-      pdf.save('MYPdf.pdf'); // Generated PDF
+      var totalPDFPages = Math.ceil(HTML_Height/PDF_Height);
+        canvas.getContext('2d');
+        var imgData = canvas.toDataURL("image/jpeg", 1.0);
+        var pdf = new jsPDF('p', 'pt',  [PDF_Width, PDF_Height]);
+        pdf.addImage(imgData, 'JPG', top_left_margin, top_left_margin,canvas_image_width,canvas_image_height);
+        for (var i = 1; i < totalPDFPages; i++) {
+          pdf.addPage([PDF_Width, PDF_Height] );
+          pdf.addImage(imgData, 'JPG', top_left_margin, -(PDF_Height*i)+(top_left_margin*4),canvas_image_width,canvas_image_height);
+        }
+        pdf.save(this.patient.getFullName().replace(" ", "_") + "_" + this.treatmentCycleForm.get("title").value.replace(" ", "_")+ ".pdf");
     });
   }
 }
