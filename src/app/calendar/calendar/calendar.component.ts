@@ -79,7 +79,7 @@ const colors: any = {
     secondary: '#97c8c4',
   },
   gray: {
-    primary: '#009688',
+    primary: '#989898',
     secondary: '#b8b8b8',
   },
 };
@@ -96,7 +96,7 @@ registerLocaleData(localePl);
   }]
 
 })
-export class CalendarComponent implements OnInit, AfterViewInit  {
+export class CalendarComponent implements OnInit, AfterViewInit {
   @ViewChild('scrollContainer') scrollContainer: ElementRef<HTMLElement>;
 
   locale: string;
@@ -166,18 +166,18 @@ export class CalendarComponent implements OnInit, AfterViewInit  {
   }
 
   handleEvent(action: string, event: VisitEvent): void {
-    console.log(event)
-    if(event.finished) {
+    console.log(event);
+    if (event.finished) {
       this.visitsService.getFinishedVisitInfo(event.id).subscribe(visit => this.openVisitInfoDisplay(visit));
     } else {
       this.dialog.open(HandleEventQuestionDialogComponent, {
         width: '600px',
       }).afterClosed().subscribe(result => {
         if (result.event == 'cancelVisit') {
-          this.cancelVisit(event)
+          this.cancelVisit(event);
         } else if (result.event == 'editVisit') {
           this.visitsService.getVisitPlan(event.id).subscribe(visit => this.openEditVisitForm(visit));
-          this.loadVisitEvents()
+          this.loadVisitEvents();
         } else if (result.event == 'startVisit') {
           this.visitsService.getVisitPlan(event.id).subscribe(visit => this.openStartVisitForm(visit));
         }
@@ -193,7 +193,7 @@ export class CalendarComponent implements OnInit, AfterViewInit  {
     }).afterClosed().subscribe(result => {
       if (result.event == 'Approved') {
         this.visitsService.cancelVisitPlan(Number(eventToDelete.id)).subscribe(data => {
-          this.events = this.events.filter((iEvent) => iEvent !== eventToDelete)
+            this.events = this.events.filter((iEvent) => iEvent !== eventToDelete);
           }, error => console.log('error ' + error)
         );
 
@@ -209,7 +209,20 @@ export class CalendarComponent implements OnInit, AfterViewInit  {
       },
     }).afterClosed().subscribe(result => {
       if (result.event == 'Success') {
-        // this.loadIncomingVisits();
+        this.visitsService.getVisitEvent(result.visitId).subscribe(
+          updatedVisit => {
+            updatedVisit.start = new Date(updatedVisit.start);
+            updatedVisit.end = new Date(updatedVisit.end);
+            updatedVisit.color = updatedVisit.finished ? colors.gray : colors.cyan;
+
+            this.events = this.events.filter((iEvent) => iEvent.id !== updatedVisit.id);
+            this.events = [
+              ...this.events,
+              updatedVisit,
+            ];
+
+          }
+        );
       }
     });
   }
@@ -223,7 +236,22 @@ export class CalendarComponent implements OnInit, AfterViewInit  {
         patientId: visit.patientId
       }
     }).afterClosed().subscribe(result => {
-      // przeladdować wizyty
+      if (result.event == 'Success') {
+        this.visitsService.getVisitEvent(result.visitId).subscribe(
+          finishedVisit => {
+            finishedVisit.color = colors.gray;
+            finishedVisit.start = new Date(finishedVisit.start);
+            finishedVisit.end = new Date(finishedVisit.end);
+
+            this.events = this.events.filter((iEvent) => iEvent.id !== finishedVisit.id);
+            this.events = [
+              ...this.events,
+              finishedVisit,
+            ];
+
+          }
+        );
+      }
     });
   }
 
@@ -235,7 +263,7 @@ export class CalendarComponent implements OnInit, AfterViewInit  {
         visit: visit,
         patientId: visit.patientId
       }
-    })
+    });
   }
 
   eventTimesChanged({event, newStart, newEnd,}: CalendarEventTimesChangedEvent): void {
@@ -258,6 +286,7 @@ export class CalendarComponent implements OnInit, AfterViewInit  {
   }
 
   openPlanVisit() {
+
     this.dialog.open(PlanVisitDialogComponent, {
       width: '600px',
       data: {
@@ -266,13 +295,25 @@ export class CalendarComponent implements OnInit, AfterViewInit  {
       },
     }).afterClosed().subscribe(result => {
       if (result.event == 'Success') {
-        //this.loadIncomingVisits();
+        this.visitsService.getVisitEvent(result.visitId).subscribe(
+          newVisit => {
+            newVisit.start = new Date(newVisit.start);
+            newVisit.end = new Date(newVisit.end);
+            newVisit.color = colors.cyan;
+
+            this.events = [
+              ...this.events,
+              newVisit,
+            ];
+          }
+        );
+
       }
     });
   }
 
   private loadVisitEvents() {
-    this.visitsService.getVisits().subscribe(result => {
+    this.visitsService.getVisitEvents().subscribe(result => {
       this.events = result;
       this.events.forEach(event => {
         event.start = new Date(event.start);
@@ -280,17 +321,18 @@ export class CalendarComponent implements OnInit, AfterViewInit  {
         // // if (event.title == '' || event.title == null) {
         //   event.title = String(event.patientId);
         // // }
-        if(event.finished)
-          event.color = colors.gray
-        else
-          event.color = colors.cyan
+        if (event.finished) {
+          event.color = colors.gray;
+        } else {
+          event.color = colors.cyan;
+        }
       });
     });
   }
 
 
   startVisitWithoutPlan() {
-    this.openStartVisitWithoutPlanForm()
+    this.openStartVisitWithoutPlanForm();
   }
 
 
@@ -298,12 +340,24 @@ export class CalendarComponent implements OnInit, AfterViewInit  {
     this.dialog.open(VisitFormDialogComponent, {
       width: '80%',
       height: '700px',
-      data: {
-      }
+      data: {}
     }).afterClosed().subscribe(result => {
-      // przeladdować wizyty
+      if (result.event == 'Success') {
+        this.visitsService.getVisitEvent(result.visitId).subscribe(
+          newVisit => {
+            newVisit.start = new Date(newVisit.start);
+            newVisit.end = new Date(newVisit.end);
+            newVisit.color = colors.gray;
+
+            this.events = [
+              ...this.events,
+              newVisit,
+            ];
+          }
+        );
+
+      }
     });
   }
-
 
 }

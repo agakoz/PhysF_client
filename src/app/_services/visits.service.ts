@@ -97,9 +97,15 @@ export class VisitsService {
     );
   }
 
-  getVisits(): Observable<VisitEvent[]> {
+  getVisitEvents(): Observable<VisitEvent[]> {
     return this.http.get<VisitEvent[]>(VISIT_API_URL + 'getCalendarEvents', httpOptions).pipe(
       map(data => data.map(data => new VisitEvent().deserialize(data)))
+    );
+  }
+
+  getVisitEvent(visitId: number): Observable<VisitEvent> {
+    return this.http.get<VisitEvent>(VISIT_API_URL + 'getCalendarEvent/' + visitId, httpOptions).pipe(
+      map(data => new VisitEvent().deserialize(data))
     );
   }
 
@@ -121,7 +127,8 @@ export class VisitsService {
           startTime: visitForm.get('startTime').value,
           endTime: visitForm.get('endTime').value,
           notes: visitForm.get('notes').value,
-          treatment: visitForm.get('treatment').value
+          treatment: visitForm.get('treatment').value,
+          patientId: visitForm.get('patient').value
         },
         treatmentCycle: {
           title: treatmentCycleForm.get('title').value,

@@ -53,7 +53,7 @@ export class VisitFormDialogComponent implements OnInit {
       date: new FormControl({value: null, disabled: false}, Validators.required),
       startTime: new FormControl({value: null, disabled: false}, Validators.required),
       endTime: new FormControl({value: null, disabled: false}, Validators.required),
-      notes: new FormControl({value: null, disabled: false}, Validators.required),
+      notes: new FormControl({value: null, disabled: false}, ),
       treatmentCycle: new FormControl({value: null, disabled: false}),
       treatment: new FormControl({
         value: null, disabled: false
@@ -101,7 +101,7 @@ export class VisitFormDialogComponent implements OnInit {
 
     this.visitsService.finishVisit(this.visitForm, this.treatmentCycleForm).subscribe(
       result => {
-        this.dialogRef.close({event: 'Approved'});
+        this.dialogRef.close({event: 'Success', visitId: result});
       },
       err =>
         console.log(err)

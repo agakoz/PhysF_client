@@ -129,7 +129,7 @@ export class EditVisitDialogComponent implements OnInit {
   private updateVisitPlan() {
     this.visitsService.updateVisitPlan(this.visitToEdit.id, this.planVisitForm).subscribe(
       result => {
-        this.dialogRef.close({event: 'Success'});
+        this.dialogRef.close({event: 'Success', visitId: result});
       },
       err => {
         console.log(err);

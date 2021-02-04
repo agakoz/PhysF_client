@@ -36,3 +36,9 @@ textarea[disabled] {
   }
 
 }
+mat-dialog-content{
+  max-height: 680px !important;
+}
+mat-tab-group {
+  height: 480px;
+}

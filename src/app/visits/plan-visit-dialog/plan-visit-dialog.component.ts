@@ -147,7 +147,7 @@ export class PlanVisitDialogComponent implements OnInit {
   private planNextVisit() {
     this.visitsService.planNextVisit(this.planVisitForm).subscribe(
       result => {
-        this.dialogRef.close({event: 'Success'});
+        this.dialogRef.close({event: 'Success', visitId: result});
       },
       err => {
         console.log(err);
@@ -158,7 +158,7 @@ export class PlanVisitDialogComponent implements OnInit {
     let patientId = this.planVisitForm.get('patient').value.id;
     this.visitsService.planFirstVisit(this.planVisitForm, patientId).subscribe(
       result => {
-        this.dialogRef.close({event: 'Success'});
+        this.dialogRef.close({event: 'Success', visitId: result});
       },
       err => {
         console.log(err);
@@ -169,7 +169,7 @@ export class PlanVisitDialogComponent implements OnInit {
   private planVisitForNewPatient() {
 this.visitsService.planVisitForNewPatient(this.planVisitForm, this.newPatient).subscribe(
   result => {
-    this.dialogRef.close({event: 'Success'});
+    this.dialogRef.close({event: 'Success', visitId: result});
   },
   err => {
     console.log(err);
