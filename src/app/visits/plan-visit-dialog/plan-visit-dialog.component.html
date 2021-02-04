@@ -7,10 +7,8 @@
     <br>
     <br>
 
-    <form
-
-      [formGroup]="planVisitForm"
-      novalidate>
+    <form [formGroup]="planVisitForm"
+          novalidate>
 
       <mat-form-field class="form-input">
         <mat-label>Pacjent</mat-label>
@@ -18,56 +16,60 @@
                     name="patient"
                     formControlName="patient"
                     (selectionChange)="managePatientChange()">
-          <!--            <mat-option [value]="-1">Nowy pacjent</mat-option>-->
+          <mat-option [value]="-1">Nowy pacjent</mat-option>
           <mat-option *ngFor="let patient of patientList"
                       [value]="patient">{{patient.getNameWithAge()}}</mat-option>
         </mat-select>
       </mat-form-field>
       <br/>
-      <!--        <div class="new-patient-form" *ngIf="planVisitForm.get('patient').value == -1">-->
-      <!--          <mat-divider></mat-divider>-->
-      <!--          <h4>Wymagane dane nowego pacjenta</h4>-->
-      <!--&lt;!&ndash;          <div>&ndash;&gt;-->
+      <div class="new-patient-form" *ngIf="planVisitForm.get('patient').value == -1">
+<!--        <mat-divider></mat-divider>-->
+<!--        <h4>Wymagane dane nowego pacjenta</h4>-->
+        <!--          <div>-->
 
-      <!--&lt;!&ndash;            <div class="column">&ndash;&gt;-->
-      <!--          <div>-->
-      <!--              <mat-form-field>-->
-      <!--                <mat-label>Imię</mat-label>-->
-      <!--                <input matInput placeholder=""-->
-      <!--                       type="text"-->
-      <!--                       name="name"-->
-      <!--                       formControlName="name"-->
-      <!--                       required-->
-      <!--                       minlength="2"-->
-      <!--                       maxlength="20"/>-->
-      <!--              </mat-form-field>-->
-      <!--&lt;!&ndash;              <p></p>&ndash;&gt;-->
-      <!--<div class="spacer"></div>-->
-      <!--              <mat-form-field>-->
-      <!--                <mat-label>Nazwisko</mat-label>-->
-      <!--                <input matInput placeholder=""-->
-      <!--                       type="text"-->
-      <!--                       name="surname"-->
-      <!--                       formControlName="surname"-->
-      <!--                       required-->
-      <!--                       minlength="2"-->
-      <!--                       maxlength="20">-->
-      <!--              </mat-form-field>-->
-      <!--          </div>-->
-      <!--              <p></p>-->
+        <!--            <div class="column">-->
 
-      <!--            <mat-form-field>-->
-      <!--              <mat-label>Telefon</mat-label>-->
-      <!--              <input matInput placeholder=""-->
-      <!--                     name="phone"-->
-      <!--                     formControlName="phone"-->
-      <!--                     required>-->
-      <!--            </mat-form-field>-->
-      <!--            <p></p>-->
+        <form [formGroup]="newPatient">
+          <div class="name-container">
+            <mat-form-field>
+              <mat-label>Imię</mat-label>
+              <input matInput placeholder=""
+                     type="text"
+                     name="name"
+                     formControlName="name"
+                     required
+                     minlength="2"
+                     maxlength="20"/>
+            </mat-form-field>
+            <!--              <p></p>-->
+            <div class="spacer"></div>
+            <mat-form-field>
+              <mat-label>Nazwisko</mat-label>
+              <input matInput placeholder=""
+                     type="text"
+                     name="surname"
+                     formControlName="surname"
+                     required
+                     minlength="2"
+                     maxlength="20">
+            </mat-form-field>
+          </div>
+          <p></p>
 
-      <!--          </div>-->
-      <!--          <mat-divider></mat-divider>-->
-      <!--        </div>-->
+          <mat-form-field>
+            <mat-label>Telefon</mat-label>
+            <input matInput placeholder=""
+                   name="phone"
+                   formControlName="phone"
+                   required>
+          </mat-form-field>
+        </form>
+
+        <p></p>
+
+        <mat-divider></mat-divider>
+      </div>
+      <!--              </div>-->
 
       <br>
       <mat-form-field>

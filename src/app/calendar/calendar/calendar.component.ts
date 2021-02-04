@@ -87,7 +87,7 @@ registerLocaleData(localePl);
 
 @Component({
   selector: 'app-calendar',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.scss', '../../globalStyles.scss'],
   providers: [{
@@ -121,16 +121,16 @@ export class CalendarComponent implements OnInit, AfterViewInit  {
     this.viewDate = new Date();
     this.view = this.weekView;
     this.loadVisitEvents();
-    this.scrollToCurrentView();
+    // this.scrollToCurrentView();
   }
 
   ngAfterViewInit(): void {
-    this.scrollToCurrentView();
+    // this.scrollToCurrentView();
   }
 
   viewChanged() {
     this.cdr.detectChanges();
-    this.scrollToCurrentView();
+    // this.scrollToCurrentView();
   }
 
   private scrollToCurrentView() {

@@ -39,3 +39,10 @@ mat-label{
   float: left;
 }
 
+.spacer {
+  flex: 1 1 auto;
+  //display: inline-block;
+}
+.name-container{
+  display: flex;
+}

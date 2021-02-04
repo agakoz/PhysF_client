@@ -25,6 +25,7 @@ export class PlanVisitDialogComponent implements OnInit {
   patientList: Patient[];
   date: Date = null;
   today: any;
+  newPatient: FormGroup;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -41,7 +42,7 @@ export class PlanVisitDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.today = new Date()
+    this.today = new Date();
     if (this.data.patientId != null) {
       this.contextPatientId = this.data.patientId;
     }
@@ -54,8 +55,13 @@ export class PlanVisitDialogComponent implements OnInit {
       notes: new FormControl({value: null, disabled: false},),
       treatmentCycle: new FormControl({})
     });
-
+    this.newPatient = new FormGroup({
+      name: new FormControl({value: null, disabled: false}),
+      surname: new FormControl({value: null, disabled: false}),
+      phone: new FormControl({value: null, disabled: false}),
+    });
     this.loadPatientList();
+
   }
 
   closeDialog() {
@@ -70,23 +76,34 @@ export class PlanVisitDialogComponent implements OnInit {
   }
 
   private loadTreatmentCycleList(): void {
-    let patientId = this.getPatientId();
-    if (patientId > -1 && patientId != null) {
-      this.treatmentCycleService.getPatientTreatmentCycles(patientId).subscribe(
-        data => {
-          this.treatmentCycleList = data;
-        });
+    console.log(this.planVisitForm.get('patient').value);
+    if (this.isPatientChosen()) {
+      let patientId = this.getPatientId();
+      if (patientId > -1 && patientId != null) {
+        this.treatmentCycleService.getPatientTreatmentCycles(patientId).subscribe(
+          data => {
+            this.treatmentCycleList = data;
+          });
+      }
     }
+
+  }
+
+  private isPatientChosen() {
+    return this.planVisitForm.get('patient').value != -1 || this.planVisitForm.get('patient').value != 0 || this.planVisitForm.get('patient').value != undefined;
   }
 
   private loadPatientList(): void {
     this.patientsService.getPatientsBasicInfo().subscribe(
       data => {
         this.patientList = data;
+        if (this.data.patientId) {
           const toSelect = this.patientList.find(p => p.id == this.contextPatientId);
           this.planVisitForm.get('patient').setValue(toSelect);
           this.loadTreatmentCycleList();
         }
+
+      }
     );
   }
 
@@ -95,8 +112,8 @@ export class PlanVisitDialogComponent implements OnInit {
 
     this.visitsService.checkAnotherVisitPlannedForGivenTime(-1, this.planVisitForm).subscribe(
       data => {
-        console.log(data)
-        if(data == true) {
+        console.log(data);
+        if (data == true) {
           this.dialog.open(ApproveQuestionPlanVisitDialogComponent, {
             width: '600px',
           }).afterClosed().subscribe(result => {
@@ -107,19 +124,24 @@ export class PlanVisitDialogComponent implements OnInit {
           });
         } else {
           this.planVisit();
-
         }
       }
-    )
+    );
 
   }
 
-  private planVisit() : void {
+  private planVisit(): void {
     if (this.treatmentContinuation) {
       this.planNextVisit();
+    } else if (this.isPlanForNewPatient()) {
+      this.planVisitForNewPatient()
     } else {
       this.planFirstVisit();
     }
+  }
+
+  private isPlanForNewPatient() {
+    return this.planVisitForm.get("patient").value == -1
   }
 
   private planNextVisit() {
@@ -142,6 +164,18 @@ export class PlanVisitDialogComponent implements OnInit {
         console.log(err);
 
       });
+  }
+
+  private planVisitForNewPatient() {
+this.visitsService.planVisitForNewPatient(this.planVisitForm, this.newPatient).subscribe(
+  result => {
+    this.dialogRef.close({event: 'Success'});
+  },
+  err => {
+    console.log(err);
+
+  }
+)
   }
 
   managePatientChange() {

@@ -50,6 +50,28 @@ export class VisitsService {
     );
   }
 
+  planVisitForNewPatient(planVisitForm: FormGroup, newPatient: FormGroup) {
+    return this.http.post(
+      VISIT_API_URL + 'planVisitForNewPatient',
+      {
+        visit: {
+          date: planVisitForm.get('date').value,
+          treatmentCycleId: null,
+          startTime: planVisitForm.get('startTime').value,
+          endTime: planVisitForm.get('endTime').value,
+          notes: planVisitForm.get('notes').value
+        },
+        patient: {
+          name: newPatient.get('name').value,
+          surname: newPatient.get('surname').value,
+          phone: newPatient.get('phone').value
+        }
+
+      },
+      {responseType: 'text'}
+    );
+  }
+
   getIncomingVisits(patientId: number): Observable<Visit[]> {
     return this.http.get<Visit[]>(PATIENT_API_URL + patientId + '/incomingVisits', httpOptions).pipe(
       map(data => data.map(data => new Visit().deserialize(data)))
@@ -141,4 +163,6 @@ export class VisitsService {
       map(data => data.map(data => new FinishedVisit().deserialize(data)))
     );
   }
+
+
 }

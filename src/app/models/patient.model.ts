@@ -26,29 +26,33 @@ export class Patient implements Deserializable {
   public extraDetails: string;
 
   deserialize(input: any): this {
-    console.log("model: " + input)
+    console.log('model: ' + input);
     return Object.assign(this, input);
   }
 
-  getFullName(): string  {
+  getFullName(): string {
     return this.name + ' ' + this.surname;
   }
 
-  getAge() : number {
-    return (new Date().getFullYear())-(new Date(this.birthDate).getFullYear())
+  getAge(): number {
+    return (new Date().getFullYear()) - (new Date(this.birthDate).getFullYear());
   }
 
   getNameWithAge(): string {
-    return this.getFullName() + " (" + this.getAge() + "l.)"
+    if (this.birthDate != null) {
+      return this.getFullName() + ' (' + this.getAge() + 'l.)';
+    } else {
+      return this.getFullName();
+    }
   }
 
   getPhoneInFormat(): string {
 // return this.phone
     //501 141 254
-    return this.phone.substr(0, 3) + "-" + this.phone.substr(3, 3) + "-" + this.phone.substr(6, 3)
+    return this.phone.substr(0, 3) + '-' + this.phone.substr(3, 3) + '-' + this.phone.substr(6, 3);
   }
 
-  isAdult() : boolean {
+  isAdult(): boolean {
     return this.getAge() >= 18
   }
 }
