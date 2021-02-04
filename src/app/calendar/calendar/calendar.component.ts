@@ -121,6 +121,7 @@ export class CalendarComponent implements OnInit, AfterViewInit  {
     this.viewDate = new Date();
     this.view = this.weekView;
     this.loadVisitEvents();
+    this.scrollToCurrentView();
   }
 
   ngAfterViewInit(): void {
@@ -216,7 +217,7 @@ export class CalendarComponent implements OnInit, AfterViewInit  {
   openStartVisitForm(visit: Visit) {
     this.dialog.open(VisitFormDialogComponent, {
       width: '80%',
-      height: '700px',
+      maxHeight: '680px',
       data: {
         visit: visit,
         patientId: visit.patientId

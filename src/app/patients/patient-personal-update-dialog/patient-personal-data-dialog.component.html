@@ -5,7 +5,11 @@
     novalidate>
 
     <mat-tab-group>
-      <mat-tab label="Dane osobowe i kontakt">
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon class="example-tab-icon">person</mat-icon>
+          Dane osobowe i kontakt
+        </ng-template>
         <div class="data">
           <div class="column">
             <table>
@@ -143,12 +147,17 @@
         </div>
       </mat-tab>
       <mat-tab label="Dane medyczne">
+        <ng-template mat-tab-label>
+          <mat-icon class="example-tab-icon">local_hospital</mat-icon>
+          Dane medyczne
+        </ng-template>
+
         <div class="data">
           <div class="column">
             <table>
               <tr>
                 <td>
-                   Tryb życia:
+                  Tryb życia:
                 </td>
                 <td>
                   <mat-form-field>

@@ -4,18 +4,37 @@
        style="height: 50px" >
   <div class="spacer"></div>
   <div class="button-row " >
-    <button mat-button routerLink="/calendar" class="navbarButton">Terminarz</button>
-    <button mat-button routerLink="/patients" class="navbarButton">Pacjenci</button>
+    <button mat-button routerLink="/calendar" class="navbarButton">
+<!--      Terminarz-->
+      <mat-icon>event</mat-icon>
+    </button>
+    <button mat-button routerLink="/patients" class="navbarButton">
+<!--      Pacjenci -->
+      <mat-icon> group </mat-icon>
+    </button>
 <!--    <button mat-button routerLink="/profile" class="navbarButton">Konto</button>-->
-    <button mat-button class="navbarButton" [matMenuTriggerFor]="profile">Profil</button>
+    <button mat-button class="navbarButton" [matMenuTriggerFor]="profile">
+<!--      Profil -->
+      <span class="material-icons">account_circle</span>
+    </button>
     <mat-menu #profile="matMenu">
-      <button mat-menu-item (click)="showUserData()">Dane</button>
-      <button mat-menu-item (click)="changePassword()">Zmiana hasła</button>
+      <button mat-menu-item (click)="showUserData()">
+        <mat-icon >
+badge
+</mat-icon>
+        Dane
+      </button>
+      <button mat-menu-item (click)="changePassword()">
+        <mat-icon>
+password
+        </mat-icon>
+        Zmiana hasła
+      </button>
 
     </mat-menu>
-    <button mat-button (click)="logout()" class="navbarButton">Wyloguj   <span class="material-icons">
-logout
-</span></button>
+    <button mat-button (click)="logout()" class="navbarButton">
+<!--      Wyloguj   -->
+      <span class="material-icons">logout</span></button>
 
   </div>
 </mat-toolbar>

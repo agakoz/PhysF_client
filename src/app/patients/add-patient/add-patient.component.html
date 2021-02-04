@@ -12,7 +12,7 @@
 
   <div class="container">
 
-    <mat-card class=" mat-elevation-z2">
+    <mat-card class=" mat-elevation-z2 form-card">
       <div *ngIf="isSuccessful" id="afterAddingContainer">
         <mat-card-title id="successHeader">Pacjent dodany pomyślnie
         </mat-card-title>
@@ -78,7 +78,7 @@
                       required>
                       <mat-radio-button color="accent" value="F">K</mat-radio-button>
                       <mat-radio-button color="accent" value="M">M</mat-radio-button>
-                      <mat-radio-button color="accent" value="NB">NB</mat-radio-button>
+<!--                      <mat-radio-button color="accent" value="NB">NB</mat-radio-button>-->
                     </mat-radio-group>
                   </div>
 <!--                  <br>-->
@@ -415,7 +415,7 @@
                 Błąd.<br/>{{ errorMessage }}
               </div>
               <!--          <div text class="alert" >-->
-              <p class="alert" *ngIf="!patientForm.valid">Wypełnij wszystkie wymagane pola</p>
+              <mat-error class="alert" *ngIf="!patientForm.valid">Wypełnij wszystkie wymagane pola</mat-error>
               <p *ngIf="patientForm.valid "> Zatwierdź formularz</p>
 
 

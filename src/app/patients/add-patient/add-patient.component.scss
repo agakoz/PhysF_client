@@ -48,6 +48,7 @@
   right: 0;
   margin-left: auto;
   margin-right: auto;
+  min-height: 300px;
 }
 
 /* Clear floats after the columns */
@@ -93,3 +94,6 @@
   overflow: hidden;
 }
 
+.form-card{
+  min-height: 500px;
+}

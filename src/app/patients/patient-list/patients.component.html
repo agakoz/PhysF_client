@@ -11,7 +11,7 @@
       <button id="addPatientButton" routerLink="../add-patient" class=" title-button  mat-elevation-z1"
               mat-stroked-button
               color="primary">
-        <i class="material-icons">add</i>Dodaj pacjenta
+        <mat-icon>add</mat-icon> Dodaj pacjenta
       </button>
 
 
@@ -20,7 +20,7 @@
   <div class="container">
     <div class="patient-list">
       <div class="search-box">
-        <i class="material-icons search-icon">person_search</i>
+        <mat-icon class=" search-icon">search</mat-icon>
         <mat-form-field>
           <mat-label>Szukaj</mat-label>
           <input id="searchInput" matInput placeholder="np. imię, nazwisko, pesel" [(ngModel)]="searchText">
@@ -58,8 +58,7 @@
         </mat-card-content>
         <mat-card-footer>
 <!--          <a mat-button (click)="showPatientVisits(patient.id)">Podgląd wizyt</a>-->
-          <a mat-button [routerLink]="['/patient', patient.id]">Otwórz kartotekę <span
-            class="material-icons">open_in_new</span></a>
+          <a mat-button [routerLink]="['/patient', patient.id]">Otwórz kartotekę <mat-icon>open_in_new</mat-icon></a>
         </mat-card-footer>
       </mat-card>
     </div>
