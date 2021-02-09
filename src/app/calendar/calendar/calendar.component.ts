@@ -171,6 +171,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
       this.visitsService.getFinishedVisitInfo(event.id).subscribe(visit => this.openVisitInfoDisplay(visit));
     } else {
       this.dialog.open(HandleEventQuestionDialogComponent, {
+        maxHeight: '680px',
         width: '600px',
       }).afterClosed().subscribe(result => {
         if (result.event == 'cancelVisit') {

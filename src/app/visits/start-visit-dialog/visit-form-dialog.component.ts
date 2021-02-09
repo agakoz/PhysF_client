@@ -63,14 +63,14 @@ export class VisitFormDialogComponent implements OnInit {
     });
     this.treatmentCycleForm = new FormGroup({
       id: new FormControl({value: null, disabled: false}),
-      title: new FormControl({value: null, disabled: false}),
+      title: new FormControl({value: null, disabled: false}, Validators.required),
       bodyPart: new FormControl({value: null, disabled: false}),
       description: new FormControl({value: null, disabled: false}),
       injuryDate: new FormControl({value: null, disabled: false}),
       symptoms: new FormControl({value: null, disabled: false}),
       examinationDesc: new FormControl({value: null, disabled: false}),
       diagnosis: new FormControl({value: null, disabled: false}),
-      treatment: new FormControl({value: null, disabled: false}, Validators.required),
+      treatment: new FormControl({value: null, disabled: false}, ),
       recommendations: new FormControl({value: null, disabled: false}),
       notes: new FormControl({value: null, disabled: false}),
       similarPastProblems: new FormControl({value: null, disabled: false}),
@@ -89,7 +89,7 @@ export class VisitFormDialogComponent implements OnInit {
     this.loadTreatmentCycleList();
     this.getPatientBasicInfo();
     this.visitForm.get('id').setValue(this.visitStarted.id);
-    this.visitForm.get('date').setValue(this.visitStarted.date);
+    this.visitForm.get('date').setValue(this.today < new Date(this.visitStarted.date)? this.today : this.visitStarted.date);
     this.visitForm.get('startTime').setValue(this.visitStarted.startTime);
     this.visitForm.get('endTime').setValue(this.visitStarted.endTime);
     this.visitForm.get('notes').setValue(this.visitStarted.notes);

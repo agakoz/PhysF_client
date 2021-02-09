@@ -31,7 +31,6 @@ export class AuthService {
       password: user.password,
       name: user.name,
       surname: user.surname,
-      birthDate: user.birthdate,
       professionalTitle: user.professionalTitle,
       licenceNumber: user.licenceNumber,
       company: user.company,

@@ -1,6 +1,6 @@
 <mat-dialog-content>
 <div class="dialog-content">
-  <h2>Karta wizyty z dnia {{todayStr}} </h2>
+  <h2>Karta wizyty</h2>
 
 
   <mat-tab-group>
@@ -57,7 +57,8 @@
               <input matInput
                      type="time"
                      name="endTime"
-                     formControlName="endTime">
+                     formControlName="endTime"
+              [min]="visitForm.get('startTime').value">
 
             </mat-form-field>
             <br/>

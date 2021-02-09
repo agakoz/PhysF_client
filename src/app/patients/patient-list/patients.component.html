@@ -1,14 +1,14 @@
 <app-navbar></app-navbar>
 <div class="wrapper">
 
-  <header class="page-title-container  ">
+  <header class="page-title-container  mat-elevation-z3 ">
 
 
     <h1 class="page-title">Lista pacjentów</h1>
 
     <div class="patients-buttons button-row">
 
-      <button id="addPatientButton" routerLink="../add-patient" class=" title-button  mat-elevation-z1"
+      <button id="addPatientButton" routerLink="../add-patient" class=" title-button  mat-elevation-z5"
               mat-stroked-button
               color="primary">
         <mat-icon>add</mat-icon> Dodaj pacjenta
@@ -35,7 +35,7 @@
       <!--          Zaznacz wszystkich ({{chosenPatientIds.length}} / {{patientsList.patients.length}})-->
       <!--        </mat-checkbox>-->
       <!--      </div>-->
-      <mat-card class="patient-card mat-elevation-z3"
+      <mat-card class="patient-card mat-elevation-z5"
                 *ngFor="let patient of patientsList  | filter : searchText ">
         <mat-card-title class="patient-name">
           <!--          <mat-checkbox [(ngModel)]="patient.chosen" >-->

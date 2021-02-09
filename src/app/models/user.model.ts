@@ -12,7 +12,6 @@ export class User implements Deserializable {
   licenceNumber: string;
   specializations: string;
   professionalTitle: string;
-  birthDate: Date;
   email: string;
 
   private datePipe: DatePipe = new DatePipe('pl-PL');

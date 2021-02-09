@@ -172,7 +172,7 @@ export class TreatmentCycleHistoryDialogComponent implements OnInit {
           pdf.addPage([PDF_Width, PDF_Height] );
           pdf.addImage(imgData, 'JPG', top_left_margin, -(PDF_Height*i)+(top_left_margin*4),canvas_image_width,canvas_image_height);
         }
-        pdf.save(this.patient.getFullName().replace(" ", "_") + "_" + this.treatmentCycleForm.get("title").value.replace(" ", "_")+ ".pdf");
+        pdf.save(this.patient.getFullName() + "_" + this.treatmentCycleForm.get("title").value.replace(" ", "_")+ ".pdf");
     });
   }
 }
