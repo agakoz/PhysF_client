@@ -64,6 +64,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import { ChangePasswordDialogComponent } from './change-password-dialog/change-password-dialog.component';
 import { UserDataFormDialogComponent } from './user-data-form-dialog/user-data-form-dialog.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import { TreatmentCycleAttachmentFormComponent } from './treatmentCycle/treatment-cycle-attachment-form/treatment-cycle-attachment-form.component';
 
 @NgModule({
   declarations: [
@@ -96,6 +97,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     FinishedVisitInfoComponent,
     ChangePasswordDialogComponent,
     UserDataFormDialogComponent,
+    TreatmentCycleAttachmentFormComponent,
 
   ],
   imports: [

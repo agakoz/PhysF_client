@@ -1,0 +1,42 @@
+          <button mat-mini-fab color="accent" aria-label="Dodaj załącznik"  (click)="addSellingPoint()">
+            <mat-icon>add</mat-icon>
+          </button>
+<!--            <mat-menu #chooseAttachment="matMenu">[matMenuTriggerFor]="chooseAttachment"-->
+<!--              <button mat-menu-item>Plik</button>-->
+<!--              <button mat-menu-item>Link do repozytorium</button>-->
+<!--            </mat-menu>-->
+<form [formGroup]="attachmentForm">
+
+  <div formArrayName="attachment">
+    <div *ngFor="let item of attachments.controls; let attachmentIndex=index" [formGroupName]="attachmentIndex">
+
+      <mat-form-field>
+                      <mat-label *ngIf="attachments.value[attachmentIndex].file else newFile">{{attachments.value[attachmentIndex].file[0].name}}</mat-label>
+                      <ng-template #newFile>
+                        <mat-label>Wybierz plik</mat-label>
+                      </ng-template>
+                      <input matInput disabled>
+                      <button mat-icon-button matSuffix (click)="fileInput.click()">
+                        <mat-icon>attach_file</mat-icon>
+                      </button>
+                      <input hidden (change)="selectFile($event, attachmentIndex)" #fileInput type="file" id="file" formControlName="file">
+      </mat-form-field>
+<br/>
+      <mat-form-field>
+        <mat-label>Opis / komentarz</mat-label>
+        <textarea matInput
+                  type="text"
+                  matTextareaAutosize
+                  cdkTextareaAutosize
+                  cdkAutosizeMinRows="2"
+                  cdkAutosizeMaxRows="20"
+                  formControlName="description" ></textarea>
+
+      </mat-form-field>
+      <button mat-icon-button type="button" (click)="deleteSellingPoint(attachmentIndex)">    <mat-icon>delete</mat-icon></button>
+      <mat-divider></mat-divider>
+    </div>
+    </div>
+
+
+</form>

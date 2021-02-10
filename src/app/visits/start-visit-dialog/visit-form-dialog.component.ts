@@ -8,6 +8,7 @@ import {Patient} from '../../models/patient.model';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {PatientsService} from '../../_services/patients.service';
 import {VisitsService} from '../../_services/visits.service';
+import {Attachment} from '../../models/attachment.model';
 
 @Component({
   selector: 'app-visit-form-dialog',
@@ -28,6 +29,9 @@ export class VisitFormDialogComponent implements OnInit {
   patientsList: Patient[];
   patient: Patient;
   private patientList: Patient[];
+  filesToUpload: Attachment[];
+  selectedFile: File
+  linkToUpload
 
   constructor(
     private dialogRef: MatDialogRef<VisitFormDialogComponent>,
@@ -187,5 +191,12 @@ export class VisitFormDialogComponent implements OnInit {
 
   private setNewVisit() {
     this.visitForm.get('id').setValue(-1);
+  }
+
+  // handleFileInput(files: FileList) {
+  //   // this.fileToUpload = files.item(0);
+  // }
+  selectFile(event) {
+    this.selectedFile = event.target.files;
   }
 }
