@@ -4,6 +4,7 @@ import {Visit} from '../models/visit.model';
 import {map} from 'rxjs/operators';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {TreatmentCycle} from '../models/treatment-cycle.model';
+import {ExternalAttachment} from '../models/attachment.model';
 
 const TREATMENT_CYCLE_API_URL = 'https://localhost:8443/treatmentCycle/';
 const httpOptions = {
@@ -42,4 +43,9 @@ export class TreatmentCycleService {
       map(data => data.map(data => new TreatmentCycle().deserialize(data)))
     );
   }
+getTreatmentCycleExternalAttachments(treatmentCycleId: number): Observable<ExternalAttachment[]> {
+  return this.http.get<ExternalAttachment[]>(TREATMENT_CYCLE_API_URL + treatmentCycleId +'/externalAttachments', httpOptions).pipe(
+    map(data => data.map(data => new ExternalAttachment().deserialize(data)))
+  );
+}
 }

@@ -1,14 +1,15 @@
 import {Deserializable} from './deserializable.model';
 
-export class Attachment implements Deserializable{
+export class ExternalAttachment implements Deserializable {
   public id: number;
-  public file: File;
-  public visitId: number;
+  public fileId: number;
+  public fileName: string;
   public description: string;
+  public link: string
 
 
   deserialize(input: any): this {
-    console.log('model: ' + input);
+//     console.log('model: ' + input);
     return Object.assign(this, input);
   }
 }

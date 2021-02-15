@@ -11,6 +11,7 @@ export class TreatmentCycleFormComponent implements OnInit {
 
   @Input() cycleId: number;
   @Input() treatmentCycleForm: FormGroup
+
   // @Output() titleChange = new EventEmitter<string>();
 
   constructor(private treatmentCycleService: TreatmentCycleService) {
@@ -25,6 +26,9 @@ export class TreatmentCycleFormComponent implements OnInit {
   }
 
   private loadCycleData() {
+    this.treatmentCycleForm.get('id').setValue(this.cycleId);
+    console.log(this.cycleId)
+    console.log(this.treatmentCycleForm.get('id'))
     if(this.cycleId > -1) {
       this.treatmentCycleService.getTreatmentCycleData(this.cycleId).subscribe(
         data => {

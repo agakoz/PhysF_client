@@ -1,0 +1,41 @@
+<form [formGroup]="attachmentForm">
+  <div formArrayName="attachment">
+    <div *ngFor="let attachment of externalAttachments; let attachmentIndex=index" [formGroupName]="attachmentIndex">
+      <!--      <mat-divider></mat-divider>-->
+      <mat-form-field class="attachment-input"  *ngIf="attachment.link != ''">
+
+        <input matInput
+               type="url"
+               matTextareaAutosize
+               cdkTextareaAutosize
+               cdkAutosizeMinRows="2"
+               cdkAutosizeMaxRows="20"
+               [value]="attachment.link"
+        >
+      </mat-form-field>
+      <span *ngIf="attachment.link != '' && attachment.fileName != ''">/</span>
+      <mat-form-field class="attachment-input"  *ngIf="attachment.fileName != ''">
+
+        <input matInput disabled [value]="attachment.fileName">
+        <button mat-icon-button matSuffix >
+          <mat-icon id="download-button">download</mat-icon>
+        </button>
+
+      </mat-form-field>
+      <br/>
+      <mat-form-field class="description-input">
+        <mat-label>Opis / Komentarz</mat-label>
+        <textarea matInput
+                  type="text"
+                  matTextareaAutosize
+                  cdkTextareaAutosize
+                  cdkAutosizeMinRows="2"
+                  cdkAutosizeMaxRows="20"
+                  [value]="attachment.description"></textarea>
+      </mat-form-field>
+
+
+      <p></p>
+    </div>
+  </div>
+</form>

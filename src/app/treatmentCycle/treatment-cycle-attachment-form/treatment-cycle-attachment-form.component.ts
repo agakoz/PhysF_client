@@ -1,5 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {FormArray, FormBuilder, FormGroup} from '@angular/forms';
+import {Component, Input, OnInit} from '@angular/core';
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {HttpClient} from '@angular/common/http';
+import {UploadService} from '../../_services/upload.service';
+import {stringify} from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-treatment-cycle-attachment-form',
@@ -7,43 +10,43 @@ import {FormArray, FormBuilder, FormGroup} from '@angular/forms';
   styleUrls: ['./treatment-cycle-attachment-form.component.scss']
 })
 export class TreatmentCycleAttachmentFormComponent implements OnInit {
-  attachmentForm: FormGroup;
+  @Input() cycleId: number;
+  @Input() attachmentForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private http: HttpClient, private uploadService: UploadService) {
   }
 
   ngOnInit(): void {
-    this.attachmentForm = this.fb.group({
-
-      attachment: this.fb.array([this.fb.group({
-        file: '',
-        link: '',
-        description: '',
-      })])
-    });
   }
 
   get attachments() {
     return this.attachmentForm.get('attachment') as FormArray;
   }
 
-  addSellingPoint() {
-    console.log(this.attachments)
+  addAttachment() {
     this.attachments.push(this.fb.group({
-      file: '',
-      link: '',
-      description: '',
+      id: new FormControl({value: -1, disabled: false}),
+      fileName: new FormControl({value: '', disabled: false}),
+      fileId: new FormControl({value: -1, disabled: false}),
+      link: new FormControl({value: '', disabled: false}),
+      description: new FormControl({value: '', disabled: false}, Validators.required),
     }));
   }
 
   deleteSellingPoint(index) {
-    // this.attachments.removeAt(index);
-    console.log(this.attachmentForm.value)
+    this.attachments.removeAt(index);
   }
-  selectFile( event, index: number) {
-    // console.log(this.attachments.value[index])
-    this.attachments.value[index].file = event.target.files;
-    console.log(this.attachments.value[index])
+
+  selectFile(event, index: number) {
+    const target = event.target as HTMLInputElement;
+    const files = target.files as FileList;
+
+    this.uploadService.planNextVisit(files[0]).subscribe(data => {
+      this.attachments.value[index].fileName = files[0].name;
+      this.attachments.controls[index].get('fileId').setValue(data);
+      this.attachments.controls[index].get('fileName').setValue(files[0].name);
+    });
 
   }
+
 }

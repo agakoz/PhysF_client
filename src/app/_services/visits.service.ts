@@ -6,11 +6,15 @@ import {map} from 'rxjs/operators';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {VisitEvent} from '../models/visitEvent.model';
 import {FinishedVisit} from '../models/finished-visit';
+import {stringify} from '@angular/compiler/src/util';
 
 const VISIT_API_URL = 'https://localhost:8443/visit/';
 const PATIENT_API_URL = 'https://localhost:8443/patient/';
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json', 'Accept': 'application/json'})
+};
+const httpOptionsMultipart = {
+  headers: new HttpHeaders({'Content-Type': 'multipart/form-data', 'Accept': 'multipart/form-data'})
 };
 const newhttpOptions = {
   headers: new HttpHeaders({' responseType': 'text'})
@@ -115,8 +119,14 @@ export class VisitsService {
     );
   }
 
-  finishVisit(visitForm: FormGroup, treatmentCycleForm: FormGroup): Observable<any> {
-    console.log(treatmentCycleForm.value);
+  finishVisit(visitForm: FormGroup, treatmentCycleForm: FormGroup, attachmentForm: FormGroup): Observable<any> {
+    // let formData : FormData = new FormData();
+    // attachmentForm.getRawValue().forEach(a => {
+    //   formData.append("attachments[]", a)
+    // })
+    // console.log(formData)
+    // return
+    // formData.append("attachments", JSON.stringify(attachmentForm.get("attachment").value))
     return this.http.post(
       VISIT_API_URL + 'finishVisit',
       {
@@ -128,9 +138,10 @@ export class VisitsService {
           endTime: visitForm.get('endTime').value,
           notes: visitForm.get('notes').value,
           treatment: visitForm.get('treatment').value,
-          patientId: visitForm.get('patient').value
+          // patientId: visitForm.get('patient').value
         },
         treatmentCycle: {
+          id: treatmentCycleForm.get('id').value,
           title: treatmentCycleForm.get('title').value,
           bodyPart: treatmentCycleForm.get('bodyPart').value,
           description: treatmentCycleForm.get('description').value,
@@ -142,10 +153,17 @@ export class VisitsService {
           recommendations: treatmentCycleForm.get('recommendations').value,
           notes: treatmentCycleForm.get('notes').value,
           similarPastProblems: treatmentCycleForm.get('similarPastProblems').value,
-        }
+          patientId: visitForm.get('patient').value
+          // patientId: treatmentCycleForm.get('patient').value
+        },
+        attachments: attachmentForm.get('attachment').value,
+        // attachment: JSON.stringify(attachmentForm.get("attachment").value)
+
       },
-      {responseType: 'text'});
+      );
   }
+
+
 
   getFinishedVisitInfo(visitId: number): Observable<FinishedVisit> {
     return this.http.get<FinishedVisit>(VISIT_API_URL + 'getFinishedVisit/' + visitId, httpOptions).pipe(

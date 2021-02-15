@@ -5,10 +5,9 @@ import {DatePipe} from '@angular/common';
 import {TreatmentCycle} from '../../models/treatment-cycle.model';
 import {TreatmentCycleService} from '../../_services/treatment-cycle.service';
 import {Patient} from '../../models/patient.model';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {PatientsService} from '../../_services/patients.service';
 import {VisitsService} from '../../_services/visits.service';
-import {Attachment} from '../../models/attachment.model';
 
 @Component({
   selector: 'app-visit-form-dialog',
@@ -29,9 +28,7 @@ export class VisitFormDialogComponent implements OnInit {
   patientsList: Patient[];
   patient: Patient;
   private patientList: Patient[];
-  filesToUpload: Attachment[];
-  selectedFile: File
-  linkToUpload
+  attachmentForm: FormGroup
 
   constructor(
     private dialogRef: MatDialogRef<VisitFormDialogComponent>,
@@ -39,7 +36,8 @@ export class VisitFormDialogComponent implements OnInit {
     private datePipe: DatePipe,
     private treatmentCycleService: TreatmentCycleService,
     private patientsService: PatientsService,
-    private visitsService: VisitsService
+    private visitsService: VisitsService,
+    private fb: FormBuilder
   ) {
     this.dialogRef.disableClose = true;
   }
@@ -79,6 +77,20 @@ export class VisitFormDialogComponent implements OnInit {
       notes: new FormControl({value: null, disabled: false}),
       similarPastProblems: new FormControl({value: null, disabled: false}),
     });
+    this.attachmentForm = this.fb.group({
+
+      attachment: this.fb.array(
+        [this.fb.group({
+        id: new FormControl({value: -1, disabled: false}),
+        fileName: new FormControl({value: "", disabled: false}),
+        fileId: new FormControl({value: -1, disabled: false}),
+        link: new FormControl({value: "", disabled: false}),
+        description: new FormControl({value: "", disabled: false}, Validators.required),
+      })]
+      )
+    });
+
+
     if (this.isVisitStartedFromPlan()) {
       this.visitStarted = this.data.visit;
       this.setPassedVisitData();
@@ -100,10 +112,10 @@ export class VisitFormDialogComponent implements OnInit {
   }
 
   approve() {
-    this.treatmentCycleForm.get('injuryDate').setValue(this.datePipe.transform(this.treatmentCycleForm.get('injuryDate').value, 'yyyy-MM-dd'));
-    this.visitForm.get('date').setValue(this.datePipe.transform(this.visitForm.get('date').value, 'yyyy-MM-dd'));
+    // this.treatmentCycleForm.get('injuryDate').setValue(this.datePipe.transform(this.treatmentCycleForm.get('injuryDate').value, 'yyyy-MM-dd'));
+    // this.visitForm.get('date').setValue(this.datePipe.transform(this.visitForm.get('date').value, 'yyyy-MM-dd'));
 
-    this.visitsService.finishVisit(this.visitForm, this.treatmentCycleForm).subscribe(
+    this.visitsService.finishVisit(this.visitForm, this.treatmentCycleForm, this.attachmentForm).subscribe(
       result => {
         this.dialogRef.close({event: 'Success', visitId: result});
       },
@@ -168,7 +180,7 @@ export class VisitFormDialogComponent implements OnInit {
     this.patientsService.getPatientBasicInfo(this.visitStarted.patientId).subscribe(
       patient => {
         this.patient = patient;
-        this.visitForm.get('patient').setValue(patient.id);
+        this.treatmentCycleForm.get('patientId').setValue(patient.id);
       }
     );
   }
@@ -193,10 +205,8 @@ export class VisitFormDialogComponent implements OnInit {
     this.visitForm.get('id').setValue(-1);
   }
 
-  // handleFileInput(files: FileList) {
-  //   // this.fileToUpload = files.item(0);
-  // }
-  selectFile(event) {
-    this.selectedFile = event.target.files;
+
+  showDate() {
+    console.log(this.visitForm.get("date").value)
   }
 }

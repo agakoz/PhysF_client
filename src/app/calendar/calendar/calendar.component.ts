@@ -121,11 +121,11 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     this.viewDate = new Date();
     this.view = this.weekView;
     this.loadVisitEvents();
-    // this.scrollToCurrentView();
+    this.scrollToCurrentView();
   }
 
   ngAfterViewInit(): void {
-    // this.scrollToCurrentView();
+    this.scrollToCurrentView();
   }
 
   viewChanged() {

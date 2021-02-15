@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {Visit} from '../../models/visit.model';
 import {TreatmentCycle} from '../../models/treatment-cycle.model';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Patient} from '../../models/patient.model';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {DatePipe} from '@angular/common';
@@ -10,6 +10,7 @@ import {PatientsService} from '../../_services/patients.service';
 import {VisitsService} from '../../_services/visits.service';
 import {VisitFormDialogComponent} from '../start-visit-dialog/visit-form-dialog.component';
 import {FinishedVisit} from '../../models/finished-visit';
+import {ExternalAttachment} from '../../models/attachment.model';
 
 @Component({
   selector: 'app-finished-visit-display-dialog',
@@ -26,10 +27,12 @@ export class FinishedVisitDisplayDialogComponent implements OnInit {
   // isTreatmentContinuation: boolean;
   visitForm: FormGroup;
   treatmentCycleForm: FormGroup;
+  attachmentForm: FormGroup;
   // isPatientChosenFromContext: boolean;
   // patientsList: Patient[];
   patient: Patient;
   patientName: string;
+  externalAttachments: ExternalAttachment[];
 
   constructor(
     private dialogRef: MatDialogRef<VisitFormDialogComponent>,
@@ -37,7 +40,8 @@ export class FinishedVisitDisplayDialogComponent implements OnInit {
     private datePipe: DatePipe,
     private treatmentCycleService: TreatmentCycleService,
     private patientsService: PatientsService,
-    private visitsService: VisitsService
+    private visitsService: VisitsService,
+    private fb: FormBuilder
   ) {
 
     this.dialogRef.disableClose = true;
@@ -80,9 +84,24 @@ export class FinishedVisitDisplayDialogComponent implements OnInit {
       similarPastProblems: new FormControl({value: null, disabled: false}),
     });
 
+    this.attachmentForm = this.fb.group({
+
+      attachment: this.fb.array(
+        [this.fb.group({
+          id: new FormControl({value: -1, disabled: false}),
+          fileName: new FormControl({value: '', disabled: false}),
+          fileId: new FormControl({value: -1, disabled: false}),
+          link: new FormControl({value: '', disabled: false}),
+          description: new FormControl({value: '', disabled: false}, Validators.required),
+        })]
+      )
+    });
+
     this.setPassedVisitData();
-    this.treatmentCycleForm.disable()
-    this.visitForm.disable()
+    this.treatmentCycleForm.disable();
+    this.visitForm.disable();
+
+
   }
 
   private setPassedVisitData() {
@@ -107,10 +126,13 @@ export class FinishedVisitDisplayDialogComponent implements OnInit {
     );
   }
 
+
+
   getPatientNameWithAge(): string {
 
     return this.patient.getNameWithAge();
   }
+
   cancel() {
     this.dialogRef.close({event: 'Canceled'});
   }
