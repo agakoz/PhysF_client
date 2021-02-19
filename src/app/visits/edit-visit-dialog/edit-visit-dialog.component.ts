@@ -51,9 +51,13 @@ export class EditVisitDialogComponent implements OnInit {
     });
 
 
+
     this.visitToEdit = this.data.visit;
+    console.log(this.visitToEdit.id)
+    console.log(this.visitToEdit)
     this.setPassedVisitData();
-    this.loadPatientList();
+    this.loadPatientListAndTreatmentCycleData();
+
   }
 
   private setPassedVisitData() {
@@ -91,7 +95,7 @@ export class EditVisitDialogComponent implements OnInit {
     }
   }
 
-  private loadPatientList(): void {
+  private loadPatientListAndTreatmentCycleData(): void {
     this.patientsService.getPatientsBasicInfo().subscribe(
       data => {
         this.patientList = data;
@@ -108,7 +112,6 @@ export class EditVisitDialogComponent implements OnInit {
 
     this.visitsService.checkAnotherVisitPlannedForGivenTime(this.visitToEdit.id, this.planVisitForm).subscribe(
       data => {
-        console.log(data);
         if (data == true) {
           this.dialog.open(ApproveQuestionPlanVisitDialogComponent, {
             width: '600px',

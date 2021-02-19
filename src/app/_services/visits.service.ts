@@ -173,6 +173,7 @@ export class VisitsService {
   }
 
   checkAnotherVisitPlannedForGivenTime(visitId: number, planVisitForm: FormGroup): Observable<boolean> {
+    console.log("service" + visitId)
     return this.http.post<boolean>(VISIT_API_URL + 'isVisitPlannedForGivenTime',
       {
         visitId: visitId,

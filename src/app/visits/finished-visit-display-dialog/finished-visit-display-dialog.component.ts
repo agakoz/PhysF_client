@@ -101,7 +101,6 @@ export class FinishedVisitDisplayDialogComponent implements OnInit {
     this.treatmentCycleForm.disable();
     this.visitForm.disable();
 
-
   }
 
   private setPassedVisitData() {
@@ -125,8 +124,6 @@ export class FinishedVisitDisplayDialogComponent implements OnInit {
       }
     );
   }
-
-
 
   getPatientNameWithAge(): string {
 

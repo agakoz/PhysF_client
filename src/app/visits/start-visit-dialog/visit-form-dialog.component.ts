@@ -79,15 +79,15 @@ export class VisitFormDialogComponent implements OnInit {
     });
     this.attachmentForm = this.fb.group({
 
-      attachment: this.fb.array(
-        [this.fb.group({
-        id: new FormControl({value: -1, disabled: false}),
-        fileName: new FormControl({value: "", disabled: false}),
-        fileId: new FormControl({value: -1, disabled: false}),
-        link: new FormControl({value: "", disabled: false}),
-        description: new FormControl({value: "", disabled: false}, Validators.required),
-      })]
-      )
+      // attachment: this.fb.array(
+      //   [this.fb.group({
+      //   id: new FormControl({value: -1, disabled: false}),
+      //   fileName: new FormControl({value: "", disabled: false}),
+      //   fileId: new FormControl({value: -1, disabled: false}),
+      //   link: new FormControl({value: "", disabled: false}),
+      //   description: new FormControl({value: "", disabled: false}, Validators.required),
+      // })]
+      // )
     });
 
 
@@ -180,7 +180,7 @@ export class VisitFormDialogComponent implements OnInit {
     this.patientsService.getPatientBasicInfo(this.visitStarted.patientId).subscribe(
       patient => {
         this.patient = patient;
-        this.treatmentCycleForm.get('patientId').setValue(patient.id);
+        this.visitForm.get('patient').setValue(patient.id);
       }
     );
   }
@@ -204,7 +204,6 @@ export class VisitFormDialogComponent implements OnInit {
   private setNewVisit() {
     this.visitForm.get('id').setValue(-1);
   }
-
 
   showDate() {
     console.log(this.visitForm.get("date").value)

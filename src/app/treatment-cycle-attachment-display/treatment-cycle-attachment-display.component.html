@@ -17,7 +17,7 @@
       <mat-form-field class="attachment-input"  *ngIf="attachment.fileName != ''">
 
         <input matInput disabled [value]="attachment.fileName">
-        <button mat-icon-button matSuffix >
+        <button mat-icon-button matSuffix (click)="downloadFile(attachment.fileId)">
           <mat-icon id="download-button">download</mat-icon>
         </button>
 

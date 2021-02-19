@@ -3,9 +3,10 @@
   <mat-icon>add</mat-icon>
 </button>Dodaj załącznik
 <form [formGroup]="attachmentForm">
-  <div formArrayName="attachment">
+  <div formArrayName="attachment" *ngIf="attachments != null">
     <div *ngFor="let item of attachments.controls; let attachmentIndex=index" [formGroupName]="attachmentIndex">
       <mat-divider></mat-divider>
+      <p></p>
       <mat-form-field class="attachment-input">
         <mat-label>Link do repozytorium</mat-label>
         <input matInput
@@ -28,6 +29,9 @@
         <button mat-icon-button matSuffix (click)="fileInput.click()">
           <mat-icon>attach_file</mat-icon>
         </button>
+        <button *ngIf="attachments.value[attachmentIndex].fileId > -1" mat-icon-button matSuffix (click)="download(attachments.value[attachmentIndex].fileId)">
+          <mat-icon>download</mat-icon>
+        </button>
         <input hidden (change)="selectFile($event, attachmentIndex)" #fileInput type="file" id="file"
         >
       </mat-form-field>
@@ -42,7 +46,7 @@
                   cdkAutosizeMaxRows="20"
                   formControlName="description"></textarea>
       </mat-form-field>
-      <button mat-icon-button type="button" (click)="deleteSellingPoint(attachmentIndex)" style="float: right">
+      <button mat-icon-button type="button" (click)="deleteAttachment(attachmentIndex)" style="float: right">
         <mat-icon>delete</mat-icon>
       </button>
 
