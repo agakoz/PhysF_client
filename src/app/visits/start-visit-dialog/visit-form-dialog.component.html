@@ -176,16 +176,17 @@
         <!--        </div>-->
       </mat-tab>
     </mat-tab-group>
-
-    <mat-divider></mat-divider>
     <br>
-    <div class="dialog-button-row">
-      <button class="dialog-button" mat-button (click)="cancel()">Anuluj</button>
-
-      <button class="dialog-button" mat-button mat-raised-button color="accent"
-              (click)="approve()" [disabled]="!visitForm.valid || !treatmentCycleForm.valid || !treatmentCycleForm.valid">
-        Zapisz i zakończ wizytę
-      </button>
-    </div>
   </div>
 </mat-dialog-content>
+<p></p>
+<mat-divider></mat-divider>
+<p></p>
+<div class="dialog-button-row">
+  <button class="dialog-button" mat-button (click)="cancel()">Anuluj</button>
+
+  <button class="dialog-button" mat-button mat-raised-button color="accent"
+          (click)="approve()" [disabled]="!visitForm.valid || !treatmentCycleForm.valid || !treatmentCycleForm.valid">
+    Zapisz i zakończ wizytę
+  </button>
+</div>

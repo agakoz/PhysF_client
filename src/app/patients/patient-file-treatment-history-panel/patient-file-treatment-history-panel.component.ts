@@ -13,6 +13,8 @@ import jsPDF from 'jspdf';
 // import jsPDF from 'yworks-pdf' // using yworks fork
 // import jsPDF from 'jspdf/dist/jspdf.node.debug' // for nodejs
 import autoTable from 'jspdf-autotable';
+import {TreatmentCycleAttachmentDisplayComponent} from '../../treatment-cycle-attachment-display/treatment-cycle-attachment-display.component';
+import {ExternalAttachmentsDialogComponent} from '../../models/external-attachments-dialog/external-attachments-dialog.component';
 
 @Component({
   selector: 'app-patient-file-treatment-history-panel',
@@ -69,6 +71,7 @@ export class PatientFileTreatmentHistoryPanelComponent implements OnInit {
   }
 
   showVisitInfo(visitId: number) {
+    console.log(visitId)
     this.visitsService.getFinishedVisitInfo(visitId).subscribe(
       result => {
         this.dialog.open(
@@ -84,5 +87,18 @@ export class PatientFileTreatmentHistoryPanelComponent implements OnInit {
     );
   }
 
+  showExternalAttachments(treatmentCycleId: number) {
+    this.dialog.open(ExternalAttachmentsDialogComponent, {
 
+      disableClose: false,
+      width: '1000px',
+      minHeight: '95vh',
+      height: '95vh',
+      // maxHeight: '680px',
+      autoFocus: false,
+      data: {
+        treatmentCycleId: treatmentCycleId
+      }
+    });
+  }
 }

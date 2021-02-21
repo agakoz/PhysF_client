@@ -15,7 +15,7 @@
   width: auto;
   text-align: center;
   bottom: 0;
-  margin-bottom: 30px;
+  //margin-bottom: 30px;
 
   button {
     left: 0;
@@ -29,5 +29,6 @@ mat-tab-group {
   height: 480px;
 }
 mat-dialog-content{
-  max-height: 680px !important;
+  max-height: 78vh !important;
+  height: 78vh
 }

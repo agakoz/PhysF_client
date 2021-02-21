@@ -25,7 +25,6 @@ export class TreatmentCycleAttachmentFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getExternalAttachments();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -41,7 +40,7 @@ export class TreatmentCycleAttachmentFormComponent implements OnInit {
 
   addAttachment() {
     if (this.attachments == null) {
-      console.log(this.attachmentForm)
+      console.log(this.attachmentForm);
       this.attachmentForm.addControl(
         'attachment', this.fb.array(
           [this.fb.group({
@@ -53,7 +52,7 @@ export class TreatmentCycleAttachmentFormComponent implements OnInit {
           })]
         )
       );
-      console.log(this.attachmentForm)
+
 
     } else {
       this.attachments.push(this.fb.group({
@@ -106,18 +105,18 @@ export class TreatmentCycleAttachmentFormComponent implements OnInit {
       this.attachments.controls[index].get('fileId').setValue(data);
       this.attachments.controls[index].get('fileName').setValue(files[0].name);
     });
-
   }
 
   private getExternalAttachments() {
-    if(this.cycleId > -1) {
+    if (this.cycleId > -1) {
+      console.log('tc id: ' + this.cycleId);
       this.treatmentCycleService.getTreatmentCycleExternalAttachments(this.cycleId).subscribe(
         data => {
+          console.log(data);
           data.forEach(attachment => this.putAttachment(attachment));
         }
       );
     }
-
   };
 
   download(fileId: number) {
@@ -135,5 +134,10 @@ export class TreatmentCycleAttachmentFormComponent implements OnInit {
     }
   }
 
+  deleteFile(index: number) {
+    this.attachments.value[index].fileName = '';
+    this.attachments.controls[index].get('fileId').setValue(-1);
+    this.attachments.controls[index].get('fileName').setValue('');
+  }
 }
 

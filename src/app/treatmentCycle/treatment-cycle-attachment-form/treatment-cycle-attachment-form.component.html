@@ -2,9 +2,11 @@
         style=";margin-left: 20px; margin-right: 20px; margin-bottom: 20px; position: static">
   <mat-icon>add</mat-icon>
 </button>Dodaj załącznik
-<form [formGroup]="attachmentForm">
+<p style="justify-content: center" *ngIf="attachments == null">Brak zewnętrznej dokumentacji medycznej do
+  wyświetlenia</p>
+<form [formGroup]="attachmentForm" novalidate>
   <div formArrayName="attachment" *ngIf="attachments != null">
-    <div *ngFor="let item of attachments.controls; let attachmentIndex=index" [formGroupName]="attachmentIndex">
+    <div *ngFor="let item of attachments.controls; let attachmentIndex=index" [formGroupName]="attachmentIndex" class="attachment-row">
       <mat-divider></mat-divider>
       <p></p>
       <mat-form-field class="attachment-input">
@@ -26,12 +28,18 @@
           <mat-label>Wybierz plik</mat-label>
         </ng-template>
         <input matInput disabled>
-        <button mat-icon-button matSuffix (click)="fileInput.click()">
+
+        <button mat-icon-button matSuffix (click)="fileInput.click()" *ngIf="attachments.value[attachmentIndex].fileId == -1" >
           <mat-icon>attach_file</mat-icon>
         </button>
-        <button *ngIf="attachments.value[attachmentIndex].fileId > -1" mat-icon-button matSuffix (click)="download(attachments.value[attachmentIndex].fileId)">
+        <button mat-icon-button *ngIf="attachments.value[attachmentIndex].fileId > -1" matSuffix (click)="deleteFile(attachmentIndex)">
+          <mat-icon>clear</mat-icon>
+        </button>
+        <button *ngIf="attachments.value[attachmentIndex].fileId > -1" mat-icon-button matSuffix
+                (click)="download(attachments.value[attachmentIndex].fileId)">
           <mat-icon>download</mat-icon>
         </button>
+
         <input hidden (change)="selectFile($event, attachmentIndex)" #fileInput type="file" id="file"
         >
       </mat-form-field>
@@ -39,18 +47,21 @@
       <mat-form-field class="description-input">
         <mat-label>Opis / Komentarz</mat-label>
         <textarea matInput
+                  #description
                   type="text"
                   matTextareaAutosize
                   cdkTextareaAutosize
                   cdkAutosizeMinRows="2"
                   cdkAutosizeMaxRows="20"
-                  formControlName="description"></textarea>
+                  formControlName="description"
+                  [required]
+                  required
+        ></textarea>
       </mat-form-field>
       <button mat-icon-button type="button" (click)="deleteAttachment(attachmentIndex)" style="float: right">
-        <mat-icon>delete</mat-icon>
+        <mat-icon>clear</mat-icon>
       </button>
 
-      <p></p>
     </div>
   </div>
 </form>

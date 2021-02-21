@@ -10,6 +10,8 @@
           <mat-icon class="example-tab-icon">person</mat-icon>
           Dane osobowe i kontakt
         </ng-template>
+        <p></p>
+        <p></p>
         <div class="data">
           <div class="column">
             <table>
@@ -161,9 +163,13 @@
                 </td>
                 <td>
                   <mat-form-field>
-                    <input matInput placeholder=""
-                           type="text"
-                           formControlName="lifestyle"/>
+                    <textarea matInput placeholder=""
+                           formControlName="lifestyle"
+                              type="text"
+                              matTextareaAutosize
+                           cdkTextareaAutosize
+                           cdkAutosizeMinRows="2"
+                              cdkAutosizeMaxRows="20"></textarea>
                   </mat-form-field>
                 </td>
               </tr>
@@ -173,9 +179,15 @@
                 </td>
                 <td>
                   <mat-form-field>
-                    <input matInput placeholder=""
+                    <textarea matInput placeholder=""
                            type="text"
-                           formControlName="pastDiseases"/>
+                           formControlName="pastDiseases"
+                              type="text"
+                              matTextareaAutosize
+                              cdkTextareaAutosize
+                              cdkAutosizeMinRows="2"
+                              cdkAutosizeMaxRows="20">
+                    </textarea>
                   </mat-form-field>
                 </td>
               </tr>
@@ -185,9 +197,14 @@
                 </td>
                 <td>
                   <mat-form-field>
-                    <input matInput placeholder=""
+                    <textarea matInput placeholder=""
                            type="text"
-                           formControlName="chronicDiseases">
+                           formControlName="chronicDiseases"
+                              type="text"
+                              matTextareaAutosize
+                              cdkTextareaAutosize
+                              cdkAutosizeMinRows="2"
+                              cdkAutosizeMaxRows="20"></textarea>
                   </mat-form-field>
                 </td>
               </tr>
@@ -197,9 +214,14 @@
                 </td>
                 <td>
                   <mat-form-field>
-                    <input matInput placeholder=""
+                    <textarea matInput placeholder=""
                            type="text"
-                           formControlName="hospitalization">
+                           formControlName="hospitalization"
+                              type="text"
+                              matTextareaAutosize
+                              cdkTextareaAutosize
+                              cdkAutosizeMinRows="2"
+                              cdkAutosizeMaxRows="20"></textarea>
                   </mat-form-field>
                 </td>
               </tr>
@@ -209,9 +231,14 @@
                 </td>
                 <td>
                   <mat-form-field>
-                    <input matInput placeholder=""
+                    <textarea matInput placeholder=""
                            type="text"
-                           formControlName="surgeries">
+                           formControlName="surgeries"
+                              type="text"
+                              matTextareaAutosize
+                              cdkTextareaAutosize
+                              cdkAutosizeMinRows="2"
+                              cdkAutosizeMaxRows="20"></textarea>
                   </mat-form-field>
                 </td>
               </tr>
@@ -225,9 +252,14 @@
                 </td>
                 <td>
                   <mat-form-field>
-                    <input matInput placeholder=""
+                    <textarea matInput placeholder=""
                            type="text"
-                           formControlName="allergies">
+                           formControlName="allergies"
+                              type="text"
+                              matTextareaAutosize
+                              cdkTextareaAutosize
+                              cdkAutosizeMinRows="2"
+                              cdkAutosizeMaxRows="20"></textarea>
                   </mat-form-field>
                 </td>
               </tr>
@@ -237,9 +269,14 @@
                 </td>
                 <td>
                   <mat-form-field>
-                    <input matInput placeholder=""
+                    <textarea matInput placeholder=""
                            type="text"
-                           formControlName="familyDiseases">
+                           formControlName="familyDiseases"
+                              type="text"
+                              matTextareaAutosize
+                              cdkTextareaAutosize
+                              cdkAutosizeMinRows="2"
+                              cdkAutosizeMaxRows="20"></textarea>
                   </mat-form-field>
                 </td>
               </tr>
@@ -250,9 +287,14 @@
                 <td>
                   <mat-form-field>
 
-                    <input matInput placeholder=""
+                    <textarea matInput placeholder=""
                            type="text"
-                           formControlName="medicalCertificate">
+                           formControlName="medicalCertificate"
+                              type="text"
+                              matTextareaAutosize
+                              cdkTextareaAutosize
+                              cdkAutosizeMinRows="2"
+                              cdkAutosizeMaxRows="20"></textarea>
                   </mat-form-field>
                 </td>
               </tr>
@@ -262,9 +304,14 @@
                 </td>
                 <td>
                   <mat-form-field>
-                    <input matInput placeholder="np. ciąża"
+                    <textarea matInput placeholder="np. ciąża"
                            type="text"
-                           formControlName="extraDetails">
+                           formControlName="extraDetails" required
+                              type="text"
+                              matTextareaAutosize
+                              cdkTextareaAutosize
+                              cdkAutosizeMinRows="2"
+                              cdkAutosizeMaxRows="20"></textarea>
                   </mat-form-field>
                 </td>
               </tr>
@@ -273,6 +320,9 @@
         </div>
       </mat-tab>
     </mat-tab-group>
+    <p></p>
+    <mat-divider></mat-divider>
+    <p></p>
     <div class="dialog-button-row">
       <button class="dialog-button" mat-button (click)="resetFormAndCloseDialog(patientForm)">Zamknij</button>
       <button class="dialog-button" mat-button mat-raised-button color="accent" (click)="savePatient()"

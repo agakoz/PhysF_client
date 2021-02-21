@@ -5,6 +5,7 @@ import {map} from 'rxjs/operators';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {TreatmentCycle} from '../models/treatment-cycle.model';
 import {ExternalAttachment} from '../models/attachment.model';
+import {FormGroup} from '@angular/forms';
 
 const TREATMENT_CYCLE_API_URL = 'https://localhost:8443/treatmentCycle/';
 const httpOptions = {
@@ -43,9 +44,25 @@ export class TreatmentCycleService {
       map(data => data.map(data => new TreatmentCycle().deserialize(data)))
     );
   }
-getTreatmentCycleExternalAttachments(treatmentCycleId: number): Observable<ExternalAttachment[]> {
-  return this.http.get<ExternalAttachment[]>(TREATMENT_CYCLE_API_URL + treatmentCycleId +'/externalAttachments', httpOptions).pipe(
-    map(data => data.map(data => new ExternalAttachment().deserialize(data)))
-  );
-}
+
+  getTreatmentCycleExternalAttachments(treatmentCycleId: number): Observable<ExternalAttachment[]> {
+    return this.http.get<ExternalAttachment[]>(TREATMENT_CYCLE_API_URL + treatmentCycleId + '/externalAttachments', httpOptions).pipe(
+      map(data => data.map(data => new ExternalAttachment().deserialize(data)))
+    );
+  }
+
+  saveExternalAttachments(treatmentCycleId: number, attachmentForm: FormGroup) {
+    return this.http.post(TREATMENT_CYCLE_API_URL + treatmentCycleId + '/updateExternalAttachments',
+      {
+        attachments: attachmentForm.get('attachment').value
+      },
+      {responseType: 'text'}
+    );
+  }
+
+  deleteExternalAttachment(treatmentCycleId: number, attachmentId: number) {
+    return this.http.delete(
+      TREATMENT_CYCLE_API_URL + treatmentCycleId + '/removeExternalAttachment/' + attachmentId,
+      {responseType: 'text'});
+  }
 }

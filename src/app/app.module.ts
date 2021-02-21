@@ -67,6 +67,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { TreatmentCycleAttachmentFormComponent } from './treatmentCycle/treatment-cycle-attachment-form/treatment-cycle-attachment-form.component';
 // import { ExternalAttachmentsDisplayComponent } from './external-attachments-display/external-attachments-display.component';
 import { TreatmentCycleAttachmentDisplayComponent } from './treatment-cycle-attachment-display/treatment-cycle-attachment-display.component';
+import { ExternalAttachmentsDialogComponent } from './models/external-attachments-dialog/external-attachments-dialog.component';
 
 
 @NgModule({
@@ -103,6 +104,8 @@ import { TreatmentCycleAttachmentDisplayComponent } from './treatment-cycle-atta
     TreatmentCycleAttachmentFormComponent,
     // ExternalAttachmentsDisplayComponent,
     TreatmentCycleAttachmentDisplayComponent,
+    ExternalAttachmentsDialogComponent,
+
 
   ],
   imports: [

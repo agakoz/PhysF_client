@@ -120,13 +120,7 @@ export class VisitsService {
   }
 
   finishVisit(visitForm: FormGroup, treatmentCycleForm: FormGroup, attachmentForm: FormGroup): Observable<any> {
-    // let formData : FormData = new FormData();
-    // attachmentForm.getRawValue().forEach(a => {
-    //   formData.append("attachments[]", a)
-    // })
-    // console.log(formData)
-    // return
-    // formData.append("attachments", JSON.stringify(attachmentForm.get("attachment").value))
+
     return this.http.post(
       VISIT_API_URL + 'finishVisit',
       {

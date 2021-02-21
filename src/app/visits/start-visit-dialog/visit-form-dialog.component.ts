@@ -1,11 +1,11 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, OnInit, SimpleChanges} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {Visit} from '../../models/visit.model';
 import {DatePipe} from '@angular/common';
 import {TreatmentCycle} from '../../models/treatment-cycle.model';
 import {TreatmentCycleService} from '../../_services/treatment-cycle.service';
 import {Patient} from '../../models/patient.model';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {PatientsService} from '../../_services/patients.service';
 import {VisitsService} from '../../_services/visits.service';
 
@@ -111,6 +111,10 @@ export class VisitFormDialogComponent implements OnInit {
     this.visitForm.get('notes').setValue(this.visitStarted.notes);
   }
 
+
+  get attachments() {
+    return this.attachmentForm.get('attachment') as FormArray;
+  }
   approve() {
     // this.treatmentCycleForm.get('injuryDate').setValue(this.datePipe.transform(this.treatmentCycleForm.get('injuryDate').value, 'yyyy-MM-dd'));
     // this.visitForm.get('date').setValue(this.datePipe.transform(this.visitForm.get('date').value, 'yyyy-MM-dd'));

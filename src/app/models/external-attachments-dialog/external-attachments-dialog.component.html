@@ -1,0 +1,26 @@
+<mat-card-title>Zewnętrzna dokumentacja medyczna</mat-card-title>
+<mat-divider></mat-divider>
+<p></p>
+<mat-dialog-content>
+  <mat-card-content>
+
+    <app-treatment-cycle-attachment-form [cycleId]="this.treatmentCycleId"
+                                         [(attachmentForm)]="attachmentForm"></app-treatment-cycle-attachment-form>
+  </mat-card-content>
+
+</mat-dialog-content>
+<p></p>
+<mat-divider></mat-divider>
+<p></p>
+<mat-card-footer>
+  <div class="dialog-button-row">
+    <button class="dialog-button" mat-button
+            (click)="close()" [disabled]="false">
+      Zamknij
+    </button>
+    <button class="dialog-button" mat-button mat-raised-button color="accent"
+            (click)="onSubmit()" [disabled]="!attachmentForm.valid">
+      Zapisz
+    </button>
+  </div>
+</mat-card-footer>

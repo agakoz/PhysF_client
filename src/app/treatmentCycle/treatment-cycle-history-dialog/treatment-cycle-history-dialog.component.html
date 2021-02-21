@@ -114,7 +114,7 @@
     </div>
     <div class="visit-list">
       <h3>Wizyty odbyte w trakcie cyklu leczenia</h3>
-      <div *ngFor="let visit of visitsList">
+      <div *ngFor="let visit of visitsList; let index = index">
         <div class="row">
           <mat-form-field class="date-input">
             <mat-label>Data wizyty</mat-label>
@@ -167,18 +167,22 @@
               cdkAutosizeMaxRows="20"></textarea>
           </mat-form-field>
         </div>
-
+        <p></p>
+        <mat-divider *ngIf="index <visitsList.length-1 "></mat-divider>
+        <p></p>
       </div>
     </div>
   </div>
-  <br/>
-  <mat-divider></mat-divider>
-  <br/>
 </mat-dialog-content>
+<p></p>
+<mat-divider></mat-divider>
+<p></p>
 <div class="button-row">
+  <button mat-button (click)="close()">
+    Zamknij
+  </button>
   <button mat-button mat-raised-button color="accent" (click)="convertToPdf()">
-    Eksportuj<span class="material-icons">
-get_app
-</span>
+    Eksportuj
+    <mat-icon>get_app</mat-icon>
   </button>
 </div>

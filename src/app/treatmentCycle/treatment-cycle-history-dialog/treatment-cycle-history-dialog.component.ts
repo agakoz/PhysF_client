@@ -175,4 +175,8 @@ export class TreatmentCycleHistoryDialogComponent implements OnInit {
         pdf.save(this.patient.getFullName() + "_" + this.treatmentCycleForm.get("title").value.replace(" ", "_")+ ".pdf");
     });
   }
+
+  close() {
+    this.dialogRef.close()
+  }
 }
