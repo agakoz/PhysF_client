@@ -1,0 +1,41 @@
+<span *ngIf="visitAttachments.length == 0">Brak zapisanych załączników</span>
+<div *ngFor="let attachment of visitAttachments; let attachmentIndex=index" class="attachment-wrapper">
+
+  <mat-form-field class="attachment-input" *ngIf="attachment.fileName != ''">
+
+    <input matInput disabled [value]="attachment.fileName">
+    <button mat-icon-button matSuffix [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu"
+    >
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item matSuffix (click)="preview(attachment.fileId)">
+        <mat-icon>preview</mat-icon>
+        <span>Podgląd</span>
+      </button>
+      <button mat-menu-item matSuffix (click)="download(attachment.fileId)">
+        <mat-icon>download</mat-icon>
+        <span>Pobierz</span>
+      </button>
+    </mat-menu>
+
+  </mat-form-field>
+  <br/>
+  <mat-form-field class="description-form-field">
+    <mat-label>Opis / Komentarz</mat-label>
+    <textarea class="description-input"
+      matInput
+              type="text"
+              matTextareaAutosize
+              cdkTextareaAutosize
+              cdkAutosizeMinRows="2"
+              cdkAutosizeMaxRows="20"
+              [value]="attachment.description"
+              [disabled]="true"
+    ></textarea>
+  </mat-form-field>
+
+
+  <p></p>
+  <mat-divider *ngIf="attachmentIndex != visitAttachments.length-1"></mat-divider>
+</div>
