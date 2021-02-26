@@ -68,6 +68,10 @@ import { TreatmentCycleAttachmentFormComponent } from './treatmentCycle/treatmen
 // import { ExternalAttachmentsDisplayComponent } from './external-attachments-display/external-attachments-display.component';
 import { TreatmentCycleAttachmentDisplayComponent } from './treatment-cycle-attachment-display/treatment-cycle-attachment-display.component';
 import { ExternalAttachmentsDialogComponent } from './models/external-attachments-dialog/external-attachments-dialog.component';
+import { VisitAttachmentFormComponent } from './visit-attachment-form/visit-attachment-form.component';
+import { VisitAttachmentDisplayComponent } from './visit-attachment-display/visit-attachment-display.component';
+import { ImagePreviewDialogComponent } from './image-preview-dialog/image-preview-dialog.component';
+import { VisitAttachmentDisplayDialogComponent } from './visit-attachment-display-dialog/visit-attachment-display-dialog.component';
 
 
 @NgModule({
@@ -105,6 +109,10 @@ import { ExternalAttachmentsDialogComponent } from './models/external-attachment
     // ExternalAttachmentsDisplayComponent,
     TreatmentCycleAttachmentDisplayComponent,
     ExternalAttachmentsDialogComponent,
+    VisitAttachmentFormComponent,
+    VisitAttachmentDisplayComponent,
+    ImagePreviewDialogComponent,
+    VisitAttachmentDisplayDialogComponent,
 
 
   ],

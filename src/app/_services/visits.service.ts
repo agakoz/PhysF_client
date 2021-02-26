@@ -7,6 +7,8 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {VisitEvent} from '../models/visitEvent.model';
 import {FinishedVisit} from '../models/finished-visit';
 import {stringify} from '@angular/compiler/src/util';
+import {VisitAttachment} from '../models/visit-attachment.model';
+import {ExternalAttachment} from '../models/external-attachment.model';
 
 const VISIT_API_URL = 'https://localhost:8443/visit/';
 const PATIENT_API_URL = 'https://localhost:8443/patient/';
@@ -119,7 +121,7 @@ export class VisitsService {
     );
   }
 
-  finishVisit(visitForm: FormGroup, treatmentCycleForm: FormGroup, attachmentForm: FormGroup): Observable<any> {
+  finishVisit(visitForm: FormGroup, treatmentCycleForm: FormGroup, externalAttachmentForm: FormGroup, visitAttachmentForm: FormGroup): Observable<any> {
 
     return this.http.post(
       VISIT_API_URL + 'finishVisit',
@@ -127,7 +129,7 @@ export class VisitsService {
         visit: {
           id: visitForm.get('id').value,
           date: visitForm.get('date').value,
-          treatmentCycleId: visitForm.get('treatmentCycle').value.id,
+          treatmentCycleId: visitForm.get('treatmentCycle').value == -1 ? -1 : visitForm.get('treatmentCycle').value.id,
           startTime: visitForm.get('startTime').value,
           endTime: visitForm.get('endTime').value,
           notes: visitForm.get('notes').value,
@@ -135,7 +137,7 @@ export class VisitsService {
           // patientId: visitForm.get('patient').value
         },
         treatmentCycle: {
-          id: treatmentCycleForm.get('id').value,
+          id: treatmentCycleForm.get('id').value == -1 ? -1 : visitForm.get('treatmentCycle').value.id,
           title: treatmentCycleForm.get('title').value,
           bodyPart: treatmentCycleForm.get('bodyPart').value,
           description: treatmentCycleForm.get('description').value,
@@ -150,13 +152,14 @@ export class VisitsService {
           patientId: visitForm.get('patient').value
           // patientId: treatmentCycleForm.get('patient').value
         },
-        attachments: attachmentForm.get('attachment').value,
-        // attachment: JSON.stringify(attachmentForm.get("attachment").value)
+
+        externalAttachments: externalAttachmentForm.get('attachment') == null ? null : externalAttachmentForm.get('attachment').value,
+        visitAttachments: visitAttachmentForm.get('attachment') == null ? null : visitAttachmentForm.get('attachment').value,
+        // attachment: JSON.stringify(externalAttachmentForm.get("attachment").value)
 
       },
-      );
+    );
   }
-
 
 
   getFinishedVisitInfo(visitId: number): Observable<FinishedVisit> {
@@ -167,7 +170,7 @@ export class VisitsService {
   }
 
   checkAnotherVisitPlannedForGivenTime(visitId: number, planVisitForm: FormGroup): Observable<boolean> {
-    console.log("service" + visitId)
+    console.log('service' + visitId);
     return this.http.post<boolean>(VISIT_API_URL + 'isVisitPlannedForGivenTime',
       {
         visitId: visitId,
@@ -185,4 +188,9 @@ export class VisitsService {
   }
 
 
+  getAttachmentsAssignedToVisit(visitId: number): Observable<VisitAttachment[]> {
+    return this.http.get<ExternalAttachment[]>(VISIT_API_URL + visitId + '/attachments', httpOptions).pipe(
+      map(data => data.map(data => new ExternalAttachment().deserialize(data)))
+    );
+  }
 }

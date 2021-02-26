@@ -56,11 +56,11 @@ body {
 //  background: rgba(53, 130, 120, 0.2);
 //
 //}
-.cal-week-view .cal-time-events {
-  height: 90%;
-  max-height: 600px;
-  overflow-y: auto;
-}
+//.cal-week-view .cal-time-events {
+//  height: 90%;
+//  max-height: 600px;
+//  overflow-y: auto;
+//}
 
 .cal-day-view .cal-hour-segment.cal-after-hour-start .cal-time {
   display: block;
@@ -125,3 +125,7 @@ body {
 //  overflow: auto;
 //  pointer-events: auto;
 //}
+
+.custom-dialog-container .mat-dialog-container {
+  padding: 0;
+}

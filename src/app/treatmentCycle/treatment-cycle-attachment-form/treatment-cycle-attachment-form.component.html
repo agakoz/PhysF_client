@@ -32,13 +32,19 @@
         <button mat-icon-button matSuffix (click)="fileInput.click()" *ngIf="attachments.value[attachmentIndex].fileId == -1" >
           <mat-icon>attach_file</mat-icon>
         </button>
-        <button mat-icon-button *ngIf="attachments.value[attachmentIndex].fileId > -1" matSuffix (click)="deleteFile(attachmentIndex)">
-          <mat-icon>clear</mat-icon>
+        <button mat-icon-button matSuffix [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" *ngIf="attachments.value[attachmentIndex].fileId > -1">
+          <mat-icon>more_vert</mat-icon>
         </button>
-        <button *ngIf="attachments.value[attachmentIndex].fileId > -1" mat-icon-button matSuffix
-                (click)="download(attachments.value[attachmentIndex].fileId)">
-          <mat-icon>download</mat-icon>
-        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item  matSuffix (click)="deleteFile(attachmentIndex)">
+            <mat-icon>clear</mat-icon>
+            <span>Usuń</span>
+          </button>
+          <button mat-menu-item matSuffix (click)="download(attachmentIndex)">
+            <mat-icon>download</mat-icon>
+            <span>Pobierz</span>
+          </button>
+        </mat-menu>
 
         <input hidden (change)="selectFile($event, attachmentIndex)" #fileInput type="file" id="file"
         >

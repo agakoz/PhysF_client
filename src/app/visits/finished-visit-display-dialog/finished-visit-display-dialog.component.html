@@ -1,5 +1,5 @@
 <mat-dialog-content>
-  <div class="dialog-content">
+<!--  <div class="dialog-content">-->
     <h2>Karta wizyty z dnia {{visitDateStr}} </h2>
     <mat-tab-group>
       <mat-tab label="Raport z wizyty">
@@ -101,6 +101,12 @@
           </div>
         </form>
       </mat-tab>
+      <mat-tab label="Załączniki przypisane do wizyty">
+        <br/>
+        <app-visit-attachment-display
+          [visitId]="finishedVisit.id"
+        ></app-visit-attachment-display>
+      </mat-tab>
       <mat-tab label="Badanie">
         <br>
         <app-treatment-cycle-form
@@ -111,11 +117,10 @@
         <br/>
         <app-treatment-cycle-attachment-display
           [cycleId]="finishedVisit.treatmentCycleId"
-          [attachmentForm]="attachmentForm"
         ></app-treatment-cycle-attachment-display>
       </mat-tab>
     </mat-tab-group>
-  </div>
+<!--  </div>-->
 </mat-dialog-content>
 <p></p>
 <mat-divider></mat-divider>

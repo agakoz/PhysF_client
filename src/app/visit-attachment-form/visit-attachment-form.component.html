@@ -1,0 +1,76 @@
+<button mat-mini-fab color="accent" aria-label="Dodaj załącznik" (click)="addAttachment()"
+        style=";margin-left: 20px; margin-right: 20px; margin-bottom: 20px; position: static">
+  <mat-icon>add</mat-icon>
+</button>Dodaj załącznik
+<p style="justify-content: center" *ngIf="attachments == null">Brak załączonych zdjęć</p>
+<form [formGroup]="attachmentForm" novalidate>
+  <div formArrayName="attachment" *ngIf="attachments != null">
+    <div *ngFor="let item of attachments.controls; let attachmentIndex=index" [formGroupName]="attachmentIndex"
+         class="attachment-row">
+      <mat-divider></mat-divider>
+      <p></p>
+      <mat-form-field class="attachment-input">
+        <mat-label
+          *ngIf="attachments.value[attachmentIndex].fileId > -1 else newFile">{{this.attachments.controls[attachmentIndex].get("fileName").value}}</mat-label>
+        <ng-template #newFile>
+          <mat-label>Wybierz obraz</mat-label>
+        </ng-template>
+        <button mat-icon-button matSuffix (click)="fileInput.click()"
+                *ngIf="attachments.value[attachmentIndex].fileId == -1">
+          <mat-icon>attach_file</mat-icon>
+        </button>
+        <input matInput disabled>
+        <button mat-icon-button matSuffix [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu"
+                *ngIf="attachments.value[attachmentIndex].fileId > -1">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item matSuffix (click)="preview(attachmentIndex)">
+            <mat-icon>preview</mat-icon>
+            <span>Podgląd</span>
+          </button>
+          <button mat-menu-item matSuffix (click)="download(attachmentIndex)">
+            <mat-icon>download</mat-icon>
+            <span>Pobierz</span>
+          </button>
+          <button mat-menu-item matSuffix (click)="deleteFile(attachmentIndex)">
+            <mat-icon>clear</mat-icon>
+            <span>Usuń</span>
+          </button>
+
+        </mat-menu>
+
+
+        <input
+          hidden
+          (change)="selectFile($event, attachmentIndex)"
+          #fileInput
+          type="file"
+          id="file"
+          accept="image/x-png,image/gif,image/jpeg"
+          required
+          [required]>
+      </mat-form-field>
+      <br/>
+      <mat-form-field class="description-form-field">
+        <mat-label>Opis / Komentarz</mat-label>
+        <textarea
+          class="description-input"
+          matInput
+          #description
+          type="text"
+          matTextareaAutosize
+          cdkTextareaAutosize
+          cdkAutosizeMinRows="2"
+          cdkAutosizeMaxRows="20"
+          formControlName="description"
+        ></textarea>
+      </mat-form-field>
+
+      <button mat-icon-button type="button" (click)="deleteAttachment(attachmentIndex)" style="float: right">
+        <mat-icon>clear</mat-icon>
+      </button>
+
+    </div>
+  </div>
+</form>

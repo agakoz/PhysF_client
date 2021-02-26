@@ -1,8 +1,7 @@
-<form [formGroup]="attachmentForm">
-  <div formArrayName="attachment">
-    <div *ngFor="let attachment of externalAttachments; let attachmentIndex=index" [formGroupName]="attachmentIndex">
+    <span *ngIf="externalAttachments.length == 0">Brak załączonej zewnętrznej dokumentacji pacjenta</span>
+    <div *ngFor="let attachment of externalAttachments; let attachmentIndex=index" >
       <!--      <mat-divider></mat-divider>-->
-      <mat-form-field class="attachment-input"  *ngIf="attachment.link != ''">
+      <mat-form-field class="attachment-input" *ngIf="attachment.link != ''">
 
         <input matInput
                type="url"
@@ -11,10 +10,11 @@
                cdkAutosizeMinRows="2"
                cdkAutosizeMaxRows="20"
                [value]="attachment.link"
+               [disabled]="true"
         >
       </mat-form-field>
       <span *ngIf="attachment.link != '' && attachment.fileName != ''">/</span>
-      <mat-form-field class="attachment-input"  *ngIf="attachment.fileName != ''">
+      <mat-form-field class="attachment-input" *ngIf="attachment.fileName != ''">
 
         <input matInput disabled [value]="attachment.fileName">
         <button mat-icon-button matSuffix (click)="downloadFile(attachment.fileId)">
@@ -31,12 +31,11 @@
                   cdkTextareaAutosize
                   cdkAutosizeMinRows="2"
                   cdkAutosizeMaxRows="20"
-                  [value]="attachment.description"></textarea>
+                  [value]="attachment.description"
+                  [disabled]="true"
+        ></textarea>
       </mat-form-field>
-
-
       <p></p>
       <mat-divider *ngIf="attachmentIndex != externalAttachments.length-1"></mat-divider>
     </div>
-  </div>
-</form>
+

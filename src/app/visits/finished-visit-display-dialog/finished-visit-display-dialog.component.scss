@@ -38,8 +38,9 @@ textarea[disabled] {
 }
 mat-dialog-content{
   max-height: 78vh !important;
-  height: 78vh
+  min-height: 90%;
+  height: 90%;
 }
 mat-tab-group {
-  height: 480px;
+  //height: 480px;
 }

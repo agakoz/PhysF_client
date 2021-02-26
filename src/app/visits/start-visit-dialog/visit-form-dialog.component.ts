@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit, SimpleChanges} from '@angular/core';
+import {Component, ElementRef, Inject, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {Visit} from '../../models/visit.model';
 import {DatePipe} from '@angular/common';
@@ -15,7 +15,7 @@ import {VisitsService} from '../../_services/visits.service';
   styleUrls: ['./visit-form-dialog.component.scss']
 })
 export class VisitFormDialogComponent implements OnInit {
-
+  @ViewChild('scrollContainer') scrollContainer: ElementRef<HTMLElement>;
   visitStarted: Visit;
   patientId: number;
   todayStr: any;
@@ -28,7 +28,8 @@ export class VisitFormDialogComponent implements OnInit {
   patientsList: Patient[];
   patient: Patient;
   private patientList: Patient[];
-  attachmentForm: FormGroup
+  externalAttachmentForm: FormGroup
+  visitAttachmentForm: FormGroup;
 
   constructor(
     private dialogRef: MatDialogRef<VisitFormDialogComponent>,
@@ -77,19 +78,10 @@ export class VisitFormDialogComponent implements OnInit {
       notes: new FormControl({value: null, disabled: false}),
       similarPastProblems: new FormControl({value: null, disabled: false}),
     });
-    this.attachmentForm = this.fb.group({
-
-      // attachment: this.fb.array(
-      //   [this.fb.group({
-      //   id: new FormControl({value: -1, disabled: false}),
-      //   fileName: new FormControl({value: "", disabled: false}),
-      //   fileId: new FormControl({value: -1, disabled: false}),
-      //   link: new FormControl({value: "", disabled: false}),
-      //   description: new FormControl({value: "", disabled: false}, Validators.required),
-      // })]
-      // )
+    this.externalAttachmentForm = this.fb.group({
     });
-
+    this.visitAttachmentForm = this.fb.group({
+    });
 
     if (this.isVisitStartedFromPlan()) {
       this.visitStarted = this.data.visit;
@@ -111,15 +103,13 @@ export class VisitFormDialogComponent implements OnInit {
     this.visitForm.get('notes').setValue(this.visitStarted.notes);
   }
 
-
   get attachments() {
-    return this.attachmentForm.get('attachment') as FormArray;
+    return this.externalAttachmentForm.get('attachment') as FormArray;
   }
-  approve() {
-    // this.treatmentCycleForm.get('injuryDate').setValue(this.datePipe.transform(this.treatmentCycleForm.get('injuryDate').value, 'yyyy-MM-dd'));
-    // this.visitForm.get('date').setValue(this.datePipe.transform(this.visitForm.get('date').value, 'yyyy-MM-dd'));
 
-    this.visitsService.finishVisit(this.visitForm, this.treatmentCycleForm, this.attachmentForm).subscribe(
+  approve() {
+    this.visitForm.get('date').setValue(this.datePipe.transform(this.visitForm.get('date').value, 'yyyy-MM-dd'));
+    this.visitsService.finishVisit(this.visitForm, this.treatmentCycleForm, this.externalAttachmentForm, this.visitAttachmentForm).subscribe(
       result => {
         this.dialogRef.close({event: 'Success', visitId: result});
       },

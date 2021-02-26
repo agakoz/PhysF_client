@@ -1,37 +1,33 @@
 import {Component, EventEmitter, Input, OnInit, Output, SimpleChanges} from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {HttpClient} from '@angular/common/http';
-import {UploadService} from '../../_services/upload.service';
-import {stringify} from '@angular/compiler/src/util';
-import {TreatmentCycleService} from '../../_services/treatment-cycle.service';
-import {ExternalAttachment} from '../../models/external-attachment.model';
-import {UploadedFile} from '../../models/uploaded-file.model';
+import {ExternalAttachment} from '../models/external-attachment.model';
+import {UploadedFile} from '../models/uploaded-file.model';
+import {UploadService} from '../_services/upload.service';
+import {VisitsService} from '../_services/visits.service';
+import {VisitAttachment} from '../models/visit-attachment.model';
 
 @Component({
-  selector: 'app-treatment-cycle-attachment-form',
-  templateUrl: './treatment-cycle-attachment-form.component.html',
-  styleUrls: ['./treatment-cycle-attachment-form.component.scss']
+  selector: 'app-visit-attachment-form',
+  templateUrl: './visit-attachment-form.component.html',
+  styleUrls: ['./visit-attachment-form.component.scss']
 })
-export class TreatmentCycleAttachmentFormComponent implements OnInit {
-  @Input() cycleId: number;
+export class VisitAttachmentFormComponent implements OnInit {
+  @Input() visitId: number;
   @Input() attachmentForm: FormGroup;
   @Output() attachmentFormChange: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
-
   constructor(
-    private fb: FormBuilder,
-    private http: HttpClient,
     private uploadService: UploadService,
-    private treatmentCycleService: TreatmentCycleService) {
-  }
+    private visitService: VisitsService,
+    private fb: FormBuilder) { }
+    url:any
 
   ngOnInit(): void {
   }
-
   ngOnChanges(changes: SimpleChanges): void {
-    if (this.attachments != null || this.attachments?.length > 0) {
+    if (this.attachments != null) {
       this.clearAttachments();
     }
-    this.getExternalAttachments();
+    this.getVisitAttachments();
   }
 
   get attachments() {
@@ -40,41 +36,38 @@ export class TreatmentCycleAttachmentFormComponent implements OnInit {
 
   addAttachment() {
     if (this.attachments == null) {
+      console.log(this.attachmentForm);
       this.attachmentForm.addControl(
         'attachment', this.fb.array(
           [this.fb.group({
             id: new FormControl({value: -1, disabled: false}),
             fileName: new FormControl({value: '', disabled: false}),
-            fileId: new FormControl({value: -1, disabled: false}),
-            link: new FormControl({value: '', disabled: false}),
-            description: new FormControl({value: '', disabled: false}, Validators.required),
+            fileId: new FormControl({value: -1, disabled: false}, Validators.required),
+            description: new FormControl({value: '', disabled: false}),
           })]
         )
       );
-
 
     } else {
       this.attachments.push(this.fb.group({
         id: new FormControl({value: -1, disabled: false}),
         fileName: new FormControl({value: '', disabled: false}),
-        fileId: new FormControl({value: -1, disabled: false}),
-        link: new FormControl({value: '', disabled: false}),
-        description: new FormControl({value: '', disabled: false}, Validators.required),
+        fileId: new FormControl({value: -1, disabled: false}, Validators.required),
+        description: new FormControl({value: '', disabled: false}),
       }));
     }
     this.attachmentFormChange.emit(this.attachmentForm);
   }
 
-  putAttachment(attachment: ExternalAttachment) {
+  putAttachment(attachment: VisitAttachment) {
     if (this.attachments == null) {
       this.attachmentForm.addControl(
         'attachment', this.fb.array(
           [this.fb.group({
             id: new FormControl({value: attachment.id, disabled: false}),
             fileName: new FormControl({value: attachment.fileName, disabled: false}),
-            fileId: new FormControl({value: attachment.fileId == null ? -1 : attachment.fileId, disabled: false}),
-            link: new FormControl({value: attachment.link, disabled: false}),
-            description: new FormControl({value: attachment.description, disabled: false}, Validators.required),
+            fileId: new FormControl({value: attachment.fileId == null ? -1 : attachment.fileId, disabled: false}, Validators.required),
+            description: new FormControl({value: attachment.description, disabled: false}),
           })]
         )
       );
@@ -82,12 +75,12 @@ export class TreatmentCycleAttachmentFormComponent implements OnInit {
       this.attachments.push(this.fb.group({
         id: new FormControl({value: attachment.id, disabled: false}),
         fileName: new FormControl({value: attachment.fileName, disabled: false}),
-        fileId: new FormControl({value: attachment.fileId == null ? -1 : attachment.fileId, disabled: false}),
-        link: new FormControl({value: attachment.link, disabled: false}),
-        description: new FormControl({value: attachment.description, disabled: false}, Validators.required),
+        fileId: new FormControl({value: attachment.fileId == null ? -1 : attachment.fileId, disabled: false}, Validators.required),
+        description: new FormControl({value: attachment.description, disabled: false}, ),
       }));
     }
     this.attachmentFormChange.emit(this.attachmentForm);
+
   }
 
   deleteAttachment(index) {
@@ -105,9 +98,9 @@ export class TreatmentCycleAttachmentFormComponent implements OnInit {
     });
   }
 
-  private getExternalAttachments() {
-    if (this.cycleId > -1) {
-      this.treatmentCycleService.getTreatmentCycleExternalAttachments(this.cycleId).subscribe(
+  private getVisitAttachments() {
+    if (this.visitId > -1) {
+      this.visitService.getAttachmentsAssignedToVisit(this.visitId).subscribe(
         data => {
           data.forEach(attachment => this.putAttachment(attachment));
         }
@@ -116,6 +109,7 @@ export class TreatmentCycleAttachmentFormComponent implements OnInit {
   };
 
   download(fileId: number) {
+    console.log(fileId);
     let file: UploadedFile;
     this.uploadService.downloadFile(fileId).subscribe(response => {
       file = response;
@@ -124,9 +118,8 @@ export class TreatmentCycleAttachmentFormComponent implements OnInit {
   }
 
   private clearAttachments() {
-    for (let i = this.attachments.length - 1; i >= 0; i--) {
-      this.deleteAttachment(i)
-
+    for (let i = 0; i < this.attachments.length; i++) {
+      this.deleteAttachment(i);
     }
   }
 
@@ -135,5 +128,16 @@ export class TreatmentCycleAttachmentFormComponent implements OnInit {
     this.attachments.controls[index].get('fileId').setValue(-1);
     this.attachments.controls[index].get('fileName').setValue('');
   }
-}
 
+  preview(index: any) {
+    let fileId: number;
+    fileId=  this.attachments.controls[index].get('fileId').value;
+    console.log(fileId);
+    let file: UploadedFile;
+    this.uploadService.downloadFile(fileId).subscribe(response => {
+      file = response;
+      console.log(response.url);
+      this.url = response.url
+    });
+  }
+}

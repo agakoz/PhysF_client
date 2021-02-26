@@ -4,7 +4,7 @@ import {Visit} from '../models/visit.model';
 import {map} from 'rxjs/operators';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {TreatmentCycle} from '../models/treatment-cycle.model';
-import {ExternalAttachment} from '../models/attachment.model';
+import {ExternalAttachment} from '../models/external-attachment.model';
 import {FormGroup} from '@angular/forms';
 
 const TREATMENT_CYCLE_API_URL = 'https://localhost:8443/treatmentCycle/';

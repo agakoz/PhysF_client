@@ -97,13 +97,7 @@
           </div>
           <br>
           <div>
-            <!--            <mwl-demo-utils-calendar-header-->
-            <!--              [(view)]="view"-->
-            <!--              [(viewDate)]="viewDate"-->
-            <!--              (viewChange)="viewChanged()"-->
-            <!--            >-->
-            <!--            </mwl-demo-utils-calendar-header>-->
-            <div [ngSwitch]="view" #scrollContainer class="scroll-container">
+            <div [ngSwitch]="view" class="scroll-container" #scrollContainer>
               <mwl-calendar-month-view
                 *ngSwitchCase="monthView"
                 [locale]="locale"

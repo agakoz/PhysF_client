@@ -12,6 +12,7 @@
         </ng-template>
         <p></p>
         <p></p>
+        <mat-dialog-content>
         <div class="data">
           <div class="column">
             <table>
@@ -147,13 +148,14 @@
             </table>
           </div>
         </div>
+        </mat-dialog-content>
       </mat-tab>
       <mat-tab label="Dane medyczne">
         <ng-template mat-tab-label>
           <mat-icon class="example-tab-icon">local_hospital</mat-icon>
           Dane medyczne
         </ng-template>
-
+<mat-dialog-content>
         <div class="data">
           <div class="column">
             <table>
@@ -306,7 +308,7 @@
                   <mat-form-field>
                     <textarea matInput placeholder="np. ciąża"
                            type="text"
-                           formControlName="extraDetails" required
+                           formControlName="extraDetails"
                               type="text"
                               matTextareaAutosize
                               cdkTextareaAutosize
@@ -318,6 +320,7 @@
             </table>
           </div>
         </div>
+</mat-dialog-content>
       </mat-tab>
     </mat-tab-group>
     <p></p>

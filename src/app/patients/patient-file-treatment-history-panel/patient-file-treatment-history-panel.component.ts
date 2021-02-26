@@ -15,6 +15,7 @@ import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import {TreatmentCycleAttachmentDisplayComponent} from '../../treatment-cycle-attachment-display/treatment-cycle-attachment-display.component';
 import {ExternalAttachmentsDialogComponent} from '../../models/external-attachments-dialog/external-attachments-dialog.component';
+import {VisitAttachmentDisplayDialogComponent} from '../../visit-attachment-display-dialog/visit-attachment-display-dialog.component';
 
 @Component({
   selector: 'app-patient-file-treatment-history-panel',
@@ -98,6 +99,19 @@ export class PatientFileTreatmentHistoryPanelComponent implements OnInit {
       autoFocus: false,
       data: {
         treatmentCycleId: treatmentCycleId
+      }
+    });
+  }
+
+  showVisitAttachments(visitId: number) {
+    this.dialog.open(VisitAttachmentDisplayDialogComponent, {
+
+      width: '800px',
+      // minHeight: '95vh',
+      // maxHeight: '680px',
+      autoFocus: false,
+      data: {
+        visitId: visitId
       }
     });
   }

@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {TreatmentCycleService} from '../_services/treatment-cycle.service';
-import {ExternalAttachment} from '../models/attachment.model';
+import {ExternalAttachment} from '../models/external-attachment.model';
 import {UploadService} from '../_services/upload.service';
 import * as fileSaver from 'file-saver';
 import {UploadedFile} from '../models/uploaded-file.model';
@@ -13,7 +13,7 @@ import {UploadedFile} from '../models/uploaded-file.model';
 })
 export class TreatmentCycleAttachmentDisplayComponent implements OnInit {
   @Input() cycleId: number;
-  @Input() attachmentForm: FormGroup;
+  // @Input() attachmentForm: FormGroup;
   externalAttachments: ExternalAttachment[];
 
   constructor(private treatmentCycleService: TreatmentCycleService, private uploadService: UploadService) {

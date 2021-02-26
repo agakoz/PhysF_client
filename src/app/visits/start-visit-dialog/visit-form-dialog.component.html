@@ -1,5 +1,5 @@
 <mat-dialog-content>
-  <div class="dialog-content">
+<!--  <div class="dialog-content">-->
     <h2>Karta wizyty</h2>
 
 
@@ -123,6 +123,13 @@
           </div>
         </form>
       </mat-tab>
+      <mat-tab label="Załączniki przypisane do wizyty">
+        <br/>
+        <app-visit-attachment-form
+          [visitId]="visitForm.get('id').value"
+          [(attachmentForm)]="visitAttachmentForm"
+        ></app-visit-attachment-form>
+      </mat-tab>
       <mat-tab label="Badanie" *ngIf="visitForm.get('treatmentCycle').value != null">
         <br>
         <app-treatment-cycle-form
@@ -136,50 +143,14 @@
         <br/>
         <app-treatment-cycle-attachment-form
           [cycleId]="visitForm.get('treatmentCycle').value.id"
-          [(attachmentForm)]="attachmentForm"
+          [(attachmentForm)]="externalAttachmentForm"
         ></app-treatment-cycle-attachment-form>
-        <!--        <div class="form-group">-->
-        <!--          <button mat-mini-fab color="accent" aria-label="Dodaj załącznik" [matMenuTriggerFor]="chooseAttachment">-->
-        <!--            <mat-icon>add</mat-icon>-->
-        <!--          </button>-->
-        <!--            <mat-menu #chooseAttachment="matMenu">-->
-        <!--              <button mat-menu-item>Plik</button>-->
-        <!--              <button mat-menu-item>Link do repozytorium</button>-->
-        <!--            </mat-menu>-->
-
-
-        <!--&lt;!&ndash;          <div >&ndash;&gt;-->
-        <!--            <mat-form-field class="columns">-->
-        <!--              <mat-label *ngIf="selectedFile; else newFile">{{selectedFile.item(0).name}}</mat-label>-->
-        <!--              <ng-template #newFile>-->
-        <!--                <mat-label>Choose file</mat-label>-->
-        <!--              </ng-template>-->
-        <!--              <input matInput disabled>-->
-        <!--              <button mat-icon-button matSuffix (click)="fileInput.click()">-->
-        <!--                <mat-icon>attach_file</mat-icon>-->
-        <!--              </button>-->
-        <!--              <input hidden (change)="selectFile($event)" #fileInput type="file" id="file">-->
-        <!--            </mat-form-field>-->
-        <!--            <br>-->
-        <!--            <mat-form-field style="width: 60%">-->
-        <!--              <mat-label>Opis/ Komentarz</mat-label>-->
-        <!--              <input-->
-        <!--                matInput-->
-        <!--                type="text"-->
-        <!--                name="description"-->
-        <!--                matTextareaAutosize-->
-        <!--                cdkTextareaAutosize-->
-        <!--                cdkAutosizeMinRows="2"-->
-        <!--                cdkAutosizeMaxRows="20">-->
-        <!--            </mat-form-field>-->
-        <!--          </div>-->
-        <!--        </div>-->
       </mat-tab>
     </mat-tab-group>
-    <br>
-  </div>
+<!--    <br>-->
+<!--  </div>-->
 </mat-dialog-content>
-<p></p>
+<!--<p></p>-->
 <mat-divider></mat-divider>
 <p></p>
 <div class="dialog-button-row">

@@ -130,7 +130,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
 
   viewChanged() {
     this.cdr.detectChanges();
-    // this.scrollToCurrentView();
+    this.scrollToCurrentView();
   }
 
   private scrollToCurrentView() {
@@ -152,6 +152,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
 
   setView(view: CalendarView) {
     this.view = view;
+    this.viewChanged()
   }
 
   dayClicked({date, events}: { date: Date; events: CalendarEvent[] }): void {

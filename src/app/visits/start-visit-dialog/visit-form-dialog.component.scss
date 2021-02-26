@@ -26,9 +26,11 @@
 
 }
 mat-tab-group {
-  height: 480px;
+  //height: 480px;
 }
 mat-dialog-content{
-  max-height: 78vh !important;
-  height: 78vh
+  max-height: 60vh !important;
+  min-height: 90%;
+  height: 90%;
+  margin: 0;
 }

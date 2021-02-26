@@ -22,11 +22,17 @@ mat-radio-button {
 td{
   width: 200px !important;
 }
-.dialog-content{
-  bottom: 0;
-  height: 500px
-}
+//.dialog-content{
+//  bottom: 0;
+//  height: 600px
+//
+//}
 .data {
   height: 300px;
 }
-
+mat-dialog-content{
+  max-height: 50vh !important;
+  min-height: 400px;
+  height: 400px;
+  margin: 0;
+}
