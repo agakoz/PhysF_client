@@ -37,7 +37,6 @@ export class PatientFileTreatmentHistoryPanelComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadTreatmentCycleList();
-
   }
 
   private loadTreatmentCycleList() {

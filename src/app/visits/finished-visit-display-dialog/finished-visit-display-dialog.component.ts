@@ -125,4 +125,7 @@ export class FinishedVisitDisplayDialogComponent implements OnInit {
     }
 
 
+    closeDialog() {
+        this.dialogRef.close()
+    }
 }

@@ -8,7 +8,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 })
 export class HandleEventQuestionDialogComponent implements OnInit {
 
-  constructor(private dialogRef: MatDialogRef<HandleEventQuestionDialogComponent>) { }
+  constructor(private dialogRef: MatDialogRef<HandleEventQuestionDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit(): void {
   }
@@ -26,5 +26,9 @@ export class HandleEventQuestionDialogComponent implements OnInit {
   closeWithCancelMessage() {
     this.dialogRef.close({event: 'cancelVisit'});
 
+  }
+
+  closeDialog() {
+    this.dialogRef.close()
   }
 }

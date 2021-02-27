@@ -126,5 +126,12 @@
 <mat-divider></mat-divider>
 <p></p>
 <div class="dialog-button-row">
-  <button class="dialog-button " mat-button (click)="cancel()">Zamknij</button>
+  <button class="dialog-button " mat-button (click)="closeDialog()">Zamknij</button>
+  <span> </span>
+  <button class="dialog-button"
+          mat-button mat-stroked-button color="primary"
+          (click)="closeDialog()"
+          [routerLink]="['/patient', data.patientId]">
+    Przejdź do kartoteki pacjenta
+  </button>
 </div>

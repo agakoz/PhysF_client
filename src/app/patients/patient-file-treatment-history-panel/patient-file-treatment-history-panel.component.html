@@ -1,5 +1,6 @@
 <div class="treatment-cycle-list" >
   <mat-accordion xmlns="http://www.w3.org/1999/html">
+    <mat-card-title id="message" *ngIf="treatmentCycleTitlesList.length == 0">Pacjent nie ma jeszcze udokumentowanej historii leczenia.</mat-card-title>
     <mat-expansion-panel *ngFor="let treatmentCycle of treatmentCycleTitlesList" (opened)="loadVisits(treatmentCycle.id)">
       <mat-expansion-panel-header>
         <mat-panel-title>

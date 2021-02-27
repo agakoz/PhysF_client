@@ -24,7 +24,6 @@ export class PatientFileComponent implements OnInit {
 
   ngOnInit(): void {
     this.setMainView();
-    console.log(this.view)
     let patientId = +this.getPatientId();
     this.getPatient(patientId);
     // this.title = getTitle();
@@ -49,19 +48,11 @@ export class PatientFileComponent implements OnInit {
     return this.route.snapshot.paramMap.get('id');
   }
 
-  manageChosenPatients(): void {
-    const dialogRef = this.dialog.open(ManagePatientDialogComponent, {
-      width: '800px',
-      data: {
-        patient: this.patient
-      }
-    });
-  }
-
   setMainView() {
     this.view = this.mainView
   }
   setHistoryView() {
+    console.log(this.patient)
     this.view = this.historyView
   }
 }
